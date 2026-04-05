@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Dr. Christian Neusser, DBA – Organisation & Change Management | v2.0</title>
+  <title>Dr. Christian Neusser, DBA – Organisation & Change Management | v2.1</title>
   <style>
     :root{
       --navy:#1A3A5C;--teal:#0D7EA0;--teal-lt:#1A9EC4;--gold:#E8A020;
@@ -203,7 +203,7 @@
     .p-col.p-new{border-color:var(--teal)}
     .p-col h3{font-size:1.02rem;margin-bottom:1.1rem;padding-bottom:.65rem;border-bottom:2px solid #e0ecf4}
     .p-col.p-new h3{border-color:var(--teal);color:var(--navy)}
-    .p-row{display:flex;gap:.85rem;align-items:flex-start;padding:.55rem 0;border-bottom:1px dashed #e0ecf4;font-size:.89rem}
+    .p-row{display:flex;gap:.85rem;align-items:flex-start;padding:.55rem 0;border-bottom:1px dashed #e0ecf4;font-size:.89rem;color:var(--text)}
     .p-row:last-child{border-bottom:none}
     /* ── FOOTER ── */
     footer{background:#0e2234;color:rgba(255,255,255,.42);padding:1.8rem 0;font-size:.8rem;text-align:center}
@@ -211,9 +211,15 @@
     /* ── RESPONSIVE ── */
     @media(max-width:768px){
       .identity-grid,.pillars,.research-grid,.paradigm-grid,.t-cols,.acc-2col,.contact-grid,.prop-grid,.method-grid,.config-grid{grid-template-columns:1fr}
-      .nav-links{display:none;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--navy);padding:1rem 2rem;gap:.65rem}
+      #nav-toggle{display:block!important}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--navy);padding:1rem 2rem;gap:.65rem;z-index:999}
       .nav-links.open{display:flex}
       section{padding:3rem 0}
+      .container{padding:0 1rem}
+      .tabs{flex-direction:column}
+      .tab-btn{width:100%;text-align:left}
+      #hero{padding:3.5rem 0 2.5rem}
+      .hero-stats{gap:1rem}
     }
   </style>
 </head>
@@ -221,9 +227,9 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-brand">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span> <span class="version-badge">v2.0</span></div>
+    <div class="nav-brand">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span> <span class="version-badge">v2.1</span></div>
+    <button id="nav-toggle" aria-label="Menü" style="display:none;background:none;border:none;cursor:pointer;padding:.4rem .6rem;color:var(--white);font-size:1.4rem;line-height:1">☰</button>
     <ul class="nav-links" id="navlinks">
-      <li><a href="#profil">Profil</a></li>
       <li><a href="#lehre">Lehre</a></li>
       <li><a href="#wissen">Wissensportal</a></li>
       <li><a href="#dba">Doktorarbeit</a></li>
@@ -257,47 +263,6 @@
       <div class="hero-stat"><div class="num">25+</div><div class="lbl">Jahre Praxis</div></div>
       <div class="hero-stat"><div class="num">40+</div><div class="lbl">Mandate als CRO/GF</div></div>
       <div class="hero-stat"><div class="num">20+</div><div class="lbl">Jahre Hochschullehre</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROFIL -->
-<section id="profil">
-  <div class="container">
-    <div class="section-label">Profil</div>
-    <h2 class="section-title">Drei Identitäten – ein Profil</h2>
-    <p class="section-subtitle">Die Verbindung aus wissenschaftlicher Forschung, umfangreicher Transformationspraxis und langjähriger Hochschullehre ist das Alleinstellungsmerkmal für diese FH-Professur.</p>
-    <div class="identity-grid">
-      <div class="identity-card">
-        <div class="icard-head"><div class="icon">🔬</div><h3>Transformationsforscher</h3><p>DBA · Henley Business School, University of Reading</p></div>
-        <div class="icard-body"><ul>
-          <li>DBA bestanden Januar 2026 – Succession &amp; Change Governance in Family Firms</li>
-          <li>MSTM-Modell: Mechanisms–Structure–Trust–Mandate (mid-range theory)</li>
-          <li>Qualitative Fallstudienforschung: 102 Interviews, 42 Unternehmen</li>
-          <li>5 Publikationen; Konferenzen: AOM, EURAM, IFERA</li>
-          <li>MSc Business Management Research, Henley (Merit)</li>
-        </ul></div>
-      </div>
-      <div class="identity-card c-teal">
-        <div class="icard-head"><div class="icon">🏢</div><h3>Organisationsgestalter</h3><p>CRO · GF · Transformationsmanager · 25+ Jahre</p></div>
-        <div class="icard-body"><ul>
-          <li>Deutsche Bahn AG – Target Operating Model DB Regio Bus</li>
-          <li>Oerlikon AG – Reorganisation &amp; Strategieneuausrichtung, 5 Standortschließungen</li>
-          <li>Honeywell – Carve-out Management, SSC Offshore→Nearshore</li>
-          <li>Groupe Atlantic – Restrukturierung 5 internationale Werke</li>
-          <li>Siemens, Henkel u. a. – Change Programme, PMO-Aufbau</li>
-        </ul></div>
-      </div>
-      <div class="identity-card c-light">
-        <div class="icard-head"><div class="icon">🎓</div><h3>Hochschuldozent</h3><p>Seit 2004 · DHBW · FAU · Henley · Uni Siegen</p></div>
-        <div class="icard-body"><ul>
-          <li>DHBW Stuttgart &amp; Heilbronn (Organisations- und Managementlehre)</li>
-          <li>FAU Erlangen-Nürnberg (Change Management)</li>
-          <li>Henley Business School (DBA-Coaching, Forschungsseminare)</li>
-          <li>Uni Siegen · Uni Witten/Herdecke</li>
-          <li>Blended Learning, Case-First Teaching, Reflexive Tool-Nutzung</li>
-        </ul></div>
-      </div>
     </div>
   </div>
 </section>
@@ -940,41 +905,82 @@
     <div class="section-label">Publikationen</div>
     <h2 class="section-title">Wissenschaftliche Veröffentlichungen</h2>
     <p class="section-subtitle">Peer-reviewed Beiträge und Buchkapitel zu Familienunternehmen, externer Nachfolge und Change Governance. ORCID: <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">0000-0001-6484-1421</a></p>
+    <div style="font-size:.8rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.9rem">Veröffentlicht</div>
     <div class="pub-list">
 
       <div class="pub pub-oa">
-        <h4>Neusser, C. (2025). Change Governance in Family Businesses: The MSTM-Model as a Framework for Institutionalized Renewal.</h4>
-        <p class="p-meta"><em>Family Business Review</em> (open access). SAGE Publications. ORCID: 0000-0001-6484-1421</p>
-        <p class="p-abstract">Das Artikel entwickelt das MSTM-Framework (Mechanisms–Structure–Trust–Mandate) als konzeptionellen Beitrag zur Familienunternehmensforschung und demonstriert seine Anwendbarkeit für institutionalisierten Wandel in mittelständischen Familienunternehmen.</p>
-        <div class="p-tags"><span class="pill pill-gold">Open Access</span><span class="pill">Family Business Review</span><span class="pill">MSTM</span><span class="pill">Change Governance</span><span class="pill">Familienunternehmen</span></div>
-      </div>
-
-      <div class="pub pub-oa">
-        <h4>Neusser, C. (2025). Mechanisms, Structure, Trust and Mandate: Towards a Theory of Organizational Renewal in SMEs.</h4>
-        <p class="p-meta"><em>Journal of Family Business Strategy</em> (open access). Elsevier.</p>
-        <p class="p-abstract">Theoretische Konzeptualisierung des MSTM-Modells als Mid-Range-Theorie organisationaler Erneuerung in KMU – mit Ableitungen für Governance-Design und Change Management in familiengeführten Unternehmen.</p>
-        <div class="p-tags"><span class="pill pill-gold">Open Access</span><span class="pill">JFBS</span><span class="pill">Organizational Theory</span><span class="pill">SME</span><span class="pill">Mid-Range Theory</span></div>
+        <h4>Neusser, C. (2025). Ecological succession as a model for family business transitions: Integrating organizational ecology with succession-based governance in multigenerational enterprises.</h4>
+        <p class="p-meta"><em>Journal of Family Business Strategy</em> (open access). Elsevier. ORCID: <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">0000-0001-6484-1421</a></p>
+        <p class="p-abstract">Theoretische Integration von Populationsökologie (Hannan &amp; Freeman, 1977) und Nachfolgeforschung: Das Konzept der ökologischen Sukzession wird als Erklärungsmodell für Generationsübergänge in Familienunternehmen entwickelt. Kernbeitrag: Governance als adaptiver Mechanismus zwischen Trägheit und Erneuerung.</p>
+        <div class="p-tags"><span class="pill pill-gold">Open Access</span><span class="pill">JFBS</span><span class="pill">Org. Ecology</span><span class="pill">Nachfolge</span><span class="pill">Governance</span><span class="pill">Familienunternehmen</span></div>
       </div>
 
       <div class="pub">
-        <h4>Neusser, C., &amp; Belitski, M. (2025). Succession, Governance and Sustainability in Family Businesses: A Framework for Transformational Change.</h4>
-        <p class="p-meta">In: <em>Elgar Companion to Family Business and the UN Sustainable Development Goals</em>. Edward Elgar Publishing. ISBN: 978-1-03-530823-0</p>
-        <p class="p-abstract">Buchkapitel zum Thema Nachfolge und Governance in Familienunternehmen im Kontext der UN Sustainable Development Goals. Entwicklung eines Frameworks, das Nachfolgeprozesse mit Nachhaltigkeitszielen verknüpft.</p>
-        <div class="p-tags"><span class="pill">Buchkapitel</span><span class="pill">Peer-reviewed</span><span class="pill">Family Business</span><span class="pill">Governance</span><span class="pill">SDGs</span><span class="pill">Sustainability</span></div>
+        <h4>Neusser, C. (2018). <em>Critical Success Factors in the Transition of German Family-owned Manufacturing SME Companies to External Management.</em></h4>
+        <p class="p-meta">Verlag Dr. Kovač, Hamburg. ISBN: 978-3-339-10XXX-X</p>
+        <p class="p-abstract">Empirische Studie zu Erfolgsfaktoren beim Übergang von Familienunternehmen zu externer Führung. Grundlage für die spätere DBA-Forschung zum MSTM-Modell. Erste systematische Erfassung von Governance- und Vertrauensmechanismen im deutschen Mittelstand.</p>
+        <div class="p-tags"><span class="pill">Monographie</span><span class="pill">Externe Nachfolge</span><span class="pill">KMU</span><span class="pill">Mittelstand</span></div>
+      </div>
+
+      <div class="pub">
+        <h4>Brem, A., Kreusel, N., &amp; Neusser, C. (2008). Performance measurement in SMEs: literature review and results from a German case study.</h4>
+        <p class="p-meta"><em>International Journal of Globalisation and Small Business, 2</em>(4), 411–427.</p>
+        <p class="p-abstract">Systematischer Literaturüberblick zu Performance Measurement in KMU kombiniert mit einer Fallstudie aus der deutschen Praxis. Früher Beitrag zur empirischen KMU-Forschung im deutschsprachigen Raum.</p>
+        <div class="p-tags"><span class="pill">Peer-reviewed</span><span class="pill">KMU</span><span class="pill">Performance Measurement</span><span class="pill">Case Study</span></div>
       </div>
 
       <div class="pub">
         <h4>Neusser, C. (2026). <em>Navigating External Succession in German 'Mittelstand' Family-Owned Manufacturing Companies: A Multi-Perspective Study on Leadership Transition, Governance, and Socioemotional Wealth.</em></h4>
-        <p class="p-meta">DBA Dissertation. Henley Business School, University of Reading. Betreuer: Prof. Dr. Maksim Belitski. Defence: Januar 2026.</p>
+        <p class="p-meta">DBA Dissertation. Henley Business School, University of Reading. Supervisor: Prof. Dr. Maksim Belitski. Verteidigung: Januar 2026 (straight pass).</p>
         <p class="p-abstract">Qualitative Mehrfallstudie (102 Interviews, 42 Unternehmen) zur externen Nachfolge in deutschen Mittelstandsunternehmen. Entwicklung des MSTM-Frameworks (Mechanisms–Structure–Trust–Mandate) als rekursives, mehrebeniges Mid-Range-Framework. Sechs Propositionen, vier Nachfolgekonfigurationen, zwölf Akteursarchetypen.</p>
         <div class="p-tags"><span class="pill">DBA Dissertation</span><span class="pill">Qualitative Forschung</span><span class="pill">Multiple Case Study</span><span class="pill">MSTM</span><span class="pill">Familienunternehmen</span><span class="pill">Legitimationstheorie</span></div>
       </div>
 
     </div>
 
+    <div style="font-size:.8rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.15em;margin:2rem 0 .9rem">Forthcoming (begutachtet / angenommen)</div>
+    <div class="pub-list">
+
+      <div class="pub">
+        <h4>Neusser, C., &amp; Belitski, M. (2026). Ecological Models in Family Business Succession: A Framework for Sustainable Innovation and Resilience.</h4>
+        <p class="p-meta">In T. Clauss, A. Calabrò, &amp; A. Heider (Eds.), <em>Elgar Companion to Family Business and the United Nations Sustainable Development Goals</em>. Cheltenham: Edward Elgar Publishing. (forthcoming)</p>
+        <div class="p-tags"><span class="pill pill-navy">Forthcoming</span><span class="pill">Buchkapitel</span><span class="pill">Elgar</span><span class="pill">SDGs</span><span class="pill">Resilience</span></div>
+      </div>
+
+      <div class="pub">
+        <h4>Neusser, C., &amp; Weller, M. (2026). Reframing Innovation: How Female Successors Redefine Risk, Time, and Impact in Family SMEs.</h4>
+        <p class="p-meta"><em>ZfKE – Zeitschrift für KMU und Entrepreneurship</em> (forthcoming)</p>
+        <div class="p-tags"><span class="pill pill-navy">Forthcoming</span><span class="pill">ZfKE</span><span class="pill">Gender</span><span class="pill">Innovation</span><span class="pill">Familienunternehmen</span></div>
+      </div>
+
+    </div>
+
+    <div style="font-size:.8rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.15em;margin:2rem 0 .9rem">Under Review</div>
+    <div class="pub-list">
+
+      <div class="pub">
+        <h4>Neusser, C. (2026). Inward Theorizing Ecological Resilience and Evolutionary Dynamics in Family Business Succession.</h4>
+        <p class="p-meta"><em>Journal of Family Business Strategy</em> (under review)</p>
+        <div class="p-tags"><span class="pill">Under Review</span><span class="pill">JFBS</span><span class="pill">Resilience</span><span class="pill">Evolutionary Theory</span></div>
+      </div>
+
+      <div class="pub">
+        <h4>Neusser, C., &amp; Belitski, M. (2026). Navigating Family Business Succession: Balancing Tradition and Change.</h4>
+        <p class="p-meta"><em>Family Business Review</em> (under review)</p>
+        <div class="p-tags"><span class="pill">Under Review</span><span class="pill">FBR</span><span class="pill">Nachfolge</span><span class="pill">Tradition</span></div>
+      </div>
+
+      <div class="pub">
+        <h4>Neusser, C., Vershinina, N., Mismetti, M., &amp; De Massis, A. (2026). Innovation Pathways in Family Firms: Governance, Succession, and Crisis Adaptation.</h4>
+        <p class="p-meta"><em>Entrepreneurship Theory &amp; Practice</em> (under review)</p>
+        <div class="p-tags"><span class="pill">Under Review</span><span class="pill">ET&amp;P</span><span class="pill">Innovation</span><span class="pill">Governance</span><span class="pill">Crisis</span></div>
+      </div>
+
+    </div>
+
     <div style="margin-top:2rem;background:var(--accent);border-radius:var(--radius);padding:1.3rem 1.6rem;border-left:4px solid var(--teal)">
-      <h4 style="color:var(--navy);font-size:.9rem;margin-bottom:.5rem">Konferenzbeiträge &amp; Laufende Einreichungen</h4>
-      <p style="font-size:.88rem">EURAM Annual Conference (paper eingereicht) · AOM Annual Meeting · IFERA World Family Business Research Conference. Weitere Einreichungen basierend auf der DBA-Dissertation in Vorbereitung für <em>Journal of Management Studies</em> und <em>Organization Studies</em>.</p>
+      <h4 style="color:var(--navy);font-size:.9rem;margin-bottom:.5rem">Konferenzbeiträge &amp; Netzwerke</h4>
+      <p style="font-size:.88rem">Academy of Management (AOM) 2024 + 2025 · EURAM 2023–2025 (Co-Organizer/Track-Chair 2026) · NCSB 2025 (Co-Organizer 2026) · ACERE 2026 (Sydney) · IFERA, FERC, FiFu, RENT, SPGC. Reviewer: <em>Small Business Economics</em>, <em>ET&amp;P</em>, <em>JFBS</em>, SAGE Open. Mitglied: AOM, EURAM, IFERA, ACERE, ECSB, EISAM.</p>
     </div>
   </div>
 </section>
@@ -1035,6 +1041,12 @@ function switchTab(id,btn){
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
+// Hamburger menu
+const navToggle=document.getElementById('nav-toggle');
+const navLinks=document.getElementById('navlinks');
+if(navToggle){navToggle.addEventListener('click',()=>{navLinks.classList.toggle('open')})}
+// Close menu on link click
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 // Active nav
 const sects=document.querySelectorAll('section[id]');
 const links=document.querySelectorAll('.nav-links a');
