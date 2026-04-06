@@ -205,6 +205,47 @@
     .p-col.p-new h3{border-color:var(--teal);color:var(--navy)}
     .p-row{display:flex;gap:.85rem;align-items:flex-start;padding:.55rem 0;border-bottom:1px dashed #e0ecf4;font-size:.89rem;color:var(--text)}
     .p-row:last-child{border-bottom:none}
+    /* ── NEWS TICKER ── */
+    #ticker-bar{background:var(--navy);border-bottom:2px solid var(--gold);overflow:hidden;height:34px;display:flex;align-items:center}
+    #ticker-bar .ticker-label{flex-shrink:0;background:var(--gold);color:var(--white);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 .9rem;height:100%;display:flex;align-items:center;white-space:nowrap}
+    .ticker-track{display:flex;align-items:center;white-space:nowrap;animation:ticker-scroll 40s linear infinite;will-change:transform}
+    .ticker-track:hover{animation-play-state:paused}
+    .ticker-item{font-size:.78rem;color:rgba(255,255,255,.82);padding:0 2.5rem;cursor:pointer}
+    .ticker-item span{color:var(--gold);font-weight:600;margin-right:.5rem}
+    @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* ── BLOG ── */
+    .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    @media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.blog-grid{grid-template-columns:1fr}}
+    .blog-tile{background:var(--white);border-radius:var(--radius);border:1px solid #d0e4f0;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;cursor:pointer}
+    .blog-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+    .blog-tile-head{padding:1.1rem 1.25rem .9rem;background:var(--light-bg);border-bottom:1px solid #d0e4f0}
+    .blog-tile-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem}
+    .cat-Forschung{color:#1e40af}.cat-Lehre{color:#166534}.cat-Praxis{color:#92400e}.cat-Konferenz{color:#9d174d}
+    .blog-tile-title{font-family:Georgia,serif;font-size:.97rem;color:var(--navy);line-height:1.35}
+    .blog-tile-body{padding:1rem 1.25rem;font-size:.85rem;color:var(--muted);line-height:1.6;flex:1}
+    .blog-tile-foot{padding:.75rem 1.25rem;border-top:1px solid #d0e4f0;font-size:.75rem;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+    .blog-read-more{color:var(--teal);font-weight:600;font-size:.8rem}
+    /* Modal */
+    .blog-modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,20,35,.7);z-index:2000;align-items:center;justify-content:center;padding:1.5rem}
+    .blog-modal-overlay.open{display:flex}
+    .blog-modal{background:var(--white);border-radius:var(--radius);max-width:720px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+    .blog-modal-head{background:var(--navy);color:var(--white);padding:1.5rem 1.75rem;border-radius:var(--radius) var(--radius) 0 0;position:sticky;top:0;z-index:1}
+    .blog-modal-head h2{font-family:Georgia,serif;font-size:1.35rem;margin-bottom:.3rem}
+    .blog-modal-meta{font-size:.8rem;color:#aabccc}
+    .blog-modal-close{position:absolute;top:1rem;right:1.25rem;background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer;line-height:1}
+    .blog-modal-body{padding:1.75rem;font-size:.93rem;line-height:1.8}
+    .blog-modal-body p{margin-bottom:1rem}
+    .blog-modal-body strong{color:var(--navy)}
+    /* VentureLab */
+    .vlab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1.5rem}
+    @media(max-width:700px){.vlab-grid{grid-template-columns:1fr}}
+    .vlab-card{background:var(--white);border-radius:var(--radius);padding:1.25rem 1.4rem;border:1px solid #d0e4f0;box-shadow:var(--shadow)}
+    .vlab-card h4{font-size:.95rem;color:var(--navy);margin-bottom:.5rem}
+    .vlab-card p,.vlab-card li{font-size:.875rem;color:var(--text);line-height:1.6}
+    .vlab-card ul{padding-left:1.1rem}
+    .vlab-card li{margin-bottom:.25rem}
+    .vlab-num{font-family:Georgia,serif;font-size:1.6rem;color:var(--teal);font-weight:bold;margin-bottom:.2rem}
     /* ── FOOTER ── */
     footer{background:#0e2234;color:rgba(255,255,255,.42);padding:1.8rem 0;font-size:.8rem;text-align:center}
     footer a{color:rgba(255,255,255,.48)}
@@ -236,11 +277,22 @@
       <li><a href="#modell">MSTM-Modell</a></li>
       <li><a href="#forschung">Forschung</a></li>
       <li><a href="#publikationen">Publikationen</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="ueber-mich.html">Über mich</a></li>
+      <li><a href="praxisbeispiele.html">Praxisbeispiele</a></li>
       <li><a href="changelog.html" class="nav-changelog">Changelog</a></li>
     </ul>
   </div>
 </nav>
+
+<!-- NEWS TICKER -->
+<div id="ticker-bar">
+  <div class="ticker-label">Aktuell</div>
+  <div style="overflow:hidden;flex:1;position:relative">
+    <div class="ticker-track" id="ticker-track"><!-- filled by JS --></div>
+  </div>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -409,6 +461,58 @@
         <div style="background:var(--accent);border-radius:var(--radius);padding:1.1rem;border-top:3px solid var(--teal)"><h4 style="color:var(--navy);font-size:.88rem;margin-bottom:.4rem">Reflexive Tool-Nutzung</h4><p style="font-size:.85rem">Nicht nur Einsatz von CM-Werkzeugen, sondern kritische Reflexion ihrer Grenzen und Kontextabhängigkeit.</p></div>
       </div>
     </div>
+
+    <!-- VentureLab -->
+    <div style="margin-top:3rem;padding-top:2.5rem;border-top:2px solid #d0e4f0">
+      <div class="section-label">Flagship-Lehrformat</div>
+      <h2 class="section-title" style="font-size:1.55rem">5-Euro-Business VentureLab</h2>
+      <p class="section-subtitle">Experiential Entrepreneurship · 6 Wochen · echter Markt · 5 Euro Startkapital</p>
+
+      <div style="background:linear-gradient(135deg,var(--navy) 60%,#0e2d4a);border-radius:var(--radius);padding:1.5rem 1.75rem;color:var(--white);margin-bottom:1.5rem;border-left:5px solid var(--gold)">
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:.5rem;font-weight:700">Die Prämisse</div>
+        <p style="font-size:1.02rem;line-height:1.65;color:#e0eaf4">Jedes Team erhält <strong style="color:var(--gold)">5 Euro Startkapital</strong> und 6 Wochen Zeit, um ein funktionierendes Geschäftsmodell zu entwickeln, zu testen und Umsatz zu generieren – mit echten Kunden, echtem Markt, echter Verantwortung. Kein Businessplan auf 40 Seiten. Kein Pitch-Deck mit Hochglanzfolien. Stattdessen: sofortiges Handeln.</p>
+      </div>
+
+      <div class="vlab-grid">
+        <div class="vlab-card" style="border-top:3px solid var(--teal)">
+          <h4>Theoretische Fundierung</h4>
+          <ul>
+            <li><strong>Experiential Learning</strong> (Kolb, 1984): Jede Handlungsphase wird von strukturierter Reflexion begleitet.</li>
+            <li><strong>Effectuation</strong> (Sarasvathy, 2001): Nicht von Zielen rückwärts planen – von verfügbaren Ressourcen vorwärts handeln.</li>
+            <li><strong>Action Learning</strong> (Revans, 1980): Lernen durch kollektive Problemlösung im Team.</li>
+            <li><strong>Psychological Safety</strong> (Edmondson, 1999): Scheitern ist ausdrücklich erlaubt – und wird reflektiert.</li>
+          </ul>
+        </div>
+        <div class="vlab-card" style="border-top:3px solid var(--gold)">
+          <h4>Format im Überblick</h4>
+          <ul>
+            <li><strong>Woche 1:</strong> 5 Euro, kein Plan – direkter Erstkontakt mit Markt und Kunden</li>
+            <li><strong>Woche 2–4:</strong> Iteration: erste Umsätze, Pivot, Modellwechsel</li>
+            <li><strong>Woche 5–6:</strong> Skalierung, Reflexion, Lernjournal</li>
+            <li><strong>Abschluss:</strong> Ergebnispräsentation + Lernjournal statt klassischer Prüfung</li>
+          </ul>
+        </div>
+        <div class="vlab-card" style="border-top:3px solid var(--navy)">
+          <h4>Empirische Ergebnisse</h4>
+          <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:.75rem">
+            <div><div class="vlab-num">82%</div><div style="font-size:.75rem;color:var(--muted)">Selbstwirksamkeitssteigerung</div></div>
+            <div><div class="vlab-num">94%</div><div style="font-size:.75rem;color:var(--muted)">Effectuation-Kompetenz</div></div>
+            <div><div class="vlab-num">5+</div><div style="font-size:.75rem;color:var(--muted)">€ Ø-Umsatz je Team</div></div>
+          </div>
+          <p style="font-size:.82rem;color:var(--muted)">Erste Auswertungen Sommersemester 2024/25. Forschungsdesign: Prä-Post-Befragung, strukturierte Reflexionsprotokolle.</p>
+        </div>
+        <div class="vlab-card" style="border-top:3px solid var(--teal)">
+          <h4>Forschungsagenda</h4>
+          <ul>
+            <li>Wie entsteht unternehmerische Selbstwirksamkeit unter Ressourcenknappheit?</li>
+            <li>Welche Rolle spielt Psychological Safety für den Lernertrag?</li>
+            <li>Effectuation vs. Causation: Welche Logik dominiert in Phase 1?</li>
+            <li>Geplante Publikation: <em>Effectuation &amp; Psychological Safety in experiential learning contexts</em> (JBV, under prep.)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="ref-tag" style="margin-top:1rem">Kolb, D. A. (1984). <em>Experiential learning</em>. Prentice Hall. | Sarasvathy, S. D. (2001). Causation and effectuation. <em>AMR, 26</em>(2). | Revans, R. (1980). <em>Action learning</em>. Blond &amp; Briggs. | Edmondson, A. C. (1999). Psychological safety and learning behavior. <em>ASQ, 44</em>(2).</p>
+    </div>
   </div>
 </section>
 
@@ -428,6 +532,7 @@
       <button class="tab-btn" onclick="switchTab('t6',this)">Legitimationstheorie</button>
       <button class="tab-btn" onclick="switchTab('t7',this)">SEW &amp; Stewardship</button>
       <button class="tab-btn" onclick="switchTab('t8',this)">Agentur &amp; Governance</button>
+      <button class="tab-btn" onclick="switchTab('t9',this)">Org. Modelle</button>
     </div>
 
     <div class="tab-panel active" id="t1">
@@ -641,6 +746,48 @@
           </div>
         </div>
         <p class="ref-tag">Chrisman, J. J., Chua, J. H., De Massis, A., Frattini, F., &amp; Wright, M. (2015). The ability and willingness paradox in family firm innovation. <em>Journal of Product Innovation Management, 32</em>(3), 310–318. | Fama, E. F., &amp; Jensen, M. C. (1983). Separation of ownership and control. <em>Journal of Law and Economics, 26</em>(2), 301–325. | Jensen, M. C., &amp; Meckling, W. H. (1976). Theory of the firm. <em>Journal of Financial Economics, 3</em>(4), 305–360. https://doi.org/10.1016/0304-405X(76)90026-X</p>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="t9">
+      <div class="theory-card">
+        <h3>Alternative Organisationsmodelle – Spektrum, Praxis &amp; Kritik</h3>
+        <p class="t-sub">Tushman &amp; O'Reilly (1996) · Gibson &amp; Birkinshaw (2004) · Zhang (2014) · Kniberg &amp; Ivarsson (2012)</p>
+        <div class="t-cols">
+          <div>
+            <div class="t-block"><h4>Das Spektrum: Von Hierarchie bis Selbstorganisation</h4>
+              <p>Organisationsmodelle lassen sich auf einem Kontinuum verorten – von der klassischen weberschen Bürokratie (optimal für Stabilität, Zuverlässigkeit, regulierte Märkte) bis hin zu vollständiger Selbstorganisation (Holacracy, Teal Organizations nach Laloux 2014). Zwischen diesen Polen liegen die für Praxis relevantesten Modelle:</p>
+              <ul style="margin:.6rem 0;padding-left:1.1rem">
+                <li style="margin-bottom:.3rem"><strong>Divisionale Struktur</strong> (Mintzberg): Eigenständige Geschäftsbereiche mit P&amp;L-Verantwortung. Erste Stufe der Dezentralisierung.</li>
+                <li style="margin-bottom:.3rem"><strong>Ambidextrous Organization</strong> (Tushman &amp; O'Reilly 1996): Getrennte Einheiten für Exploitation (Kerngeschäft) und Exploration (Innovation). Goldener Mittelweg für mittelgroße Unternehmen.</li>
+                <li style="margin-bottom:.3rem"><strong>Agiles Netzwerk / Squad-Modell</strong> (Kniberg &amp; Ivarsson 2012 → Spotify): Autonome Mini-Teams mit gemeinsamen Standards. Stark in wissensintensiven Industrien.</li>
+                <li><strong>Holacracy / Teal</strong> (Laloux 2014): Vollständige Aufhebung von Hierarchie. Empirisch bislang dünn belegt, aber theoretisch wegweisend.</li>
+              </ul>
+              <div class="insight-box"><strong>Meine These:</strong> Das goldene Mittel für mittelgroße Unternehmen liegt in der Ambidexterität – nicht am Rand des Spektrums. Kontext entscheidet: Industrie, Reifegrad, Krisenstadium.</div>
+            </div>
+            <div class="t-block"><h4>Strukturelle vs. Kontextuelle Ambidexterität</h4>
+              <p><strong>Strukturelle Ambidexterität</strong> (Tushman &amp; O'Reilly 1996): Getrennte Organisationseinheiten für Exploitation und Exploration – mit eigener Führung, eigenem Budget, eigenen KPIs. Die explorative Einheit ist vor den Effizienzlogiken des Kerngeschäfts geschützt.</p>
+              <p style="margin-top:.6rem"><strong>Kontextuelle Ambidexterität</strong> (Gibson &amp; Birkinshaw 2004): Individuen und Teams entscheiden selbst, wann sie exploitieren und wann sie explorieren – abhängig von Aufgabe, Kontext und eigenem Urteil. Erfordert hohe Kulturreife und klare Mandatsstrukturen.</p>
+            </div>
+          </div>
+          <div>
+            <div class="t-block"><h4>Weltbeispiele: Prinzipien &amp; kritische Würdigung</h4>
+              <p><strong>Spotify Squad Model:</strong> Das bekannteste Agilitätsmodell – und das meistmissverstanden. Squads (autonome Teams), Tribes, Chapters, Guilds. 2019 offiziell revidiert: zu viel Autonomie ohne strategische Kohärenz führte zu Koordinationschaos. Lektion: Autonomie braucht strukturelle Einbettung.</p>
+              <p style="margin-top:.6rem"><strong>Amazon Two-Pizza-Teams:</strong> Kein Team größer als zwei Pizzen. Radikale Dezentralisierung durch Größenbeschränkung, nicht durch Hierarchieabbau. Service-orientierte Architektur (API-first) als strukturelles Rückgrat. Übertragbares Prinzip: Komplexität durch Teamgröße regulieren.</p>
+              <p style="margin-top:.6rem"><strong>Haier RenDanHeYi</strong> (Zhang 2014): ~4.000 Microenterprises mit eigener P&amp;L, eigenem Markt, eigenen Personalentscheidungen. Umsatz ×20 in 15 Jahren. Faszinierend – aber kontextabhängig: konfuzianische Unternehmenskultur, chinesisches Regulierungsumfeld, fehlende Mitbestimmungslogik. <em>Nicht eins-zu-eins auf europäische Mittelständler übertragbar.</em></p>
+            </div>
+            <div class="t-block"><h4>Praxis-Deep-Dives: Meine Mandate</h4>
+              <p>Die theoretischen Modelle wurden in meinen Mandaten konkret erprobt:</p>
+              <ul style="margin:.4rem 0;padding-left:1.1rem">
+                <li style="margin-bottom:.3rem"><strong>FATH Groupe (2005–2016):</strong> Strukturelle Ambidexterität für internationale Expansion – eigenständige Explorationseinheit → 5 neue Märkte in 3 Jahren.</li>
+                <li style="margin-bottom:.3rem"><strong>Deutsche Bahn AG / DB Regio (2018–2020):</strong> Kontextuelle Ambidexterität – explizites Mandat + Vertrauenskultur als Voraussetzung.</li>
+                <li><strong>Küchenquelle (2012–2016):</strong> Divisionale Transformation → P&amp;L-Verantwortung als Treiber unternehmerischen Denkens.</li>
+              </ul>
+              <div style="margin-top:.9rem"><a href="praxisbeispiele.html" class="btn btn-primary" style="font-size:.82rem">Alle Praxisbeispiele &amp; Fallstudien →</a></div>
+            </div>
+          </div>
+        </div>
+        <p class="ref-tag">Tushman, M. L., &amp; O'Reilly, C. A. (1996). Ambidextrous organizations. <em>CMR, 38</em>(4). | Gibson, C. B., &amp; Birkinshaw, J. (2004). The antecedents, consequences, and mediating role of organizational ambidexterity. <em>AMJ, 47</em>(2). | Kniberg, H., &amp; Ivarsson, A. (2012). <em>Scaling Agile @ Spotify</em>. Spotify White Paper. | Zhang, R. (2014). <em>Haier: A sea of users</em>. Ivey Business School Case. | Laloux, F. (2014). <em>Reinventing organizations</em>. Nelson Parker.</p>
       </div>
     </div>
 
@@ -985,6 +1132,34 @@
   </div>
 </section>
 
+<!-- BLOG -->
+<section id="blog">
+  <div class="container">
+    <div class="section-label">Blog · Forschung &amp; Praxis</div>
+    <h2 class="section-title">Aktuelle Beiträge</h2>
+    <p class="section-subtitle">Gedanken zu Organisationstheorie, Change Management, Lehre und Praxis – regelmäßig aktualisiert.</p>
+    <div class="blog-grid" id="blog-grid">
+      <div style="color:var(--muted);font-size:.9rem;grid-column:1/-1">Beiträge werden geladen…</div>
+    </div>
+    <div style="margin-top:1.5rem;text-align:center">
+      <a href="blog-admin.html" class="btn btn-outline" style="border-color:var(--teal);color:var(--teal);font-size:.82rem">Admin: Beitrag verfassen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG MODAL -->
+<div class="blog-modal-overlay" id="blog-modal" onclick="closeBlogModal(event)">
+  <div class="blog-modal">
+    <div class="blog-modal-head">
+      <button class="blog-modal-close" onclick="closeBlogModal(null)">✕</button>
+      <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.35rem" id="modal-cat"></div>
+      <h2 id="modal-title"></h2>
+      <div class="blog-modal-meta" id="modal-meta"></div>
+    </div>
+    <div class="blog-modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="container">
@@ -1024,7 +1199,7 @@
   <div class="container">
     <p>Dr. Christian Neusser, DBA &nbsp;·&nbsp; Organisation &amp; Change Management &nbsp;·&nbsp; Fachhochschule Kärnten &nbsp;·&nbsp; Version 2.0</p>
     <p style="margin-top:.4rem"><a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> &nbsp;·&nbsp; <a href="https://scholar.google.com/citations?user=ZPGTwF8AAAAJ" target="_blank">Google Scholar</a> &nbsp;·&nbsp; <a href="changelog.html">Changelog</a></p>
-    <p style="margin-top:.7rem;font-size:.74rem;opacity:.45">Version 2.0 · April 2026 · Alle Inhalte © Dr. Christian Neusser, DBA · Quellenangaben nach APA 7</p>
+    <p style="margin-top:.7rem;font-size:.74rem;opacity:.45">Version 2.1 · April 2026 · Alle Inhalte © Dr. Christian Neusser, DBA · Quellenangaben nach APA 7 · <a href="ueber-mich.html">Über mich</a> · <a href="praxisbeispiele.html">Praxisbeispiele</a></p>
   </div>
 </footer>
 
@@ -1057,10 +1232,72 @@ window.addEventListener('scroll',()=>{
 });
 // Scroll-in animation
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.07});
-document.querySelectorAll('.identity-card,.acc-item,.rc,.pub,.pillar,.p-col,.prop-card,.config-card').forEach(el=>{
+document.querySelectorAll('.identity-card,.acc-item,.rc,.pub,.pillar,.p-col,.prop-card,.config-card,.blog-tile,.vlab-card').forEach(el=>{
   el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity .45s ease,transform .45s ease';
   obs.observe(el);
 });
+
+// ── BLOG + TICKER ────────────────────────────────────────────────
+(async function(){
+  let posts=[];
+  try{
+    const r=await fetch('posts.json?t='+Date.now());
+    posts=await r.json();
+  }catch(e){
+    document.getElementById('blog-grid').innerHTML='<p style="color:var(--muted);font-size:.88rem">Blog-Beiträge konnten nicht geladen werden. <a href="posts.json">posts.json</a> prüfen.</p>';
+    return;
+  }
+  posts.sort((a,b)=>b.date.localeCompare(a.date));
+
+  // Render blog tiles
+  const grid=document.getElementById('blog-grid');
+  grid.innerHTML=posts.map((p,i)=>`
+    <div class="blog-tile" onclick="openBlogModal(${i})">
+      <div class="blog-tile-head">
+        <div class="blog-tile-cat cat-${p.category}">${p.category}</div>
+        <div class="blog-tile-title">${p.title}</div>
+      </div>
+      <div class="blog-tile-body">${p.teaser}</div>
+      <div class="blog-tile-foot">
+        <span>${p.date}</span>
+        <span class="blog-read-more">Weiterlesen →</span>
+      </div>
+    </div>
+  `).join('');
+
+  // Trigger scroll animation on newly added tiles
+  grid.querySelectorAll('.blog-tile').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity .45s ease,transform .45s ease';
+    obs.observe(el);
+  });
+
+  // Blog modal
+  window._posts=posts;
+
+  // Ticker
+  const track=document.getElementById('ticker-track');
+  if(track && posts.length){
+    const items=posts.map(p=>`<span class="ticker-item" onclick="document.getElementById('blog').scrollIntoView({behavior:'smooth'})"><span>${p.category}</span>${p.title}</span>`).join('');
+    track.innerHTML=items+items; // duplicate for seamless loop
+  }
+})();
+
+window.openBlogModal=function(i){
+  const p=window._posts[i];
+  if(!p)return;
+  document.getElementById('modal-cat').textContent=p.category;
+  document.getElementById('modal-title').textContent=p.title;
+  document.getElementById('modal-meta').textContent=p.date+(p.tags&&p.tags.length?' · '+p.tags.join(', '):'');
+  document.getElementById('modal-body').innerHTML=p.content;
+  document.getElementById('blog-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+};
+window.closeBlogModal=function(e){
+  if(e&&e.target!==document.getElementById('blog-modal'))return;
+  document.getElementById('blog-modal').classList.remove('open');
+  document.body.style.overflow='';
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeBlogModal(null)});
 </script>
 </body>
 </html>
