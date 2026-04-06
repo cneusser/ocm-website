@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Über mich · Dr. Christian Neusser, DBA</title>
+<style>
+:root {
+  --navy:    #1A3A5C;
+  --teal:    #0D7EA0;
+  --gold:    #E8A020;
+  --white:   #FFFFFF;
+  --light-bg:#F0F6FA;
+  --muted:   #6B8BA4;
+  --text:    #2C3E50;
+  --border:  #D0DDE8;
+  --accent:  #E8F4FA;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; color: var(--text); line-height: 1.65; background: var(--white); }
+
+/* ── NAV ── */
+nav {
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 58px; position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.nav-brand { color: var(--white); font-family: Georgia, serif; font-size: 1rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+.nav-badge { background: var(--teal); color: var(--white); font-size: .68rem; padding: .1rem .45rem; border-radius: 3px; font-family: 'Segoe UI', sans-serif; font-weight: normal; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { color: #aabccc; text-decoration: none; font-size: .88rem; transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+#nav-toggle { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; padding: .2rem .5rem; }
+@media(max-width:768px) {
+  #nav-toggle { display: block !important; }
+  .nav-links { display: none; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: var(--navy); padding: 1rem 2rem; gap: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+  .nav-links.open { display: flex; }
+}
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 60%, #0e2d4a);
+  border-left: 6px solid var(--gold);
+  padding: 4rem 2rem 3.5rem;
+  color: var(--white);
+}
+.hero-inner { max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .15em; color: var(--gold); font-weight: bold; margin-bottom: .9rem; }
+.hero h1 { font-family: Georgia, serif; font-size: 2.4rem; font-weight: bold; line-height: 1.2; margin-bottom: .6rem; }
+.hero-sub { font-size: 1.05rem; color: #aabccc; margin-bottom: 2rem; }
+.hero-intro { font-size: 1.05rem; color: #d0dde8; max-width: 660px; line-height: 1.7; margin-bottom: 2.5rem; }
+.stats-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-num { font-family: Georgia, serif; font-size: 2rem; font-weight: bold; color: var(--gold); line-height: 1; }
+.stat-label { font-size: .78rem; color: #aabccc; margin-top: .2rem; text-transform: uppercase; letter-spacing: .07em; }
+
+/* ── SECTIONS ── */
+section { padding: 4rem 2rem; }
+.inner { max-width: 920px; margin: 0 auto; }
+.section-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .15em; color: var(--teal); font-weight: bold; margin-bottom: .6rem; }
+.section-title { font-family: Georgia, serif; font-size: 1.7rem; color: var(--navy); margin-bottom: 1.5rem; }
+.section-navy { background: var(--navy); }
+.section-navy .section-title { color: var(--white); }
+.section-navy .section-label { color: var(--gold); }
+.section-light { background: var(--light-bg); }
+
+/* ── AKADEMISCHER HINTERGRUND – Timeline ── */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before { content:''; position:absolute; left:.6rem; top:.5rem; bottom:.5rem; width:2px; background: var(--teal); opacity: .3; }
+.tl-item { position: relative; margin-bottom: 2rem; }
+.tl-item::before { content:''; position:absolute; left:-1.5rem; top:.4rem; width:12px; height:12px; border-radius:50%; background: var(--teal); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--teal); }
+.tl-year { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); font-weight: bold; margin-bottom: .3rem; }
+.tl-title { font-family: Georgia, serif; font-size: 1.05rem; color: var(--navy); font-weight: bold; }
+.tl-inst { font-size: .9rem; color: var(--muted); margin: .15rem 0; }
+.tl-desc { font-size: .9rem; color: var(--text); line-height: 1.6; }
+.tl-tag { display: inline-block; background: var(--accent); color: var(--teal); border: 1px solid var(--teal); border-radius: 3px; font-size: .72rem; padding: .1rem .4rem; margin-top: .4rem; }
+
+/* ── DREI IDENTITÄTEN ── */
+.id-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+@media(max-width:768px) { .id-grid { grid-template-columns: 1fr; } }
+.id-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 2rem 1.5rem; }
+.id-icon { font-size: 2rem; margin-bottom: 1rem; }
+.id-card h3 { font-family: Georgia, serif; color: var(--white); font-size: 1.1rem; margin-bottom: .75rem; }
+.id-card p { color: #aabccc; font-size: .9rem; line-height: 1.65; }
+.id-accent { color: var(--gold); font-weight: 600; }
+
+/* ── FORSCHUNGSSCHWERPUNKTE ── */
+.research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+@media(max-width:600px) { .research-grid { grid-template-columns: 1fr; } }
+.res-card { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--teal); border-radius: 0 8px 8px 0; padding: 1.25rem 1.5rem; }
+.res-card.gold-border { border-left-color: var(--gold); }
+.res-card.navy-border { border-left-color: var(--navy); }
+.res-card h4 { font-family: Georgia, serif; color: var(--navy); font-size: .98rem; margin-bottom: .4rem; }
+.res-card p  { font-size: .87rem; color: var(--muted); line-height: 1.55; }
+.res-card .ref { font-size: .75rem; color: var(--teal); margin-top: .4rem; font-style: italic; }
+
+/* ── PUBLIKATIONEN ── */
+.pub-list { list-style: none; }
+.pub-item { padding: 1.1rem 1.25rem; border-left: 3px solid var(--teal); margin-bottom: 1rem; background: var(--white); border-radius: 0 6px 6px 0; box-shadow: 0 1px 4px rgba(26,58,92,.07); }
+.pub-item.forthcoming { border-left-color: var(--gold); }
+.pub-item.review { border-left-color: var(--muted); }
+.pub-badge { display: inline-block; font-size: .68rem; font-weight: bold; padding: .12rem .4rem; border-radius: 3px; margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .06em; }
+.badge-pub { background: #dcfce7; color: #166534; }
+.badge-forthcoming { background: #fef3c7; color: #92400e; }
+.badge-review { background: #f3f4f6; color: #6b7280; }
+.pub-text { font-size: .9rem; line-height: 1.6; color: var(--text); }
+.pub-text a { color: var(--teal); }
+.orcid-link { display: inline-flex; align-items: center; gap: .4rem; color: var(--teal); text-decoration: none; font-size: .88rem; margin-top: 1rem; }
+.orcid-link:hover { text-decoration: underline; }
+
+/* ── KONFERENZEN ── */
+.conf-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+@media(max-width:600px) { .conf-grid { grid-template-columns: 1fr; } }
+.conf-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.25rem; }
+.conf-name { font-weight: bold; color: var(--navy); font-size: .92rem; margin-bottom: .2rem; }
+.conf-role { font-size: .8rem; color: var(--teal); font-weight: 600; margin-bottom: .3rem; }
+.conf-desc { font-size: .83rem; color: var(--muted); line-height: 1.5; }
+
+/* ── KONTAKT ── */
+.contact-grid { display: flex; gap: 2rem; flex-wrap: wrap; }
+.contact-item a { color: var(--gold); font-size: 1rem; text-decoration: none; }
+.contact-item a:hover { text-decoration: underline; }
+.contact-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: #aabccc; margin-bottom: .3rem; }
+
+/* ── FOOTER ── */
+footer { background: #0e2438; color: #7a9ab5; font-size: .82rem; text-align: center; padding: 1.5rem; }
+footer a { color: var(--teal); text-decoration: none; }
+
+/* ── SCROLL ANIMATION ── */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    Dr. Christian Neusser, DBA · O&amp;CM
+    <span class="nav-badge">v2.1</span>
+  </a>
+  <button id="nav-toggle" aria-label="Menü">☰</button>
+  <div class="nav-links" id="navlinks">
+    <a href="index.html">Zur Website</a>
+    <a href="praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="index.html#blog">Blog</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Wissenschaftler · Praktiker · Lehrender</div>
+    <h1>Dr. Christian Neusser, DBA</h1>
+    <div class="hero-sub">FH-Professor für Organisation &amp; Change Management · FH Kärnten</div>
+    <p class="hero-intro">
+      Ich verbinde 25 Jahre internationale Führungserfahrung mit rigoroser Managementforschung –
+      um Organisationen wirklich veränderbar zu machen. Mein Ziel: Wissenschaft, die in der Praxis
+      wirkt; Praxis, die die Wissenschaft informiert.
+    </p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">25+</div><div class="stat-label">Jahre Praxis</div></div>
+      <div class="stat"><div class="stat-num">102</div><div class="stat-label">Interviews (DBA)</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Länder</div></div>
+      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Mandate</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- AKADEMISCHER HINTERGRUND -->
+<section class="section-light">
+  <div class="inner">
+    <div class="section-label fade-in">Akademischer Werdegang</div>
+    <h2 class="section-title fade-in">Ausbildung &amp; Akademische Tätigkeit</h2>
+    <div class="timeline">
+
+      <div class="tl-item fade-in">
+        <div class="tl-year">2022 – 2026</div>
+        <div class="tl-title">Doctor of Business Administration (DBA)</div>
+        <div class="tl-inst">FH Kärnten · Villach, Österreich</div>
+        <div class="tl-desc">
+          Dissertation: <em>„Organizational Ecology meets Change Management –
+          The MSTM Framework for Institutionalized Renewal"</em>.<br>
+          Methodologie: Qualitative Inhaltsanalyse nach Gioia et al. (2013),
+          102 Leitfadeninterviews, 42 Fallstudien. Sechs theoretische Propositionen
+          zum Zusammenspiel von Mechanisms, Structure, Trust und Mandate im
+          organisationalen Wandel.
+        </div>
+        <span class="tl-tag">MSTM-Framework</span>
+        <span class="tl-tag">Gioia-Methodik</span>
+        <span class="tl-tag">Organizational Ecology</span>
+      </div>
+
+      <div class="tl-item fade-in">
+        <div class="tl-year">Laufend</div>
+        <div class="tl-title">Lehrbeauftragter &amp; Forscher</div>
+        <div class="tl-inst">FH Kärnten · Organisation &amp; Change Management</div>
+        <div class="tl-desc">
+          Lehre in den Bereichen Organisationstheorie, Change Management,
+          Entrepreneurship und strategisches Management. Entwicklung und Leitung
+          des 5-Euro-Business VentureLabs als Lehr- und Forschungsformat.
+        </div>
+        <span class="tl-tag">Lehre</span>
+        <span class="tl-tag">VentureLab</span>
+      </div>
+
+      <div class="tl-item fade-in">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">Co-Organizer &amp; Track-Chair</div>
+        <div class="tl-inst">EURAM · European Academy of Management · Stockholm</div>
+        <div class="tl-desc">
+          Track: Change Governance in komplexen Organisationen. Parallel: Reviewer-Tätigkeit
+          für AOM (Academy of Management) und EURAM. Co-Organizer NCSB 2026.
+          Konferenzteilnahme ACERE 2026 Sydney.
+        </div>
+        <span class="tl-tag">EURAM 2026</span>
+        <span class="tl-tag">NCSB 2026</span>
+        <span class="tl-tag">ACERE 2026</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DREI IDENTITÄTEN -->
+<section class="section-navy">
+  <div class="inner">
+    <div class="section-label fade-in">Drei Dimensionen</div>
+    <h2 class="section-title fade-in" style="margin-bottom:2rem;">Meine drei Identitäten</h2>
+    <div class="id-grid">
+
+      <div class="id-card fade-in">
+        <div class="id-icon">🎓</div>
+        <h3>Der Wissenschaftler</h3>
+        <p>
+          Meine Forschung liegt an der Schnittstelle von
+          <span class="id-accent">Organizational Ecology</span>,
+          <span class="id-accent">Dynamic Capabilities</span> und
+          <span class="id-accent">Change Governance</span>.
+          Das MSTM-Framework (Neusser 2026) ist das Ergebnis von vier Jahren
+          intensiver empirischer Arbeit: 102 Interviews, Gioia-Methodik,
+          sechs Propositionen. Publikationen in JFBS, FBR und JBV.
+          Wissenschaftssprache: hedged, APA 7, peer-reviewed.
+        </p>
+      </div>
+
+      <div class="id-card fade-in">
+        <div class="id-icon">💼</div>
+        <h3>Der Praktiker</h3>
+        <p>
+          25 Jahre operative Führungserfahrung in DACH und international.
+          Change-Mandate bei
+          <span class="id-accent">FATH Groupe</span>,
+          <span class="id-accent">Deutsche Bahn AG</span>,
+          <span class="id-accent">Groupe Atlantic</span>,
+          <span class="id-accent">Oerlikon AG</span> und im deutschen Mittelstand.
+          Meine Theorie entstand nicht im Elfenbeinturm – sie entstand in
+          Vorstandssitzungen, Betriebsratsverhandlungen und Krisengesprächen.
+        </p>
+      </div>
+
+      <div class="id-card fade-in">
+        <div class="id-icon">🏛</div>
+        <h3>Der Lehrende</h3>
+        <p>
+          Lehre, die Komplexität erklärbar macht – und Studierende zu
+          unternehmerischem Denken befähigt.
+          Das <span class="id-accent">5-Euro-Business VentureLab</span>
+          ist mein Flaggschiff-Lehrformat: 6 Wochen, 5 Euro Startkapital,
+          echter Markt. Theoretisch fundiert in Kolb (1984), Sarasvathy (2001)
+          und Edmondson (1999). Lehre als Wissenstransfer in beide Richtungen.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FORSCHUNGSSCHWERPUNKTE -->
+<section>
+  <div class="inner">
+    <div class="section-label fade-in">Forschung</div>
+    <h2 class="section-title fade-in">Forschungsschwerpunkte</h2>
+    <div class="research-grid">
+
+      <div class="res-card fade-in">
+        <h4>Organisationale Trägheit &amp; Wandelresistenz</h4>
+        <p>Warum halten Organisationen an ineffizienten Strukturen fest, auch wenn der Veränderungsdruck hoch ist? Strukturelle Trägheit als evolutionäres Phänomen.</p>
+        <div class="ref">Hannan &amp; Freeman (1984): Structural Inertia and Organizational Change. ASR 49(2).</div>
+      </div>
+
+      <div class="res-card gold-border fade-in">
+        <h4>Change Governance &amp; Mandate (MSTM-Modell)</h4>
+        <p>Mechanisms, Structure, Trust, Mandate als vier Dimensionen erfolgreicher Erneuerungsfähigkeit. Induktiv entwickelt aus 102 qualitativen Interviews.</p>
+        <div class="ref">Neusser (2026): DBA Dissertation, FH Kärnten.</div>
+      </div>
+
+      <div class="res-card navy-border fade-in">
+        <h4>Dynamic Capabilities in Familienunternehmen</h4>
+        <p>Wie managen Familienunternehmen die Spannung zwischen Socioemotional Wealth und der Notwendigkeit dynamischer Anpassungsfähigkeit?</p>
+        <div class="ref">Teece et al. (1997): SMJ. | Gómez-Mejía et al. (2007): ASQ.</div>
+      </div>
+
+      <div class="res-card fade-in">
+        <h4>Ambidexterität &amp; Erneuerungsfähigkeit</h4>
+        <p>Strukturelle und kontextuelle Ambidexterität als Organisationsdesign-Prinzip. Verbindung mit Dynamic Capabilities für mittelgroße Unternehmen.</p>
+        <div class="ref">Tushman &amp; O'Reilly (1996): CMR. | Gibson &amp; Birkinshaw (2004): AMJ.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PUBLIKATIONEN -->
+<section class="section-light">
+  <div class="inner">
+    <div class="section-label fade-in">Veröffentlichungen</div>
+    <h2 class="section-title fade-in">Ausgewählte Publikationen</h2>
+
+    <ul class="pub-list">
+      <li class="pub-item fade-in">
+        <span class="pub-badge badge-pub">Veröffentlicht</span>
+        <div class="pub-text">
+          Neusser, C. (2025). Ecological succession as a model for family business
+          transitions: Succession, legitimacy, and dynamic change.
+          <em>Journal of Family Business Strategy (JFBS)</em>.
+          <a href="https://doi.org/10.1016/j.jfbs.2025.100648" target="_blank">
+            https://doi.org/10.1016/j.jfbs.2025.100648
+          </a>
+          <em>(Open Access)</em>
+        </div>
+      </li>
+      <li class="pub-item forthcoming fade-in">
+        <span class="pub-badge badge-forthcoming">Forthcoming</span>
+        <div class="pub-text">
+          Neusser, C. (forthcoming). Gaining legitimacy in transition: The role of
+          trust in organizational change processes.
+          <em>Family Business Review (FBR)</em>.
+        </div>
+      </li>
+      <li class="pub-item review fade-in">
+        <span class="pub-badge badge-review">Under Review</span>
+        <div class="pub-text">
+          Neusser, C. (under review). From disruption to renewal: Unpacking the
+          mechanisms of organizational resilience.
+          <em>Journal of Business Venturing (JBV)</em>.
+        </div>
+      </li>
+    </ul>
+
+    <a class="orcid-link fade-in" href="https://orcid.org/0000-0001-6484-1421" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="128" cy="128" r="128" fill="#A6CE39"/>
+        <path d="M86 176V96h24v80H86zm12-96c-8 0-14-6-14-14s6-14 14-14 14 6 14 14-6 14-14 14z" fill="white"/>
+        <path d="M120 176V96h36c28 0 48 18 48 40s-20 40-48 40h-36zm24-16h12c16 0 26-10 26-24s-10-24-26-24h-12v48z" fill="white"/>
+      </svg>
+      ORCID: 0000-0001-6484-1421
+    </a>
+  </div>
+</section>
+
+<!-- KONFERENZEN -->
+<section>
+  <div class="inner">
+    <div class="section-label fade-in">Netzwerk &amp; Konferenzen</div>
+    <h2 class="section-title fade-in">Wissenschaftliches Engagement</h2>
+    <div class="conf-grid">
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">EURAM 2026 · Stockholm</div>
+        <div class="conf-role">Co-Organizer &amp; Track-Chair</div>
+        <div class="conf-desc">Track: Change Governance in komplexen Organisationen. European Academy of Management – eine der bedeutendsten Managementkonferenz-Plattformen Europas.</div>
+      </div>
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">NCSB 2026</div>
+        <div class="conf-role">Co-Organizer</div>
+        <div class="conf-desc">Nordic Conference on Small Business Research. Fokus auf Familienunternehmen, KMU und unternehmerischen Wandel.</div>
+      </div>
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">ACERE 2026 · Sydney</div>
+        <div class="conf-role">Konferenzteilnahme</div>
+        <div class="conf-desc">Australian Centre for Entrepreneurship Research Exchange. Internationaler Austausch zu Entrepreneurship und experiential learning in der Hochschullehre.</div>
+      </div>
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">AOM &amp; EURAM</div>
+        <div class="conf-role">Reviewer</div>
+        <div class="conf-desc">Peer-Review-Tätigkeit für die Academy of Management (AOM) und EURAM in den Bereichen Organisation, Change Management und Familienunternehmensforschung.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="section-navy">
+  <div class="inner">
+    <div class="section-label fade-in">Kontakt</div>
+    <h2 class="section-title fade-in">In Kontakt treten</h2>
+    <div class="contact-grid">
+      <div class="contact-item fade-in">
+        <div class="contact-label">E-Mail</div>
+        <a href="mailto:christian.neusser@googlemail.com">christian.neusser@googlemail.com</a>
+      </div>
+      <div class="contact-item fade-in">
+        <div class="contact-label">ORCID</div>
+        <a href="https://orcid.org/0000-0001-6484-1421" target="_blank" style="color:var(--gold);">0000-0001-6484-1421</a>
+      </div>
+      <div class="contact-item fade-in">
+        <div class="contact-label">Institution</div>
+        <a href="https://www.fh-kaernten.at" target="_blank" style="color:var(--gold);">FH Kärnten</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Dr. Christian Neusser, DBA ·
+    <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> ·
+    <a href="index.html">Zur Website</a> ·
+    <a href="changelog.html">Changelog</a>
+  </p>
+</footer>
+
+<script>
+// Hamburger
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('navlinks');
+if (navToggle) {
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+}
+
+// Scroll animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

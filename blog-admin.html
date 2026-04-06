@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Admin · Dr. Christian Neusser</title>
+<style>
+  :root {
+    --navy:    #1A3A5C;
+    --teal:    #0D7EA0;
+    --gold:    #E8A020;
+    --white:   #FFFFFF;
+    --light-bg:#F0F6FA;
+    --muted:   #6B8BA4;
+    --text:    #2C3E50;
+    --danger:  #C0392B;
+    --success: #1A7A4A;
+    --border:  #D0DDE8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; background: var(--light-bg); color: var(--text); min-height: 100vh; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px; position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  }
+  .nav-brand { color: var(--white); font-family: Georgia, serif; font-size: 1rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+  .nav-badge { background: var(--teal); color: var(--white); font-size: .68rem; padding: .1rem .45rem; border-radius: 3px; font-family: 'Segoe UI', sans-serif; font-weight: normal; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; margin-left: 1.2rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 60%, #0e2d4a);
+    color: var(--white);
+    padding: 2rem 2rem 1.8rem;
+    border-left: 6px solid var(--gold);
+  }
+  header .eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--gold); font-weight: bold; margin-bottom: .5rem; }
+  header h1 { font-family: Georgia, serif; font-size: 1.7rem; margin-bottom: .4rem; }
+  header p { color: #aabccc; font-size: .92rem; }
+
+  /* ── SECURITY NOTICE ── */
+  .security-notice {
+    background: #fff8e8; border-left: 4px solid var(--gold);
+    padding: .75rem 1rem; margin: 1rem 1.5rem;
+    font-size: .85rem; color: #7a5a10; border-radius: 0 4px 4px 0;
+    display: flex; align-items: center; gap: .6rem;
+  }
+  .security-notice::before { content: "🔒"; font-size: 1.1rem; }
+
+  /* ── SETUP PANEL ── */
+  .setup-panel {
+    background: var(--white); border-radius: 8px; padding: 1.5rem;
+    margin: 0 1.5rem 1.5rem; box-shadow: 0 2px 8px rgba(26,58,92,.08);
+    border: 1px solid var(--border);
+  }
+  .setup-panel h2 { font-size: 1rem; color: var(--navy); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
+  .setup-panel h2::before { content: "⚙"; font-size: 1.1rem; }
+  .setup-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: .75rem; align-items: end; }
+  @media(max-width:900px) { .setup-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:600px) { .setup-grid { grid-template-columns: 1fr; } }
+
+  /* ── FORM ELEMENTS ── */
+  label { display: block; font-size: .8rem; font-weight: 600; color: var(--muted); margin-bottom: .3rem; text-transform: uppercase; letter-spacing: .05em; }
+  input[type=text], input[type=password], input[type=date], select, textarea {
+    width: 100%; padding: .55rem .75rem; border: 1.5px solid var(--border);
+    border-radius: 5px; font-size: .9rem; font-family: inherit; color: var(--text);
+    background: var(--white); transition: border-color .2s;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--teal); }
+  textarea { resize: vertical; min-height: 80px; }
+
+  /* ── BUTTONS ── */
+  .btn { display: inline-flex; align-items: center; gap: .4rem; padding: .55rem 1.1rem; border: none; border-radius: 5px; font-size: .88rem; font-weight: 600; cursor: pointer; transition: opacity .2s, transform .1s; font-family: inherit; }
+  .btn:hover { opacity: .88; transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn-primary { background: var(--teal); color: var(--white); }
+  .btn-navy { background: var(--navy); color: var(--white); }
+  .btn-gold { background: var(--gold); color: var(--white); }
+  .btn-danger { background: var(--danger); color: var(--white); }
+  .btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
+  .btn-sm { padding: .3rem .65rem; font-size: .78rem; }
+
+  /* ── LAYOUT ── */
+  .main-layout { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; padding: 0 1.5rem 2rem; }
+  @media(max-width:900px) { .main-layout { grid-template-columns: 1fr; } }
+
+  .panel { background: var(--white); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(26,58,92,.08); }
+  .panel-header { padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--light-bg); border-radius: 8px 8px 0 0; }
+  .panel-header h3 { font-size: .95rem; color: var(--navy); }
+  .panel-body { padding: 1.25rem; }
+
+  /* ── POST LIST ── */
+  .post-item {
+    padding: .75rem .9rem; border: 1px solid var(--border); border-radius: 6px;
+    margin-bottom: .6rem; cursor: pointer; transition: border-color .2s, background .2s;
+  }
+  .post-item:hover { border-color: var(--teal); background: #f0f8fc; }
+  .post-item.active { border-color: var(--teal); background: #e8f5fb; }
+  .post-item-title { font-size: .9rem; font-weight: 600; color: var(--navy); margin-bottom: .25rem; line-height: 1.3; }
+  .post-item-meta { font-size: .75rem; color: var(--muted); display: flex; gap: .6rem; align-items: center; }
+  .post-item-actions { display: flex; gap: .4rem; margin-top: .5rem; }
+  .cat-badge { display: inline-block; padding: .1rem .4rem; border-radius: 3px; font-size: .7rem; font-weight: bold; }
+  .cat-Forschung  { background: #dbeafe; color: #1e40af; }
+  .cat-Lehre      { background: #dcfce7; color: #166534; }
+  .cat-Praxis     { background: #fef3c7; color: #92400e; }
+  .cat-Konferenz  { background: #fce7f3; color: #9d174d; }
+
+  /* ── EDITOR ── */
+  .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  @media(max-width:600px) { .editor-grid { grid-template-columns: 1fr; } }
+  .field-group { margin-bottom: 1rem; }
+  .field-readonly { background: var(--light-bg); color: var(--muted); font-family: monospace; font-size: .82rem; }
+  .editor-actions { display: flex; gap: .75rem; padding-top: 1rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .char-hint { font-size: .75rem; color: var(--muted); margin-top: .25rem; }
+
+  /* ── PREVIEW ── */
+  .preview-toggle { font-size: .82rem; color: var(--teal); cursor: pointer; text-decoration: underline; }
+  .preview-content {
+    border: 1.5px solid var(--border); border-radius: 6px; padding: 1.25rem;
+    margin-top: 1rem; background: var(--white); display: none;
+    font-size: .9rem; line-height: 1.7;
+  }
+  .preview-content.show { display: block; }
+  .preview-content h2 { font-family: Georgia, serif; color: var(--navy); font-size: 1.2rem; margin-bottom: .5rem; }
+  .preview-content .preview-meta { color: var(--muted); font-size: .8rem; margin-bottom: 1rem; }
+  .preview-content p { margin-bottom: .85rem; }
+
+  /* ── STATUS MESSAGES ── */
+  .status-bar { padding: .7rem 1rem; border-radius: 5px; font-size: .88rem; font-weight: 600; display: none; margin-bottom: 1rem; }
+  .status-bar.show { display: block; }
+  .status-success { background: #dcfce7; color: var(--success); border: 1px solid #86efac; }
+  .status-error   { background: #fee2e2; color: var(--danger); border: 1px solid #fca5a5; }
+  .status-info    { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state { text-align: center; padding: 2rem 1rem; color: var(--muted); }
+  .empty-state svg { margin-bottom: .75rem; opacity: .4; }
+
+  /* ── SPINNER ── */
+  .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.4); border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── CONNECTED INDICATOR ── */
+  .connection-status { display: flex; align-items: center; gap: .5rem; font-size: .82rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot-green { background: #22c55e; }
+  .dot-gray  { background: #9ca3af; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="index.html">
+    Dr. Christian Neusser, DBA · O&amp;CM
+    <span class="nav-badge">Admin</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">← Zur Website</a>
+    <a href="ueber-mich.html">Über mich</a>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="eyebrow">Blog-Verwaltung · GitHub CMS</div>
+  <h1>Blog Admin</h1>
+  <p>Beiträge erstellen, bearbeiten und veröffentlichen via GitHub API.</p>
+</header>
+
+<!-- SECURITY NOTICE -->
+<div class="security-notice">
+  Ihr GitHub-Token wird <strong>nicht gespeichert</strong> und nur im Arbeitsspeicher dieser Browser-Session gehalten. Bitte für jede Session neu eingeben.
+</div>
+
+<!-- SETUP PANEL -->
+<div class="setup-panel">
+  <h2>GitHub-Verbindung konfigurieren</h2>
+  <div class="setup-grid">
+    <div>
+      <label for="gh-token">GitHub Token (Classic)</label>
+      <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off">
+    </div>
+    <div>
+      <label for="gh-repo">Repository (owner/repo)</label>
+      <input type="text" id="gh-repo" placeholder="christian-neusser/website" value="">
+    </div>
+    <div>
+      <label for="gh-branch">Branch</label>
+      <input type="text" id="gh-branch" placeholder="main" value="main">
+    </div>
+    <div>
+      <label for="gh-file">Pfad zu posts.json</label>
+      <input type="text" id="gh-file" placeholder="posts.json" value="posts.json">
+    </div>
+    <div>
+      <button class="btn btn-primary" id="btn-connect" onclick="connectGitHub()">
+        Verbinden
+      </button>
+    </div>
+  </div>
+  <div style="margin-top:.75rem; display:flex; align-items:center; gap:.75rem;">
+    <div class="connection-status" id="conn-status">
+      <span class="dot dot-gray" id="conn-dot"></span>
+      <span id="conn-label">Nicht verbunden</span>
+    </div>
+    <span style="font-size:.78rem;color:var(--muted);">Benötigte Token-Rechte: <code>repo</code> (Contents read+write)</span>
+  </div>
+</div>
+
+<!-- STATUS BAR -->
+<div style="padding: 0 1.5rem;">
+  <div class="status-bar" id="status-bar"></div>
+</div>
+
+<!-- MAIN LAYOUT (shown after connect) -->
+<div class="main-layout" id="main-layout" style="display:none;">
+
+  <!-- LEFT: POST LIST -->
+  <div>
+    <div class="panel">
+      <div class="panel-header">
+        <h3>📄 Beiträge (<span id="post-count">0</span>)</h3>
+        <button class="btn btn-primary btn-sm" onclick="newPost()">+ Neu</button>
+      </div>
+      <div class="panel-body" id="post-list">
+        <div class="empty-state">
+          <p>Keine Beiträge geladen.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: EDITOR -->
+  <div>
+    <div class="panel" id="editor-panel">
+      <div class="panel-header">
+        <h3 id="editor-title">✏️ Neuer Beitrag</h3>
+        <span class="preview-toggle" onclick="togglePreview()">Vorschau</span>
+      </div>
+      <div class="panel-body">
+
+        <div class="editor-grid">
+          <div class="field-group" style="grid-column:1/-1;">
+            <label for="f-title">Titel *</label>
+            <input type="text" id="f-title" placeholder="Titel des Beitrags" oninput="updateSlug()">
+          </div>
+          <div class="field-group">
+            <label for="f-date">Datum *</label>
+            <input type="date" id="f-date">
+          </div>
+          <div class="field-group">
+            <label for="f-category">Kategorie *</label>
+            <select id="f-category">
+              <option value="Forschung">Forschung</option>
+              <option value="Lehre">Lehre</option>
+              <option value="Praxis">Praxis</option>
+              <option value="Konferenz">Konferenz</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="f-tags">Tags (kommagetrennt)</label>
+            <input type="text" id="f-tags" placeholder="MSTM, Forschung, DBA">
+          </div>
+          <div class="field-group">
+            <label for="f-id">ID (auto-generiert)</label>
+            <input type="text" id="f-id" class="field-readonly" readonly>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="f-teaser">Teaser (3–5 Sätze, sichtbar in der Kachel) *</label>
+          <textarea id="f-teaser" rows="4" placeholder="Kurze Zusammenfassung des Beitrags – erscheint auf der Blog-Übersichtsseite..."></textarea>
+          <p class="char-hint" id="teaser-hint">0 Zeichen</p>
+        </div>
+
+        <div class="field-group">
+          <label for="f-content">Inhalt (HTML) *</label>
+          <p class="char-hint" style="margin-bottom:.4rem;">Formatierung mit HTML-Tags möglich: <code>&lt;p&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;ul&gt;&lt;li&gt;</code></p>
+          <textarea id="f-content" rows="14" placeholder="&lt;p&gt;Volltext des Beitrags...&lt;/p&gt;" oninput="updatePreview()"></textarea>
+        </div>
+
+        <!-- PREVIEW -->
+        <div id="preview-area" class="preview-content">
+          <h2 id="prev-title"></h2>
+          <div class="preview-meta" id="prev-meta"></div>
+          <div id="prev-body"></div>
+        </div>
+
+        <div class="editor-actions">
+          <button class="btn btn-gold" onclick="savePost()">
+            💾 Speichern &amp; Veröffentlichen
+          </button>
+          <button class="btn btn-ghost" onclick="cancelEdit()">Abbrechen</button>
+          <button class="btn btn-danger btn-sm" id="btn-delete" onclick="deletePost()" style="margin-left:auto;display:none;">
+            🗑 Löschen
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="height:3rem;"></div>
+
+<script>
+// ─── State ────────────────────────────────────────────────────────────────────
+let GH = { token: '', repo: '', branch: 'main', file: 'posts.json', sha: '' };
+let posts = [];
+let editingId = null; // null = new post
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+function slugify(str) {
+  return str.toLowerCase()
+    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim().replace(/\s+/g, '-').replace(/-+/g, '-').slice(0, 60);
+}
+
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function showStatus(msg, type = 'info') {
+  const bar = document.getElementById('status-bar');
+  bar.textContent = msg;
+  bar.className = 'status-bar show status-' + type;
+  if (type === 'success') setTimeout(() => bar.classList.remove('show'), 4000);
+}
+
+function setConnected(ok, label = '') {
+  document.getElementById('conn-dot').className = 'dot ' + (ok ? 'dot-green' : 'dot-gray');
+  document.getElementById('conn-label').textContent = label || (ok ? 'Verbunden' : 'Nicht verbunden');
+  document.getElementById('main-layout').style.display = ok ? 'grid' : 'none';
+}
+
+// ─── GitHub API ───────────────────────────────────────────────────────────────
+function ghHeaders() {
+  return {
+    'Authorization': 'Bearer ' + GH.token,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+}
+
+async function ghGet() {
+  const url = `https://api.github.com/repos/${GH.repo}/contents/${GH.file}?ref=${GH.branch}`;
+  const res = await fetch(url, { headers: ghHeaders() });
+  if (!res.ok) throw new Error(`GitHub Fehler ${res.status}: ${res.statusText}`);
+  return res.json();
+}
+
+async function ghPut(content, message) {
+  const url = `https://api.github.com/repos/${GH.repo}/contents/${GH.file}`;
+  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: GH.branch, sha: GH.sha };
+  const res = await fetch(url, { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.message || `GitHub Fehler ${res.status}`);
+  }
+  const data = await res.json();
+  GH.sha = data.content.sha;
+  return data;
+}
+
+// ─── Connect ─────────────────────────────────────────────────────────────────
+async function connectGitHub() {
+  GH.token  = document.getElementById('gh-token').value.trim();
+  GH.repo   = document.getElementById('gh-repo').value.trim();
+  GH.branch = document.getElementById('gh-branch').value.trim() || 'main';
+  GH.file   = document.getElementById('gh-file').value.trim() || 'posts.json';
+
+  if (!GH.token || !GH.repo) { showStatus('Bitte Token und Repository eingeben.', 'error'); return; }
+
+  const btn = document.getElementById('btn-connect');
+  btn.innerHTML = '<span class="spinner"></span> Verbinde…';
+  btn.disabled = true;
+
+  try {
+    const data = await ghGet();
+    GH.sha = data.sha;
+    const raw = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    posts = JSON.parse(raw);
+    setConnected(true, `Verbunden mit ${GH.repo}`);
+    renderPostList();
+    newPost();
+    showStatus(`${posts.length} Beiträge geladen.`, 'success');
+  } catch(e) {
+    showStatus('Verbindung fehlgeschlagen: ' + e.message, 'error');
+    setConnected(false);
+  } finally {
+    btn.innerHTML = 'Verbinden';
+    btn.disabled = false;
+  }
+}
+
+// ─── Post List ────────────────────────────────────────────────────────────────
+function renderPostList() {
+  document.getElementById('post-count').textContent = posts.length;
+  const el = document.getElementById('post-list');
+  if (!posts.length) {
+    el.innerHTML = '<div class="empty-state"><p>Keine Beiträge vorhanden.</p></div>';
+    return;
+  }
+  const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+  el.innerHTML = sorted.map(p => `
+    <div class="post-item ${editingId === p.id ? 'active' : ''}" id="item-${p.id}">
+      <div class="post-item-title">${p.title}</div>
+      <div class="post-item-meta">
+        <span>${p.date}</span>
+        <span class="cat-badge cat-${p.category}">${p.category}</span>
+      </div>
+      <div class="post-item-actions">
+        <button class="btn btn-primary btn-sm" onclick="editPost('${p.id}')">✏ Bearbeiten</button>
+        <button class="btn btn-danger btn-sm" onclick="confirmDelete('${p.id}')">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── Editor ───────────────────────────────────────────────────────────────────
+function newPost() {
+  editingId = null;
+  document.getElementById('editor-title').textContent = '✏️ Neuer Beitrag';
+  document.getElementById('f-title').value = '';
+  document.getElementById('f-date').value = today();
+  document.getElementById('f-category').value = 'Forschung';
+  document.getElementById('f-tags').value = '';
+  document.getElementById('f-id').value = '';
+  document.getElementById('f-teaser').value = '';
+  document.getElementById('f-content').value = '';
+  document.getElementById('btn-delete').style.display = 'none';
+  document.getElementById('preview-area').classList.remove('show');
+  updatePreview();
+  renderPostList();
+}
+
+function editPost(id) {
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+  editingId = id;
+  document.getElementById('editor-title').textContent = '✏️ Beitrag bearbeiten';
+  document.getElementById('f-title').value = p.title;
+  document.getElementById('f-date').value = p.date;
+  document.getElementById('f-category').value = p.category;
+  document.getElementById('f-tags').value = (p.tags || []).join(', ');
+  document.getElementById('f-id').value = p.id;
+  document.getElementById('f-teaser').value = p.teaser;
+  document.getElementById('f-content').value = p.content;
+  document.getElementById('btn-delete').style.display = 'inline-flex';
+  document.getElementById('preview-area').classList.remove('show');
+  updatePreview();
+  renderPostList();
+  document.getElementById('editor-panel').scrollIntoView({ behavior: 'smooth' });
+}
+
+function cancelEdit() { newPost(); }
+
+function updateSlug() {
+  const title = document.getElementById('f-title').value;
+  document.getElementById('f-id').value = slugify(title);
+}
+
+function updatePreview() {
+  const title   = document.getElementById('f-title').value || '(kein Titel)';
+  const date    = document.getElementById('f-date').value;
+  const cat     = document.getElementById('f-category').value;
+  const content = document.getElementById('f-content').value;
+  const teaser  = document.getElementById('f-teaser').value;
+  document.getElementById('prev-title').textContent = title;
+  document.getElementById('prev-meta').textContent = `${date} · ${cat}`;
+  document.getElementById('prev-body').innerHTML = content || `<em>${teaser}</em>`;
+  // char count
+  document.getElementById('teaser-hint').textContent = `${teaser.length} Zeichen`;
+}
+
+function togglePreview() {
+  updatePreview();
+  document.getElementById('preview-area').classList.toggle('show');
+}
+
+// ─── Save ────────────────────────────────────────────────────────────────────
+async function savePost() {
+  const title   = document.getElementById('f-title').value.trim();
+  const date    = document.getElementById('f-date').value;
+  const cat     = document.getElementById('f-category').value;
+  const tags    = document.getElementById('f-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+  const id      = document.getElementById('f-id').value.trim() || slugify(title);
+  const teaser  = document.getElementById('f-teaser').value.trim();
+  const content = document.getElementById('f-content').value.trim();
+
+  if (!title || !date || !teaser || !content) {
+    showStatus('Bitte alle Pflichtfelder (*) ausfüllen.', 'error'); return;
+  }
+  if (!id) { showStatus('Kein ID generiert – bitte Titel eingeben.', 'error'); return; }
+
+  // Check duplicate ID for new posts
+  if (!editingId && posts.find(p => p.id === id)) {
+    showStatus(`ID "${id}" existiert bereits. Bitte Titel ändern.`, 'error'); return;
+  }
+
+  const post = { id, title, date, category: cat, teaser, content, tags };
+
+  if (editingId) {
+    const idx = posts.findIndex(p => p.id === editingId);
+    if (idx >= 0) posts[idx] = post;
+  } else {
+    posts.unshift(post);
+  }
+
+  const btn = document.querySelector('.btn-gold');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<span class="spinner"></span> Veröffentliche…';
+  btn.disabled = true;
+
+  try {
+    const json = JSON.stringify(posts, null, 2);
+    const msg  = editingId ? `Update post: ${title}` : `Add post: ${title}`;
+    await ghPut(json, msg + ' [via Admin CMS]');
+    showStatus(`"${title}" erfolgreich veröffentlicht.`, 'success');
+    editingId = id;
+    renderPostList();
+    document.getElementById('btn-delete').style.display = 'inline-flex';
+  } catch(e) {
+    showStatus('Fehler beim Speichern: ' + e.message, 'error');
+    // rollback
+    if (!editingId) posts.shift();
+  } finally {
+    btn.innerHTML = orig;
+    btn.disabled = false;
+  }
+}
+
+// ─── Delete ──────────────────────────────────────────────────────────────────
+function confirmDelete(id) {
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+  if (!confirm(`Beitrag "${p.title}" wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.`)) return;
+  deletePostById(id);
+}
+
+async function deletePost() {
+  if (!editingId) return;
+  confirmDelete(editingId);
+}
+
+async function deletePostById(id) {
+  const p = posts.find(x => x.id === id);
+  if (!p) return;
+  const backup = [...posts];
+  posts = posts.filter(x => x.id !== id);
+
+  showStatus(`Lösche "${p.title}"…`, 'info');
+  try {
+    const json = JSON.stringify(posts, null, 2);
+    await ghPut(json, `Delete post: ${p.title} [via Admin CMS]`);
+    showStatus(`"${p.title}" gelöscht.`, 'success');
+    renderPostList();
+    newPost();
+  } catch(e) {
+    posts = backup;
+    showStatus('Fehler beim Löschen: ' + e.message, 'error');
+    renderPostList();
+  }
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+document.getElementById('f-date').value = today();
+document.getElementById('f-teaser').addEventListener('input', updatePreview);
+document.getElementById('f-title').addEventListener('input', updatePreview);
+document.getElementById('f-date').addEventListener('input', updatePreview);
+document.getElementById('f-category').addEventListener('change', updatePreview);
+
+// Allow Enter in setup fields to trigger connect
+['gh-token','gh-repo','gh-branch','gh-file'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') connectGitHub(); });
+});
+</script>
+</body>
+</html>
