@@ -249,11 +249,20 @@
     /* ── FOOTER ── */
     footer{background:#0e2234;color:rgba(255,255,255,.42);padding:1.8rem 0;font-size:.8rem;text-align:center}
     footer a{color:rgba(255,255,255,.48)}
+    /* ── SCROLL ARROWS ── */
+    .scroll-btn{position:fixed;right:1.1rem;width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--white);border:2px solid var(--teal);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;opacity:0;transition:opacity .3s,background .2s,transform .2s;box-shadow:0 3px 12px rgba(0,0,0,.25);line-height:1}
+    .scroll-btn:hover{background:var(--teal);transform:scale(1.08)}
+    .scroll-btn.visible{opacity:1}
+    #scroll-top{bottom:5rem}
+    #scroll-bottom{bottom:1.2rem}
     /* ── RESPONSIVE ── */
+    @media(max-width:1024px){
+      .nav-links{gap:.9rem}
+    }
     @media(max-width:768px){
       .identity-grid,.pillars,.research-grid,.paradigm-grid,.t-cols,.acc-2col,.contact-grid,.prop-grid,.method-grid,.config-grid{grid-template-columns:1fr}
       #nav-toggle{display:block!important}
-      .nav-links{display:none;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--navy);padding:1rem 2rem;gap:.65rem;z-index:999}
+      .nav-links{display:none;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--navy);padding:1rem 2rem;gap:.65rem;z-index:999;max-height:calc(100vh - 58px);overflow-y:auto}
       .nav-links.open{display:flex}
       section{padding:3rem 0}
       .container{padding:0 1rem}
@@ -261,16 +270,32 @@
       .tab-btn{width:100%;text-align:left}
       #hero{padding:3.5rem 0 2.5rem}
       .hero-stats{gap:1rem}
+      .hero-cta{flex-direction:column;align-items:flex-start}
+      .hero-cta .btn{width:100%;text-align:center}
+      .blog-grid{grid-template-columns:1fr}
+      .scroll-btn{right:.6rem;width:36px;height:36px;font-size:1rem}
+      #scroll-top{bottom:4.5rem}
+      #scroll-bottom{bottom:.9rem}
+    }
+    @media(max-width:480px){
+      .nav-brand{font-size:.8rem}
+      .section-title{font-size:1.5rem}
+      h1{font-size:1.6rem!important}
     }
   </style>
 </head>
 <body>
+<!-- SCROLL BUTTONS -->
+<button id="scroll-top" class="scroll-btn" title="Nach oben" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="scroll-bottom" class="scroll-btn" title="Nach unten" onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button>
+
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-brand">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span> <span class="version-badge">v2.1</span></div>
+    <div class="nav-brand">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></div>
     <button id="nav-toggle" aria-label="Menü" style="display:none;background:none;border:none;cursor:pointer;padding:.4rem .6rem;color:var(--white);font-size:1.4rem;line-height:1">☰</button>
     <ul class="nav-links" id="navlinks">
+      <li><a href="#hero">Home</a></li>
       <li><a href="#lehre">Lehre</a></li>
       <li><a href="#wissen">Wissensportal</a></li>
       <li><a href="#dba">Doktorarbeit</a></li>
@@ -466,11 +491,11 @@
     <div style="margin-top:3rem;padding-top:2.5rem;border-top:2px solid #d0e4f0">
       <div class="section-label">Flagship-Lehrformat</div>
       <h2 class="section-title" style="font-size:1.55rem">5-Euro-Business VentureLab</h2>
-      <p class="section-subtitle">Experiential Entrepreneurship · 6 Wochen · echter Markt · 5 Euro Startkapital</p>
+      <p class="section-subtitle">Experiential Entrepreneurship · 10 Wochen · echter Markt · 5 Euro Startkapital</p>
 
       <div style="background:linear-gradient(135deg,var(--navy) 60%,#0e2d4a);border-radius:var(--radius);padding:1.5rem 1.75rem;color:var(--white);margin-bottom:1.5rem;border-left:5px solid var(--gold)">
         <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:.5rem;font-weight:700">Die Prämisse</div>
-        <p style="font-size:1.02rem;line-height:1.65;color:#e0eaf4">Jedes Team erhält <strong style="color:var(--gold)">5 Euro Startkapital</strong> und 6 Wochen Zeit, um ein funktionierendes Geschäftsmodell zu entwickeln, zu testen und Umsatz zu generieren – mit echten Kunden, echtem Markt, echter Verantwortung. Kein Businessplan auf 40 Seiten. Kein Pitch-Deck mit Hochglanzfolien. Stattdessen: sofortiges Handeln.</p>
+        <p style="font-size:1.02rem;line-height:1.65;color:#e0eaf4">Jedes Team erhält <strong style="color:var(--gold)">5 Euro Startkapital</strong> und 10 Wochen Zeit, um ein funktionierendes Geschäftsmodell zu entwickeln, zu testen und Umsatz zu generieren – mit echten Kunden, echtem Markt, echter Verantwortung. Kein Businessplan auf 40 Seiten. Kein Pitch-Deck mit Hochglanzfolien. Stattdessen: sofortiges Handeln.</p>
       </div>
 
       <div class="vlab-grid">
@@ -487,9 +512,10 @@
           <h4>Format im Überblick</h4>
           <ul>
             <li><strong>Woche 1:</strong> 5 Euro, kein Plan – direkter Erstkontakt mit Markt und Kunden</li>
-            <li><strong>Woche 2–4:</strong> Iteration: erste Umsätze, Pivot, Modellwechsel</li>
-            <li><strong>Woche 5–6:</strong> Skalierung, Reflexion, Lernjournal</li>
-            <li><strong>Abschluss:</strong> Ergebnispräsentation + Lernjournal statt klassischer Prüfung</li>
+            <li><strong>Woche 2–5:</strong> Iteration: erste Umsätze, Pivot, Modellwechsel</li>
+            <li><strong>Woche 6–9:</strong> Skalierung, Vertiefung, weitere Marktexploration</li>
+            <li><strong>Woche 10:</strong> Abschlussreflexion, Lernjournal, Ergebnispräsentation</li>
+            <li><strong>Abschluss:</strong> Lernjournal + Präsentation statt klassischer Prüfung</li>
           </ul>
         </div>
         <div class="vlab-card" style="border-top:3px solid var(--navy)">
@@ -1298,6 +1324,20 @@ window.closeBlogModal=function(e){
   document.body.style.overflow='';
 };
 document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeBlogModal(null)});
+
+// Scroll buttons visibility
+(function(){
+  const btnTop=document.getElementById('scroll-top');
+  const btnBot=document.getElementById('scroll-bottom');
+  function updateScrollBtns(){
+    const scrollY=window.scrollY||window.pageYOffset;
+    const maxScroll=document.body.scrollHeight-window.innerHeight;
+    if(scrollY>200){btnTop.classList.add('visible')}else{btnTop.classList.remove('visible')}
+    if(scrollY<maxScroll-200){btnBot.classList.add('visible')}else{btnBot.classList.remove('visible')}
+  }
+  window.addEventListener('scroll',updateScrollBtns,{passive:true});
+  updateScrollBtns();
+})();
 </script>
 </body>
 </html>

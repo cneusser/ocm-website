@@ -151,9 +151,69 @@
   .dot { width: 8px; height: 8px; border-radius: 50%; }
   .dot-green { background: #22c55e; }
   .dot-gray  { background: #9ca3af; }
+
+  /* ── LOGIN OVERLAY ── */
+  #login-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(135deg, #0e1e30 60%, #0a283a);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0;
+  }
+  .login-box {
+    background: #1a2e42; border-radius: 12px; padding: 2.5rem 2.8rem;
+    width: 100%; max-width: 400px; box-shadow: 0 16px 64px rgba(0,0,0,.6);
+    border: 1px solid rgba(13,126,160,.3);
+  }
+  .login-logo { text-align: center; margin-bottom: 1.8rem; }
+  .login-logo-title { font-family: Georgia, serif; font-size: 1.2rem; color: #fff; font-weight: bold; }
+  .login-logo-sub { font-size: .8rem; color: var(--teal); margin-top: .3rem; letter-spacing: .1em; text-transform: uppercase; }
+  .login-lock { font-size: 2.8rem; margin-bottom: .75rem; }
+  .login-label { font-size: .78rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem; display: block; }
+  .login-input {
+    width: 100%; padding: .7rem 1rem; border-radius: 6px;
+    border: 1.5px solid rgba(13,126,160,.4); background: rgba(255,255,255,.06);
+    color: #fff; font-size: .95rem; font-family: inherit;
+    margin-bottom: 1rem; transition: border-color .2s;
+  }
+  .login-input:focus { outline: none; border-color: var(--teal); background: rgba(13,126,160,.1); }
+  .login-input::placeholder { color: rgba(255,255,255,.3); }
+  .login-btn {
+    width: 100%; padding: .75rem; border: none; border-radius: 6px;
+    background: var(--teal); color: #fff; font-size: 1rem; font-weight: 700;
+    cursor: pointer; font-family: inherit; transition: background .2s;
+  }
+  .login-btn:hover { background: #0a6a88; }
+  .login-error {
+    background: rgba(192,57,43,.15); border: 1px solid rgba(192,57,43,.4);
+    color: #f87171; border-radius: 5px; padding: .55rem .9rem;
+    font-size: .85rem; margin-bottom: 1rem; display: none; text-align: center;
+  }
+  .login-hint { text-align: center; font-size: .75rem; color: rgba(255,255,255,.28); margin-top: 1.2rem; }
+  body.locked { overflow: hidden; }
+
 </style>
 </head>
-<body>
+<body class="locked">
+
+<!-- LOGIN OVERLAY -->
+<div id="login-overlay">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-lock">🔐</div>
+      <div class="login-logo-title">Dr. Christian Neusser, DBA</div>
+      <div class="login-logo-sub">Blog Administration</div>
+    </div>
+    <div class="login-error" id="login-error">Falsches Passwort. Bitte erneut versuchen.</div>
+    <label class="login-label" for="login-user">Benutzername</label>
+    <input class="login-input" type="text" id="login-user" placeholder="admin" autocomplete="username">
+    <label class="login-label" for="login-pass">Passwort</label>
+    <input class="login-input" type="password" id="login-pass" placeholder="••••••••••" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Anmelden</button>
+    <div class="login-hint">Nur für autorisierte Administratoren</div>
+  </div>
+</div>
+
 
 <!-- NAV -->
 <nav>
@@ -583,6 +643,49 @@ document.getElementById('f-category').addEventListener('change', updatePreview);
 ['gh-token','gh-repo','gh-branch','gh-file'].forEach(id => {
   document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') connectGitHub(); });
 });
+
+// ── LOGIN PROTECTION ──
+const ADMIN_USER = 'admin';
+// SHA-256 of "NeusserBlog2026"
+const ADMIN_PASS_HASH = '6a7a7bbda56da0e6b51eec69792d476be8477a1a1df1becda882c45e6dec0bb6';
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function doLogin() {
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  const errEl = document.getElementById('login-error');
+  if (!pass) { errEl.style.display='block'; errEl.textContent='Bitte Passwort eingeben.'; return; }
+  const hash = await sha256(pass);
+  if (user.toLowerCase() === ADMIN_USER && hash === ADMIN_PASS_HASH) {
+    sessionStorage.setItem('blog_admin_auth', '1');
+    document.getElementById('login-overlay').style.display = 'none';
+    document.body.classList.remove('locked');
+  } else {
+    errEl.style.display = 'block';
+    errEl.textContent = 'Falscher Benutzername oder Passwort.';
+    document.getElementById('login-pass').value = '';
+    document.getElementById('login-pass').focus();
+  }
+}
+
+// Check if already authenticated in this session
+(function() {
+  if (sessionStorage.getItem('blog_admin_auth') === '1') {
+    const overlay = document.getElementById('login-overlay');
+    if (overlay) overlay.style.display = 'none';
+    document.body.classList.remove('locked');
+  } else {
+    // Focus the username field
+    setTimeout(() => {
+      const u = document.getElementById('login-user');
+      if (u) { u.focus(); }
+    }, 100);
+  }
+})();
 </script>
 </body>
 </html>
