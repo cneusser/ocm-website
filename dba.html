@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doktorarbeit - Dr. Christian Neusser, DBA</title>
+  <style>
+    :root {
+      --navy: #1A3A5C;
+      --teal: #0D7EA0;
+      --teal-lt: #1A9EC4;
+      --gold: #E8A020;
+      --white: #FFFFFF;
+      --off-w: #F4F8FB;
+      --light-bg: #F0F6FA;
+      --accent: #E8F4FA;
+      --dark: #1C2B3A;
+      --muted: #6B8BA4;
+      --text: #2C3E50;
+      --radius: 8px;
+      --shadow: 0 4px 20px rgba(26, 58, 92, 0.10);
+      --shadow-sm: 0 2px 8px rgba(26, 58, 92, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: Georgia, serif;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+      color: var(--navy);
+    }
+
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2rem; margin-top: 2rem; }
+    h3 { font-size: 1.4rem; }
+    h4 { font-size: 1.1rem; }
+
+    p { margin-bottom: 1rem; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { color: var(--teal-lt); text-decoration: underline; }
+
+    /* Navigation */
+    #navbar {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-brand {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-brand span {
+      color: var(--teal);
+    }
+
+    .nav-toggle {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .nav-toggle:hover {
+      color: var(--teal);
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      background: #112840;
+      border-top: 2px solid var(--teal);
+    }
+
+    .nav-menu.open {
+      display: flex;
+    }
+
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--teal);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+      color: var(--white);
+      padding: 4rem 1.5rem;
+      border-left: 6px solid var(--gold);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(13, 126, 160, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      font-size: 2.8rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat-box {
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--teal);
+    }
+
+    .stat-box .number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-box .label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.3rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section.light {
+      background: var(--light-bg);
+    }
+
+    section.dark {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    section.dark h2,
+    section.dark h3 {
+      color: var(--white);
+    }
+
+    section.dark a {
+      color: var(--teal-lt);
+    }
+
+    /* Abstract */
+    .abstract-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border-left: 4px solid var(--teal);
+      border-radius: var(--radius);
+    }
+
+    /* Grid Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--teal);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    section.light .card {
+      background: var(--white);
+    }
+
+    section.dark .card {
+      background: #1A4A6A;
+      color: var(--white);
+      border-top-color: var(--gold);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    section.dark .card h3 {
+      color: var(--white);
+    }
+
+    /* Method Grid */
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .method-item {
+      background: var(--light-bg);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--teal);
+    }
+
+    .method-item strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .method-item span {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Proposition Cards */
+    .proposition-card {
+      background: var(--accent);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .proposition-card strong {
+      color: var(--teal);
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .proposition-card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* Archetype Grid */
+    .archetype-section {
+      margin-top: 2rem;
+    }
+
+    .archetype-section h3 {
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin: 1.5rem 0 0.8rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--teal);
+    }
+
+    .archetype-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .archetype {
+      background: var(--light-bg);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      border-left: 3px solid var(--teal);
+      font-size: 0.95rem;
+    }
+
+    .archetype strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+
+    .archetype span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: block;
+      line-height: 1.5;
+    }
+
+    /* Fade in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      background: #0e2234;
+      color: rgba(255, 255, 255, 0.42);
+      padding: 1.8rem 0;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--teal-lt);
+    }
+
+    /* Back Link */
+    .back-link {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .back-link a {
+      color: var(--teal);
+      font-weight: 600;
+      display: inline-block;
+      margin: 0 0.5rem;
+    }
+
+    .back-link a:hover {
+      color: var(--teal-lt);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+
+      .hero {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .subtitle {
+        font-size: 0.95rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .archetype-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
+    </div>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#fachvortrag">Fachvortrag</a>
+      <a href="index.html#wissen">Wissensportal</a>
+      <a href="dba.html" class="active">Doktorarbeit</a>
+      <a href="lehrformate.html">Lehrformate</a>
+      <a href="index.html#modell">MSTM-Modell</a>
+      <a href="index.html#forschung">Forschung</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a href="ueber-mich.html">Über mich</a>
+      <a href="praxisbeispiele.html">Praxisbeispiele</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Doktorarbeit · DBA · Henley Business School / University of Reading</div>
+      <h1>Navigating External Succession in German Mittelstand Family Firms</h1>
+      <p class="subtitle">Qualitative Mehrfallstudie · 102 Interviews · 42 Unternehmen · Abschluss Januar 2026</p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="number">102</div>
+          <div class="label">Interviews</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">42</div>
+          <div class="label">Unternehmen</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">~7</div>
+          <div class="label">Jahre Forschung</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">A+</div>
+          <div class="label">Straight Pass</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract & Research Questions -->
+  <section class="light fade-in">
+    <h2>Abstract &amp; Forschungsfragen</h2>
+    <div class="abstract-text">
+      <p>Diese Dissertationsschrift untersucht externe Nachfolge in Familienunternehmen des deutschen Mittelstands. Auf Basis eines interpretativen Paradigmas und abduktiver Logik setzt die Studie ein qualitatives Mehrfallstudien-Design ein: 102 Interviews in 42 deutschsprachigen familiengeführten Produktionsunternehmen, mit acht Kernfällen (25 Interviews) für die Tiefenanalyse. Die Analyse entwickelt das MSTM-Framework (Mechanisms–Structure–Trust–Mandate), das externe Nachfolge als rekursiven, mehrebenengestalteten Prozess rekonstruiert.</p>
+    </div>
+
+    <h3>Forschungszielsetzungen</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>1. Entscheidungsprozesse</h4>
+        <p>Entscheidungsprozesse zur externen Nachfolge und deren Initiierung</p>
+      </div>
+      <div class="card">
+        <h4>2. Governance-Strukturen</h4>
+        <p>Governance-Strukturen und ihre Rekonfiguration bei Eintritt externer Führung</p>
+      </div>
+      <div class="card">
+        <h4>3. Vertrauen &amp; Legitimität</h4>
+        <p>Vertrauen und Legitimität des externen Nachfolgers in Familie und Unternehmen</p>
+      </div>
+      <div class="card">
+        <h4>4. Strategische Adaptation</h4>
+        <p>Strategische Adaptation und Balance zwischen SEW und Wachstum</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Theoretical Framework -->
+  <section class="fade-in">
+    <h2>Theoretischer Rahmen</h2>
+    <p>Die Dissertation integriert sieben theoretische Perspektiven zur Rekonstruktion externer Nachfolge als komplexen, mehrstufigen Prozess:</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Agenturtheorie</h3>
+        <p><strong>Jensen &amp; Meckling, 1976</strong><br/>Alignment von Principal-Agent-Interessen, Monitoring-Strukturen und Kontrollmechanismen in der Übergangssituation.</p>
+      </div>
+      <div class="card">
+        <h3>Stewardship-Theorie</h3>
+        <p><strong>Davis et al., 1997</strong><br/>Prosozialer Verhaltensrahmen für externe Manager in Familienunternehmen, intrinsische Motivationen.</p>
+      </div>
+      <div class="card">
+        <h3>Socioemotional Wealth (FIBER)</h3>
+        <p><strong>Gómez-Mejía et al., 2007</strong><br/>Familie, Influence, Business, Emotion, Renewal – zentral für Verständnis von Nachfolgebereitschaft.</p>
+      </div>
+      <div class="card">
+        <h3>Dynamic Capabilities</h3>
+        <p><strong>Teece et al., 1997</strong><br/>Organisationale Fähigkeiten zur Orchestrierung von Wissenstransfer und strategischer Neuausrichtung.</p>
+      </div>
+      <div class="card">
+        <h3>Legitimationstheorie</h3>
+        <p><strong>Suchman, 1995</strong><br/><strong style="color: var(--gold);">Kernbeitrag der Dissertation:</strong> Prozess der Rollenlegitimität durch symbolisches Alignment und narrative Übereinstimmung.</p>
+      </div>
+      <div class="card">
+        <h3>Organisationales Lernen</h3>
+        <p><strong>Argote &amp; Miron-Spektor, 2011</strong><br/>Wissenstransfer, Absorptionskapazität und kollektive Lernprozesse in Übergangsphasen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology -->
+  <section class="light fade-in">
+    <h2>Methodik</h2>
+    <div class="method-grid">
+      <div class="method-item">
+        <strong>Ontologie</strong>
+        <span>Subtiler Realismus (Bhaskar)</span>
+      </div>
+      <div class="method-item">
+        <strong>Epistemologie</strong>
+        <span>Interpretivismus (Weber, Gadamer)</span>
+      </div>
+      <div class="method-item">
+        <strong>Forschungslogik</strong>
+        <span>Abduktive Ableitung (Locke et al.)</span>
+      </div>
+      <div class="method-item">
+        <strong>Datenerhebung</strong>
+        <span>102 semi-strukturierte Interviews, 8 Kernfälle</span>
+      </div>
+      <div class="method-item">
+        <strong>Analyse</strong>
+        <span>Gioia-Methodik (First-Order → Second-Order → Aggregate Dimensions)</span>
+      </div>
+      <div class="method-item">
+        <strong>Qualitätssicherung</strong>
+        <span>Triangulation, Thick Descriptions, Reflexivität</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MSTM Framework -->
+  <section class="dark fade-in">
+    <h2>MSTM-Framework</h2>
+    <p style="color: rgba(255, 255, 255, 0.85);">Das zentrale Analyserahmenwerk rekonstruiert externe Nachfolge als vierdimensionalen Prozess:</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>M = Mechanisms</h3>
+        <p>Symbolische und relationale Prozesse: Legitimierungsarbeit, narrative Alignment, sensemaking und sensegiving zwischen Familie, Unternehmen und externem Manager.</p>
+      </div>
+      <div class="card">
+        <h3>S = Structure</h3>
+        <p>Governance-Rekonfiguration: Entscheidungsrechte, Machtverteilung, formale Strukturen (Beiräte, Supervisory Boards), informale Regeln und Rituale.</p>
+      </div>
+      <div class="card">
+        <h3>T = Trust</h3>
+        <p>Rekursiver Vertrauensprozess in vier Schichten: Initial (Auswahlphase) → Relational (Beziehungsaufbau) → Symbolisch (narratives Alignment) → Institutionell (strukturale Verankerung).</p>
+      </div>
+      <div class="card">
+        <h3>M = Mandate</h3>
+        <p>Rollenklarheit und strategisches Mandat: explizite und implizite Erwartungen, Handlungsspielräume, Autonomie und Eigenverantwortung des Nachfolgers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Central Findings -->
+  <section class="fade-in">
+    <h2>Zentrale Befunde</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>1. Nachfolgebereitschaft als Ko-Konstruktion</h3>
+        <p>Nachfolgebereitschaft ist keine individuelle Entscheidung von Eigentümern, sondern ein relational ko-konstruierter Prozess zwischen Familie, Stakeholdern und Marktdruck.</p>
+      </div>
+      <div class="card">
+        <h3>2. Vertrauen als Rekursivität</h3>
+        <p>Vertrauen entwickelt sich nicht linear, sondern rekursiv durch vier Zeitschichten – von instrumentaler Kontrolle zu institutioneller Verankerung.</p>
+      </div>
+      <div class="card">
+        <h3>3. Governance-Rekonfiguration</h3>
+        <p>Governance-Strukturen durchlaufen eine vorhersagbare Rekonfiguration von Schutzlogik (Kontrolle, Traditionsbewährung) zu Wachstumslogik (Strategie, Innovation).</p>
+      </div>
+      <div class="card">
+        <h3>4. Symbolisches Alignment</h3>
+        <p>Rollenlegitimität entsteht primär durch symbolisches Alignment zwischen Handlungen des Nachfolgers und narrativer Identität des Unternehmens (Tipping Points).</p>
+      </div>
+      <div class="card">
+        <h3>5. SEW-Evolution</h3>
+        <p>Socioemotional Wealth ist nicht statisch, sondern evolviert während externer Nachfolge – kulturelle Adaptation ist zentral für Erfolg.</p>
+      </div>
+      <div class="card">
+        <h3>6. Vier Nachfolgekonfigurationen</h3>
+        <p>Die Studie identifiziert vier stabile Konfigurationen: Legacy Steward, Strategic Revitaliser, Hybrid Ambiguity, Institutional Designer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Propositions -->
+  <section class="light fade-in">
+    <h2>Propositionen</h2>
+    <div class="proposition-card">
+      <strong>P1: Nicht-Linearität</strong>
+      <p>Externe Nachfolge erfolgt nicht linear, sondern als iterativer Verhandlungsprozess von Macht, Legitimität und Identität zwischen Familie, Unternehmen und Markt.</p>
+    </div>
+    <div class="proposition-card">
+      <strong>P2: Relationale Ko-Konstruktion</strong>
+      <p>Die Bereitschaft zur externen Nachfolge ist keine individuelle Entscheidung, sondern ein relational ko-konstruierter Prozess zwischen Eigentümern, Stakeholdern und externer Kandidat.</p>
+    </div>
+    <div class="proposition-card">
+      <strong>P3: Vorhersagbare Governance-Rekonfiguration</strong>
+      <p>Governance-Strukturen in Familienunternehmen mit externer Führung durchlaufen eine vorhersagbare Rekonfiguration von Schutz- zu Wachstumslogik.</p>
+    </div>
+    <div class="proposition-card">
+      <strong>P4: Symbolisches Alignment als Legitimitätsquelle</strong>
+      <p>Rollenlegitimität entsteht primär durch symbolisches Alignment zwischen den Handlungen des Nachfolgers und der narrativen Identität des Unternehmens.</p>
+    </div>
+    <div class="proposition-card">
+      <strong>P5: Rekursive Vertrauensentwicklung</strong>
+      <p>Vertrauen im Kontext externer Nachfolge entwickelt sich rekursiv in vier zeitlichen Schichten: Initial → Relational → Symbolisch → Institutionell.</p>
+    </div>
+    <div class="proposition-card">
+      <strong>P6: Ko-Evolution statt Substitution</strong>
+      <p>Erfolgreiche externe Nachfolge erfordert die Ko-Evolution von SEW und Transformationsnotwendigkeit – nicht deren Substitution oder Konflikt.</p>
+    </div>
+  </section>
+
+  <!-- Archetypes -->
+  <section class="fade-in">
+    <h2>Zwölf Archetypen</h2>
+    <p>Die Dissertation identifiziert 12 Akteur-Archetypen, organisiert nach Perspektive (Familie, Externe Manager, andere Stakeholder):</p>
+
+    <div class="archetype-section">
+      <h3>Familie (Eigentümer-Perspektive)</h3>
+      <div class="archetype-grid">
+        <div class="archetype">
+          <strong>The Patriarch/Matriarch</strong>
+          <span>Gründer oder lange amtierender Eigentümer, emotionale und strategische Bindung zum Unternehmen</span>
+        </div>
+        <div class="archetype">
+          <strong>The Protective Guardian</strong>
+          <span>Familie mit dominantem Schutzfokus, Risikoadversion bei Nachfolge, Tradition vor Wachstum</span>
+        </div>
+        <div class="archetype">
+          <strong>The Strategic Visionary</strong>
+          <span>Zukunftsorientierte Familie, offene Grundhaltung zu externer Führung, Wachstumsfokus</span>
+        </div>
+        <div class="archetype">
+          <strong>The Reluctant Releaser</strong>
+          <span>Familie mit geteilten Gefühlen zur Nachfolge, gradueller Kontrollabgabe, Ambivalenz</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="archetype-section">
+      <h3>Externe Manager</h3>
+      <div class="archetype-grid">
+        <div class="archetype">
+          <strong>The Institutional Designer</strong>
+          <span>Manager mit Fokus auf Formalisierung, Governance, Strukturierung, häufig mit Konzernhintergrund</span>
+        </div>
+        <div class="archetype">
+          <strong>The Legacy Steward</strong>
+          <span>Manager mit Respekt vor Tradition, balanciert Kontinuität mit notwendiger Modernisierung</span>
+        </div>
+        <div class="archetype">
+          <strong>The Strategic Revitaliser</strong>
+          <span>Transformativer Manager mit klarem Wachstumsfokus, risikobereiter und innovativ</span>
+        </div>
+        <div class="archetype">
+          <strong>The Hybrid Navigator</strong>
+          <span>Manager, der Familie und Business-Anforderungen integriert, hochgradig adaptiv</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="archetype-section">
+      <h3>Andere Stakeholder</h3>
+      <div class="archetype-grid">
+        <div class="archetype">
+          <strong>The Silent Enabler</strong>
+          <span>Mittlere Führung oder Betriebsrat, unterstützend ohne öffentliche Rollen</span>
+        </div>
+        <div class="archetype">
+          <strong>The Cultural Broker</strong>
+          <span>Interne oder externe Person, die Familie und Manager kulturen verbindet</span>
+        </div>
+        <div class="archetype">
+          <strong>The Governance Architect</strong>
+          <span>Berater, Beiratsmitglied oder Anwalt mit strukturierender Funktion</span>
+        </div>
+        <div class="archetype">
+          <strong>The Change Catalyst</strong>
+          <span>Person oder Funktion, die aktiv Transformation und Wechsel vorantreibt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Link Back -->
+  <section class="light fade-in">
+    <div class="back-link">
+      <p><strong>Praktische Anwendung dieser Erkenntnisse:</strong></p>
+      <a href="praxisbeispiele.html">Zu den Praxisbeispielen →</a>
+      <span style="color: var(--muted); margin: 0 1rem;">|</span>
+      <a href="index.html">← Zurück zur Startseite</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+      © 2026 Dr. Christian Neusser, DBA &nbsp;·&nbsp;
+      <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> &nbsp;·&nbsp;
+      <a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp;
+      <a href="index.html">Website</a>
+    </div>
+  </footer>
+
+  <!-- Navigation JS -->
+  <script>
+    (function() {
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+
+      if (!navToggle || !navMenu) return;
+
+      navToggle.addEventListener('click', function() {
+        const isOpen = navMenu.classList.toggle('open');
+        navToggle.textContent = isOpen ? '✕' : '☰';
+      });
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          navMenu.classList.remove('open');
+          navToggle.textContent = '☰';
+        });
+      });
+    })();
+
+    // Fade in animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

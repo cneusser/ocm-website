@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lehrformate - Dr. Christian Neusser, DBA</title>
+  <style>
+    :root {
+      --navy: #1A3A5C;
+      --teal: #0D7EA0;
+      --teal-lt: #1A9EC4;
+      --gold: #E8A020;
+      --white: #FFFFFF;
+      --off-w: #F4F8FB;
+      --light-bg: #F0F6FA;
+      --accent: #E8F4FA;
+      --dark: #1C2B3A;
+      --muted: #6B8BA4;
+      --text: #2C3E50;
+      --radius: 8px;
+      --shadow: 0 4px 20px rgba(26, 58, 92, 0.10);
+      --shadow-sm: 0 2px 8px rgba(26, 58, 92, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background: var(--white);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: Georgia, serif;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+      color: var(--navy);
+    }
+
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2rem; margin-top: 2rem; }
+    h3 { font-size: 1.4rem; }
+    h4 { font-size: 1.1rem; }
+
+    p { margin-bottom: 1rem; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { color: var(--teal-lt); text-decoration: underline; }
+
+    /* Navigation */
+    #navbar {
+      background: var(--navy);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-brand {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      font-weight: bold;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-brand span {
+      color: var(--teal);
+    }
+
+    .nav-toggle {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.3rem 0.5rem;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .nav-toggle:hover {
+      color: var(--teal);
+    }
+
+    .nav-menu {
+      display: none;
+      flex-direction: column;
+      background: #112840;
+      border-top: 2px solid var(--teal);
+    }
+
+    .nav-menu.open {
+      display: flex;
+    }
+
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-menu a:hover,
+    .nav-menu a.active {
+      color: var(--teal);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+      color: var(--white);
+      padding: 4rem 1.5rem;
+      border-left: 6px solid var(--teal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(13, 126, 160, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.9rem;
+      color: var(--teal);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      font-size: 2.8rem;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat-box {
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--teal);
+    }
+
+    .stat-box .number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .stat-box .label {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 0.3rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section.light {
+      background: var(--light-bg);
+    }
+
+    section.dark {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    section.dark h2,
+    section.dark h3 {
+      color: var(--white);
+    }
+
+    section.dark a {
+      color: var(--teal-lt);
+    }
+
+    section.highlight {
+      background: linear-gradient(135deg, rgba(232, 160, 32, 0.08) 0%, rgba(26, 62, 92, 0.04) 100%);
+      border-left: 6px solid var(--gold);
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      border-top: 4px solid var(--teal);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    section.light .card {
+      background: var(--white);
+    }
+
+    section.dark .card {
+      background: #1A4A6A;
+      color: var(--white);
+      border-top-color: var(--gold);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    section.dark .card h3 {
+      color: var(--white);
+    }
+
+    /* Timeline/Steps */
+    .timeline {
+      margin-top: 1.5rem;
+    }
+
+    .timeline-item {
+      background: var(--light-bg);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-item strong {
+      color: var(--teal);
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .timeline-item p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Reference Cards */
+    .reference-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .reference-card {
+      background: var(--light-bg);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--gold);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .reference-card code {
+      display: block;
+      font-family: 'Courier New', monospace;
+      background: var(--white);
+      padding: 0.8rem;
+      border-radius: 4px;
+      margin-top: 0.8rem;
+      color: var(--navy);
+      font-size: 0.85rem;
+      overflow-x: auto;
+    }
+
+    /* Institution Cards */
+    .institution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .institution-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid var(--teal);
+    }
+
+    .institution-card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--navy);
+    }
+
+    .institution-card .period {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .institution-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: rgba(232, 160, 32, 0.1);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box strong {
+      color: var(--navy);
+    }
+
+    /* Fade in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Footer */
+    footer {
+      background: #0e2234;
+      color: rgba(255, 255, 255, 0.42);
+      padding: 1.8rem 0;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.48);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--teal-lt);
+    }
+
+    /* Back Link */
+    .back-link {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .back-link a {
+      color: var(--teal);
+      font-weight: 600;
+      display: inline-block;
+      margin: 0 0.5rem;
+    }
+
+    .back-link a:hover {
+      color: var(--teal-lt);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.6rem; }
+
+      .hero {
+        padding: 3rem 1.5rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero .subtitle {
+        font-size: 0.95rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .reference-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .institution-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
+    </div>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="index.html#fachvortrag">Fachvortrag</a>
+      <a href="index.html#wissen">Wissensportal</a>
+      <a href="dba.html">Doktorarbeit</a>
+      <a href="lehrformate.html" class="active">Lehrformate</a>
+      <a href="index.html#modell">MSTM-Modell</a>
+      <a href="index.html#forschung">Forschung</a>
+      <a href="index.html#blog">Blog</a>
+      <a href="index.html#kontakt">Kontakt</a>
+      <a href="ueber-mich.html">Über mich</a>
+      <a href="praxisbeispiele.html">Praxisbeispiele</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Lehre · Didaktik · Wissenschaftlich fundiert</div>
+      <h1>Lehrformate &amp; Didaktische Konzepte</h1>
+      <p class="subtitle">Praxisorientierte Hochschullehre mit wissenschaftlicher Fundierung</p>
+      <div class="hero-stats">
+        <div class="stat-box">
+          <div class="number">20+</div>
+          <div class="label">Jahre Lehre</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">4</div>
+          <div class="label">Hochschulen</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">10 Wo.</div>
+          <div class="label">VentureLab</div>
+        </div>
+        <div class="stat-box">
+          <div class="number">Kolb · Ed.</div>
+          <div class="label">Theorien</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lehrphilosophie -->
+  <section class="light fade-in">
+    <h2>Lehrphilosophie</h2>
+    <p>Die didaktische Philosophie basiert auf drei Kernprinzipien:</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Wissenschaft trifft Praxis</h3>
+        <p>Theorien werden nicht erklärt – sie werden am eigenen Erleben erfahren. Studierende erleben wirtschaftliche Dynamiken, organisationale Phänomene und Verhaltensmuster selbst, um tieferes Verständnis zu entwickeln.</p>
+      </div>
+      <div class="card">
+        <h3>Psychologische Sicherheit</h3>
+        <p>Basierend auf Edmondson (1999): Scheitern ist nicht nur erlaubt, sondern lehrreich. Ein Klima des gegenseitigen Vertrauens ermöglicht risikobereites Lernen und echte Reflexion von Fehlern.</p>
+      </div>
+      <div class="card">
+        <h3>Transfer als Lernziel</h3>
+        <p>Jedes Format zielt auf echten Wissenstransfer in die Berufspraxis. Konzepte werden direkt auf reale Szenarien angewendet, um nachhaltige Kompetenzentwicklung zu sichern.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-Euro-Business VentureLab -->
+  <section class="highlight fade-in">
+    <h2>5-Euro-Business VentureLab</h2>
+    <p><strong>Das Flaggschiff-Format der Unternehmertischen Lehre:</strong> Ein 10-wöchiges Intensivformat, in dem Studierende mit nur 5 Euro Startkapital ein echtes Geschäft aufbauen, testen und iterieren.</p>
+
+    <h3 style="margin-top: 2rem;">Formatstruktur</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>Woche 1: Erstkontakt mit Markt und Kunden</strong>
+        <p>Kein Business Plan, kein großes Konzept – nur Handeln. Studierende verlassen das Klassenzimmer und sprechen mit echten Kunden, um erste Marktreaktionen zu verstehen.</p>
+      </div>
+      <div class="timeline-item">
+        <strong>Wochen 2–5: Iteration, Pivots, Modellwechsel</strong>
+        <p>Erste Umsätze entstehen. Studierende erleben Feedback-Zyklen, justieren nach, testen alternative Geschäftsmodelle. Effectuation-Logik wird gelebt, nicht gelehrt.</p>
+      </div>
+      <div class="timeline-item">
+        <strong>Wochen 6–9: Skalierung und Vertiefung</strong>
+        <p>Erfolgreiche Modelle werden skaliert, weitere Marktexploration erfolgt, Kundenbeziehungen werden vertieft. Teams entwickeln ein Gespür für Wertschöpfung.</p>
+      </div>
+      <div class="timeline-item">
+        <strong>Woche 10: Abschlussreflexion und Transfer</strong>
+        <p>Lernjournal, strukturierte Reflexion, Präsentation und kritische Würdigung des Erlebten. Erkenntnisse werden abstrahiert und in Theorie zurückgebunden.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Theoretische Fundierung</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>Kolb (1984)</h4>
+        <p><strong>Experiential Learning Cycle</strong> – Konkrete Erfahrung, Reflexive Beobachtung, Abstrakte Konzeptualisierung, Aktives Experimentieren</p>
+      </div>
+      <div class="card">
+        <h4>Sarasvathy (2001)</h4>
+        <p><strong>Effectuation</strong> – Logik von Unternehmern: Mittel-getrieben statt zielgetrieben handeln, Kontingenz nutzen</p>
+      </div>
+      <div class="card">
+        <h4>Revans (1980)</h4>
+        <p><strong>Action Learning</strong> – Lernen durch Handeln in echten Kontexten, reflexives Denken und Problemlösung</p>
+      </div>
+      <div class="card">
+        <h4>Edmondson (1999)</h4>
+        <p><strong>Psychological Safety</strong> – Vertrauen, Scheitern als Lernchance, Risikobereites Experimentieren</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Empirische Ergebnisse</h3>
+    <div class="highlight-box">
+      <p><strong>Messbare Kompetenzentwicklung:</strong></p>
+      <ul style="margin-left: 1.5rem; margin-top: 0.8rem;">
+        <li>82% Steigerung der Selbstwirksamkeit (Self-Efficacy)</li>
+        <li>94% Kompetenzentwicklung in Effectuation-Logik</li>
+        <li>Durchschnittlicher Umsatz pro Team: 5+ Euro in 10 Wochen</li>
+        <li>Hohes Engagement und intrinsische Motivation der Teilnehmer</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>Entrepreneurship-Module</h4>
+        <p>Kernformat in Gründer-Lehre und Start-up-Management. Ersetzt klassische Geschäftsplanlehre durch echtes Markthandeln.</p>
+      </div>
+      <div class="card">
+        <h4>Strategic Management</h4>
+        <p>Praktische Ergänzung zu strategischen Konzepten, um Strategieentwicklung als iterativen Prozess zu erleben.</p>
+      </div>
+      <div class="card">
+        <h4>Innovation-Formate</h4>
+        <p>Grundlage für Innovationslabore und Change-Management-Kurse. Studierende entwickeln ein Gespür für Neuerungen und Widerstände.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Change Management Praktikum -->
+  <section class="light fade-in">
+    <h2>Change Management – Praxisprojektlinie</h2>
+    <p><strong>Format:</strong> Studierende führen ein echtes Change-Projekt über das gesamte Semester, begleitet durch Theorie und Reflexion.</p>
+
+    <h3 style="margin-top: 2rem;">Theoretische Fundierung</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>Kotter (1996)</h4>
+        <p><strong>8-Stufen-Modell</strong> – Von Dringlichkeit über Visionsbildung bis zur Institutionalisierung</p>
+      </div>
+      <div class="card">
+        <h4>Lewin (1951)</h4>
+        <p><strong>3-Phasen-Modell</strong> – Unfreeze, Change, Refreeze als Dynamik von Widerständen und Gewöhnung</p>
+      </div>
+      <div class="card">
+        <h4>Beer &amp; Nohria (2000)</h4>
+        <p><strong>Theory E/O</strong> – Unterscheidung von ökonomisch vs. organisatorisch getriebener Transformation</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Didaktischer Ansatz</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>Case-Based Learning</strong>
+        <p>Echte Change-Projekte in partnerorganisationen werden als Lernfälle bearbeitet</p>
+      </div>
+      <div class="timeline-item">
+        <strong>Peer-Coaching</strong>
+        <p>Studierende coachen sich gegenseitig in Reflexionsdialogen und geben differenziertes Feedback</p>
+      </div>
+      <div class="timeline-item">
+        <strong>Reflexionsdialoge</strong>
+        <p>Regelmäßige strukturierte Reflexion von Erfahrungen, Überraschungen und gelernte Lektionen</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <div class="card-grid">
+      <div class="card">
+        <p><strong>OCM-Module:</strong> Change Management und Organizational Transformation</p>
+      </div>
+      <div class="card">
+        <p><strong>MBA-Programme:</strong> Advanced Change Leadership und Strategische Implementierung</p>
+      </div>
+      <div class="card">
+        <p><strong>Executive Education:</strong> Blended Learning für erfahrene Manager</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Organisationstheorie-Seminar -->
+  <section class="fade-in">
+    <h2>Organisationstheorie-Seminar</h2>
+    <p><strong>Kompaktseminar mit Flipped-Classroom-Elementen:</strong> Klassische und moderne Organisationstheorien werden durch intensive Diskussion und kritische Würdigung erarbeitet.</p>
+
+    <h3 style="margin-top: 2rem;">Format und Struktur</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h4>Vorbereitung (Flipped)</h4>
+        <p>Studierende erarbeiten Kernkonzepte eigenständig. Klassische Vorlesung entfällt.</p>
+      </div>
+      <div class="card">
+        <h4>Seminararbeit</h4>
+        <p>Präsentation und Diskussion von Forschungspapieren. Aktive Engagement mit Literatur.</p>
+      </div>
+      <div class="card">
+        <h4>Kritische Würdigung</h4>
+        <p>Grenzen, Kritik und Anwendbarkeit von Theorien werden intensiv diskutiert.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Theoretische Schwerpunkte</h3>
+    <div class="reference-grid">
+      <div class="reference-card">
+        <strong>Hannan &amp; Freeman (1984)</strong><br/>
+        Organizational Ecology – Strukturelle Trägheit und Selektion
+      </div>
+      <div class="reference-card">
+        <strong>Teece, Pisano &amp; Shuen (1997)</strong><br/>
+        Dynamic Capabilities – Strategische Fähigkeiten in dynamischen Märkten
+      </div>
+      <div class="reference-card">
+        <strong>March (1991)</strong><br/>
+        Exploration und Exploitation – Innovationen versus Effizienz
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <div class="card-grid">
+      <div class="card">
+        <p><strong>Bachelor-Niveau:</strong> Organisationslehre Grundlagen und theoretische Perspektiven</p>
+      </div>
+      <div class="card">
+        <p><strong>Master-Niveau:</strong> Advanced Organizational Theory und Forschungsseminar</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Executive Coaching -->
+  <section class="dark fade-in">
+    <h2>Executive Coaching &amp; Action Learning</h2>
+    <p>Basierend auf Revans (1980) <em>Action Learning Sets</em>: Klein­gruppiges intensives Coaching mit echten Führungsproblemen.</p>
+
+    <h3 style="margin-top: 2rem;">Formatmerkmale</h3>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Small Groups</h3>
+        <p>4–6 erfahrene Manager in kontinuierlichen Gruppen arbeiten an echten Führungsproblemen.</p>
+      </div>
+      <div class="card">
+        <h3>Real Problems</h3>
+        <p>Nicht-Fallstudien, sondern aktuelle Herausforderungen aus dem eigenen beruflichen Kontext.</p>
+      </div>
+      <div class="card">
+        <h3>Collective Reflection</h3>
+        <p>Peer-Coaching und strukturiertes Reflexionslernen. Die Gruppe als primäres Lernvehikel.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <div class="card-grid">
+      <div class="card">
+        <p><strong>Executive Education:</strong> Coaching für C-Level und Vorstände</p>
+      </div>
+      <div class="card">
+        <p><strong>MBA-Programme:</strong> Leadership Development mit Coaching-Komponenten</p>
+      </div>
+      <div class="card">
+        <p><strong>In-Company Training:</strong> Maßgeschneiderte Entwicklung für Organisationen</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wissenschaftliche Fundierung -->
+  <section class="light fade-in">
+    <h2>Wissenschaftliche Fundierung der Didaktik</h2>
+    <p>Alle Lehrformate sind in einem aktuellen Stand der Lehr-/Lernforschung verankert:</p>
+    <div class="reference-grid">
+      <div class="reference-card">
+        <strong>Kolb, D. A. (1984)</strong><br/>
+        <code>Experiential Learning: Experience as the Source of Learning and Development</code><br/>
+        Prentice Hall
+      </div>
+      <div class="reference-card">
+        <strong>Edmondson, A. C. (1999)</strong><br/>
+        <code>Psychological Safety and Learning Behavior in Work Teams</code><br/>
+        Administrative Science Quarterly 44(2): 350–383
+      </div>
+      <div class="reference-card">
+        <strong>Sarasvathy, S. D. (2001)</strong><br/>
+        <code>Causation and Effectuation: Toward a Theoretical Shift from Economic Inevitability to Entrepreneurial Contingency</code><br/>
+        Academy of Management Review 26(2): 243–263
+      </div>
+      <div class="reference-card">
+        <strong>Revans, R. W. (1980)</strong><br/>
+        <code>Action Learning: New Techniques for Management</code><br/>
+        Blond &amp; Briggs
+      </div>
+      <div class="reference-card">
+        <strong>Kotter, J. P. (1996)</strong><br/>
+        <code>Leading Change</code><br/>
+        Harvard Business School Press
+      </div>
+      <div class="reference-card">
+        <strong>Beer, M. &amp; Nohria, N. (2000)</strong><br/>
+        <code>Cracking the Code of Change</code><br/>
+        Harvard Business Review 78(5): 133–141
+      </div>
+    </div>
+  </section>
+
+  <!-- Hochschulen & Engagements -->
+  <section class="fade-in">
+    <h2>Hochschulen &amp; Lehrengagements</h2>
+    <p>Über 20 Jahre Lehrexperience an führenden deutschsprachigen Hochschulen und Weiterbildungsinstitutionen:</p>
+    <div class="institution-grid">
+      <div class="institution-card">
+        <h3>DHBW Stuttgart</h3>
+        <div class="period">seit Oktober 2004</div>
+        <p><strong>Lehrbeauftragte für:</strong> Betriebswirtschaft, Management, Organisationstheorie und Strategisches Management in Bachelor- und Master-Programmen</p>
+      </div>
+      <div class="institution-card">
+        <h3>DHBW CAS Heilbronn</h3>
+        <div class="period">seit April 2019</div>
+        <p><strong>Modulleitung:</strong> Entrepreneurship, Innovation und Corporate Venturing. Schwerpunkt: praxisorientierte Unternehmertische Lehre</p>
+      </div>
+      <div class="institution-card">
+        <h3>FAU Erlangen-Nürnberg</h3>
+        <div class="period">Oktober 2005 – September 2021</div>
+        <p><strong>Wissenschaftlicher Mitarbeiter &amp; Lehrbeauftragter:</strong> Organisation &amp; Management, Familienunternehmen, Strategisches Management</p>
+      </div>
+      <div class="institution-card">
+        <h3>Berufungskandidat · O&amp;CM</h3>
+        <div class="period">April 2026</div>
+        <p><strong>Berufungsvortrag:</strong> Lehrprobe und wissenschaftlicher Vortrag zu Organisation &amp; Change Management im Rahmen des Berufungsverfahrens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Link Back -->
+  <section class="light fade-in">
+    <div class="back-link">
+      <p><strong>Weiterführende Informationen:</strong></p>
+      <a href="index.html">← Zurück zur Startseite</a>
+      <span style="color: var(--muted); margin: 0 1rem;">|</span>
+      <a href="dba.html">Zur Doktorarbeit →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+      © 2026 Dr. Christian Neusser, DBA &nbsp;·&nbsp;
+      <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> &nbsp;·&nbsp;
+      <a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp;
+      <a href="index.html">Website</a>
+    </div>
+  </footer>
+
+  <!-- Navigation JS -->
+  <script>
+    (function() {
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+
+      if (!navToggle || !navMenu) return;
+
+      navToggle.addEventListener('click', function() {
+        const isOpen = navMenu.classList.toggle('open');
+        navToggle.textContent = isOpen ? '✕' : '☰';
+      });
+
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          navMenu.classList.remove('open');
+          navToggle.textContent = '☰';
+        });
+      });
+    })();
+
+    // Fade in animation on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

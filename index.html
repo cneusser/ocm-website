@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Dr. Christian Neusser, DBA – Organisation & Change Management | v2.1</title>
+  <title>Dr. Christian Neusser, DBA – Organisation & Change Management</title>
   <style>
     :root{
       --navy:#1A3A5C;--teal:#0D7EA0;--teal-lt:#1A9EC4;--gold:#E8A020;
@@ -29,14 +29,15 @@
     section:nth-child(even){background:var(--light-bg)}
     /* ── NAVBAR ── */
     #navbar{position:sticky;top:0;z-index:1000;background:var(--navy);box-shadow:0 2px 16px rgba(0,0,0,.25)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:58px;max-width:1100px;margin:0 auto;padding:0 2rem}
-    .nav-brand{font-family:Georgia,serif;font-size:.95rem;color:var(--white);font-weight:bold;white-space:nowrap}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1100px;margin:0 auto;padding:0 1.5rem}
+    .nav-brand{font-family:Georgia,serif;font-size:.95rem;color:var(--white);font-weight:bold;white-space:nowrap;text-decoration:none}
     .nav-brand span{color:var(--teal)}
-    .version-badge{background:var(--teal);color:var(--white);font-size:.65rem;font-weight:700;padding:.15rem .5rem;border-radius:10px;margin-left:.5rem;letter-spacing:.05em}
-    .nav-links{display:flex;gap:1.4rem;list-style:none;align-items:center}
-    .nav-links a{color:rgba(255,255,255,.72);font-size:.82rem;font-weight:500;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--teal);text-decoration:none}
-    .nav-changelog{color:var(--gold)!important;font-size:.75rem!important}
+    .nav-toggle{background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer;padding:.3rem .5rem;line-height:1;transition:color .2s}
+    .nav-toggle:hover{color:var(--teal)}
+    .nav-menu{display:none;flex-direction:column;background:#112840;border-top:2px solid var(--teal)}
+    .nav-menu.open{display:flex}
+    .nav-menu a{color:rgba(255,255,255,.78);font-size:.88rem;font-weight:500;padding:.75rem 1.5rem;text-decoration:none;transition:background .15s,color .15s;border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-menu a:hover,.nav-menu a.active{color:var(--teal);background:rgba(255,255,255,.05)}
     /* ── HERO ── */
     #hero{background:linear-gradient(135deg,var(--navy) 60%,#0e2d4a 100%);color:var(--white);padding:5.5rem 0 4.5rem;position:relative;overflow:hidden}
     #hero::before{content:'';position:absolute;left:0;top:0;width:6px;height:100%;background:var(--teal)}
@@ -261,9 +262,6 @@
     }
     @media(max-width:768px){
       .identity-grid,.pillars,.research-grid,.paradigm-grid,.t-cols,.acc-2col,.contact-grid,.prop-grid,.method-grid,.config-grid{grid-template-columns:1fr}
-      #nav-toggle{display:block!important}
-      .nav-links{display:none;flex-direction:column;position:absolute;top:58px;left:0;right:0;background:var(--navy);padding:1rem 2rem;gap:.65rem;z-index:999;max-height:calc(100vh - 58px);overflow-y:auto}
-      .nav-links.open{display:flex}
       section{padding:3rem 0}
       .container{padding:0 1rem}
       .tabs{flex-direction:column}
@@ -292,22 +290,22 @@
 <!-- NAVBAR -->
 <nav id="navbar">
   <div class="nav-inner">
-    <div class="nav-brand">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></div>
-    <button id="nav-toggle" aria-label="Menü" style="display:none;background:none;border:none;cursor:pointer;padding:.4rem .6rem;color:var(--white);font-size:1.4rem;line-height:1">☰</button>
-    <ul class="nav-links" id="navlinks">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#lehre">Lehre</a></li>
-      <li><a href="#wissen">Wissensportal</a></li>
-      <li><a href="#dba">Doktorarbeit</a></li>
-      <li><a href="#modell">MSTM-Modell</a></li>
-      <li><a href="#forschung">Forschung</a></li>
-      <li><a href="#publikationen">Publikationen</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
-      <li><a href="ueber-mich.html">Über mich</a></li>
-      <li><a href="praxisbeispiele.html">Praxisbeispiele</a></li>
-      <li><a href="changelog.html" class="nav-changelog">Changelog</a></li>
-    </ul>
+    <a class="nav-brand" href="#hero">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
+  </div>
+  <div class="nav-menu" id="nav-menu">
+    <a href="#hero">Home</a>
+    <a href="#lehre">Fachvortrag &amp; Lehre</a>
+    <a href="#wissen">Wissensportal</a>
+    <a href="dba.html">Doktorarbeit (Detail)</a>
+    <a href="lehrformate.html">Lehrformate (Detail)</a>
+    <a href="#modell">MSTM-Modell</a>
+    <a href="#forschung">Forschung &amp; Publikationen</a>
+    <a href="#blog">Blog</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="changelog.html">Changelog</a>
   </div>
 </nav>
 
@@ -322,7 +320,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="container">
-    <div class="hero-eyebrow">FH-Professur · Organisation &amp; Change Management · Fachhochschule Kärnten</div>
+    <div class="hero-eyebrow">Organisation &amp; Change Management · Berufungsvortrag April 2026</div>
     <h1>Organisation &amp; Change Management:<br><span>Erneuerungsfähigkeit als organisationale Kernkompetenz</span></h1>
     <p class="hero-subtitle">Wissenschaftlich fundierte, praxisorientierte Lehre und Forschung an der Schnittstelle von Organisationsdesign, Legitimität und Wandel.</p>
     <div class="hero-thesis">
@@ -332,7 +330,6 @@
       <a href="#dba" class="btn btn-gold">Doktorarbeit &amp; MSTM-Framework</a>
       <a href="#lehre" class="btn btn-primary">Lehrbegleitung</a>
       <a href="#wissen" class="btn btn-outline">Wissensportal</a>
-      <a href="https://www.fh-kaernten.at/en/" target="_blank" class="btn btn-outline">FH Kärnten ↗</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num">42</div><div class="lbl">Fallstudien (DBA)</div></div>
@@ -347,9 +344,9 @@
 <!-- LEHRE -->
 <section id="lehre">
   <div class="container">
-    <div class="section-label">Lehrbegleitung</div>
+    <div class="section-label">Fachvortrag · Lehrbegleitung</div>
     <h2 class="section-title">Modul: Change Management &amp; Konfliktmanagement</h2>
-    <p class="section-subtitle">5 ECTS · 3,15 SWS · 4. Semester BWL · 8 Gruppen · 3 Formate (Vollzeit / Berufsbegleitend / Englisch)</p>
+    <p class="section-subtitle">5 ECTS · 3,15 SWS · 4. Semester BWL · 8 Gruppen · 3 Formate (Vollzeit / Berufsbegleitend / Englisch) &nbsp;·&nbsp; <a href="lehrformate.html" style="color:var(--teal);font-weight:600">Alle Lehrformate →</a></p>
     <div style="display:flex;flex-wrap:wrap;gap:.8rem;margin-bottom:2rem">
       <span class="pill pill-navy">5 ECTS</span><span class="pill pill-navy">3,15 SWS</span><span class="pill pill-navy">4. Sem. BWL</span>
       <span class="pill pill-navy">8 Gruppen</span><span class="pill pill-navy">3 Lehrformate</span><span class="pill pill-navy">DE + EN</span>
@@ -820,239 +817,100 @@
   </div><!-- /container -->
 </section>
 
-<!-- DOKTORARBEIT -->
-<section id="dba">
+<!-- DOKTORARBEIT TEASER -->
+<section id="dba" style="background:var(--light-bg)">
   <div class="container">
-    <div class="section-label">Doktorarbeit · DBA · Henley Business School, University of Reading</div>
+    <div class="section-label">Doktorarbeit · DBA</div>
     <h2 class="section-title">Navigating External Succession in German Mittelstand Family Firms</h2>
-    <p class="section-subtitle">Qualitative Mehrfallstudie · 102 Interviews · 42 Unternehmen · MSTM-Framework · Abschluss Januar 2026</p>
-
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('d1',this)">Abstract &amp; Forschungsfragen</button>
-      <button class="tab-btn" onclick="switchTab('d2',this)">Theorie &amp; Literatur</button>
-      <button class="tab-btn" onclick="switchTab('d3',this)">Methodik</button>
-      <button class="tab-btn" onclick="switchTab('d4',this)">Zentrale Befunde</button>
-      <button class="tab-btn" onclick="switchTab('d5',this)">MSTM-Framework</button>
-      <button class="tab-btn" onclick="switchTab('d6',this)">Propositionen</button>
-    </div>
-
-    <div class="tab-panel active" id="d1">
-      <div class="theory-card">
-        <h3>Abstract</h3>
-        <p class="t-sub">Neusser, C. (2026). <em>Navigating external succession in German 'Mittelstand' family-owned manufacturing companies: A multi-perspective study on leadership transition, governance, and socioemotional wealth</em> [DBA dissertation]. Henley Business School, University of Reading.</p>
-        <div style="background:var(--light-bg);border-left:4px solid var(--navy);padding:1.2rem 1.4rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:1.5rem;font-size:.92rem;line-height:1.7">
-          <p>Diese Dissertationsschrift untersucht externe Nachfolge in Familienunternehmen des deutschen Mittelstands – spezifisch Führungstransitionen zu externen Managern (EXTs). Im Mittelpunkt stehen die Entwicklung von Legitimität, Vertrauen und Governance während dieser Übergänge, über die traditionelle Fokussierung auf familieninterne Nachfolge hinaus.</p>
-          <p style="margin-top:.8rem">Auf Basis eines interpretativen Paradigmas und abduktiver Logik setzt die Studie ein qualitatives Mehrfallstudien-Design ein: 102 Interviews in 42 deutschsprachigen familiengeführten Produktionsunternehmen, mit acht Kernfällen (25 Interviews) für die Tiefenanalyse. Die Analyse entwickelt das MSTM-Framework (Mechanisms–Structure–Trust–Mandate), das externe Nachfolge als rekursiven, mehrebenengestalteten Prozess rekonstruiert.</p>
-          <p style="margin-top:.8rem">Die empirischen Befunde zeigen: Externe Nachfolge ist weder ein diskretes Ereignis noch eine lineare Sequenz, sondern eine iterative Verhandlung von Macht, Legitimität und Identität. Schlüsselmuster umfassen symbolische Wendepunkte (<em>tipping points</em>), narrative Alignment-Rituale und pfadabhängige Governance-Rekonfigurationen. Die Studie identifiziert vier Nachfolgekonfigurationen auf Unternehmensebene und zwölf Akteursarchetypen als typologische und behaviorale Kartierung extern geführter Übergänge.</p>
-        </div>
-        <h4 style="color:var(--navy);font-size:1rem;margin-bottom:1rem">Forschungsfragen</h4>
-        <div style="background:var(--accent);border-radius:var(--radius);padding:1.2rem 1.5rem;border-left:4px solid var(--teal);margin-bottom:1.2rem">
-          <p style="font-size:1rem;font-weight:600;color:var(--navy)">Zentrale Forschungsfrage:</p>
-          <p style="font-size:.95rem;font-style:italic;margin-top:.3rem">„How does external succession occur in German 'Mittelstand' family-owned manufacturing companies?"</p>
-        </div>
-        <div class="prop-grid">
-          <div class="prop-card"><div class="prop-num">Objective 1</div><h4>Entscheidungsprozesse</h4><p style="font-size:.87rem">Welche strategischen, emotionalen und kontextuellen Faktoren veranlassen Familienunternehmen zur externen Nachfolge? Professionalisierungslogiken und Auslöser.</p></div>
-          <div class="prop-card"><div class="prop-num">Objective 2</div><h4>Governance-Strukturen</h4><p style="font-size:.87rem">Welche Governance-Strukturen ermöglichen oder beschränken die erfolgreiche Integration externer Führung? Rekonfigurationsprozesse und Governance-Evolution.</p></div>
-          <div class="prop-card"><div class="prop-num">Objective 3</div><h4>Vertrauen &amp; Legitimität</h4><p style="font-size:.87rem">Wie konstruieren externe Führungskräfte Vertrauen und Legitimität gegenüber Eigentümerfamilie, Mitarbeitenden und weiteren Stakeholdern?</p></div>
-          <div class="prop-card"><div class="prop-num">Objective 4</div><h4>Strategische Adaptation</h4><p style="font-size:.87rem">Wie managen Familienunternehmen strategische und kulturelle Anpassung während der Transition? Balancierung von SEW-Erhalt und Transformationsnotwendigkeit.</p></div>
-        </div>
+    <p class="section-subtitle">Henley Business School / University of Reading · 102 Interviews · 42 Unternehmen · Abschluss Januar 2026</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1.2rem;margin-bottom:2rem">
+      <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--teal)">
+        <div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--teal);font-weight:bold">102</div>
+        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Interviews</div>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--navy)">
+        <div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--navy);font-weight:bold">42</div>
+        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Unternehmen</div>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--gold)">
+        <div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--gold);font-weight:bold">~7</div>
+        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Jahre Weg</div>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem;text-align:center;box-shadow:var(--shadow);border-top:3px solid var(--teal)">
+        <div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--teal);font-weight:bold">4</div>
+        <div style="font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">MSTM-Dim.</div>
       </div>
     </div>
-
-    <div class="tab-panel" id="d2">
-      <div class="theory-card">
-        <h3>Theoretischer Rahmen: Sieben integrierte Perspektiven</h3>
-        <p class="t-sub">Multitheoretisches Design zur Erfassung der Komplexität externer Nachfolge</p>
-        <div class="t-cols">
-          <div>
-            <div class="t-block"><h4>1. Agenturtheorie (Jensen &amp; Meckling, 1976)</h4><p>Eigentümer-Manager-Konflikte, Informationsasymmetrien, Governance als Kontrollmechanismus.</p></div>
-            <div class="t-block"><h4>2. Stewardship-Theorie (Davis et al., 1997)</h4><p>Vertrauen als Governance-Fundament, intrinsische Motivation, pro-organisationale Führung.</p></div>
-            <div class="t-block"><h4>3. Socioemotional Wealth (Gómez-Mejía et al., 2007)</h4><p>Emotionale Bindungen der Familie, nicht-ökonomische Zielpräferenzen, FIBER-Dimensionen.</p></div>
-            <div class="t-block"><h4>4. Resource-Based View &amp; Dynamic Capabilities (Barney, 1991; Teece et al., 1997)</h4><p>Externe Führungskräfte als Ressourcenträger; Fähigkeiten zur strategischen Erneuerung.</p></div>
-          </div>
-          <div>
-            <div class="t-block"><h4>5. Legitimationstheorie (Suchman, 1995) – Kernbeitrag</h4><p>Füllt die kritische Lücke in der Nachfolgeliteratur: Wie erlangen externe Führungskräfte soziale Anerkennung in familiengeprägten Kontexten?</p></div>
-            <div class="t-block"><h4>6. Organisationales Lernen (Argote &amp; Miron-Spektor, 2011)</h4><p>Wissenstransfer und Kompetenzevolution während Führungstransitionen; tacites Wissen in Familienunternehmen.</p></div>
-            <div class="t-block"><h4>7. Organisationale Ökologie (Hannan &amp; Freeman, 1977)</h4><p>Nachfolge als adaptiver Erneuerungszyklus; Pioneer-Climax- und dynamisches Gleichgewichtsmodell. Erklärung nicht-linearer Transitionsprozesse.</p></div>
-            <div class="insight-box"><strong>Integrative Leistung:</strong> Das MSTM-Framework synthetisiert alle sieben Perspektiven in einem kohärenten, prozessorientierten Erklärungsrahmen auf vier Ebenen (individuell, relational, institutionell, symbolisch-narrativ).</div>
-          </div>
-        </div>
+    <div style="background:linear-gradient(135deg,var(--navy) 60%,#0e2d4a);border-radius:var(--radius);padding:1.5rem 1.75rem;color:var(--white);margin-bottom:1.5rem;border-left:5px solid var(--gold)">
+      <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:.5rem;font-weight:700">Forschungsfrage</div>
+      <p style="font-size:1.05rem;line-height:1.65;font-style:italic">"How does external succession occur in German 'Mittelstand' family-owned manufacturing companies?"</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem">
+      <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem 1.4rem;box-shadow:var(--shadow);border-left:4px solid var(--teal)">
+        <h4 style="color:var(--navy);font-size:.95rem;margin-bottom:.4rem">MSTM-Framework</h4>
+        <p style="font-size:.88rem;color:var(--muted)"><strong>M</strong>echanisms – <strong>S</strong>tructure – <strong>T</strong>rust – <strong>M</strong>andate. Rekursives Mid-Range-Framework für externe Nachfolge in Familienunternehmen.</p>
+      </div>
+      <div style="background:var(--white);border-radius:var(--radius);padding:1.2rem 1.4rem;box-shadow:var(--shadow);border-left:4px solid var(--gold)">
+        <h4 style="color:var(--navy);font-size:.95rem;margin-bottom:.4rem">Methodik: Gioia (2013)</h4>
+        <p style="font-size:.88rem;color:var(--muted)">Qualitative Inhaltsanalyse · 1st-Order Codes → 2nd-Order Themes → Aggregate Dimensions · Subtiler Realismus · Abduktive Logik</p>
       </div>
     </div>
-
-    <div class="tab-panel" id="d3">
-      <div class="theory-card">
-        <h3>Forschungsdesign &amp; Methodik</h3>
-        <p class="t-sub">Interpretivismus · Subtiler Realismus · Abduktive Logik · Gioia-Methodik</p>
-        <div class="method-grid">
-          <div class="method-box"><h4>Ontologie</h4><p>Subtiler Realismus: Soziale Phänomene wie Vertrauen, Legitimität und Governance sind ontologisch real in ihren Konsequenzen, aber epistemologisch durch Interpretation mediiert.</p></div>
-          <div class="method-box"><h4>Epistemologie</h4><p>Interpretivismus: Leadership-Wechsel ist kein technischer Prozess, sondern ein umstrittener sozialer Prozess, der durch Wahrnehmungen, Narrative und Normen geprägt wird.</p></div>
-          <div class="method-box"><h4>Forschungslogik</h4><p>Abduktive Ableitung: Iterative Bewegung zwischen Empirie und Theorie. Theoretische Überraschungen führen zu Konzeptverfeinerungen (Dubois &amp; Gadde, 2002).</p></div>
-        </div>
-        <div class="t-cols">
-          <div>
-            <div class="t-block"><h4>Datenerhebung</h4>
-              <ul><li>102 semi-strukturierte Interviews in 42 deutschsprachigen Familienunternehmen</li><li>8 Kernfälle mit 25 Interviews für Tiefenanalyse</li><li>Weitere 34 Unternehmen zur Theoriesättigung</li><li>Interviewdauer: 60–90 Minuten, aufgezeichnet, verbatim transkribiert, anonymisiert</li><li>Ergänzend: Unternehmensdokumente, Board-Protokolle, Social-Media-Archive, Forschungsnotizen</li></ul>
-            </div>
-            <div class="t-block"><h4>Fallauswahl (Maximum Variation)</h4>
-              <ul><li>Verschiedene Branchensubsektoren</li><li>Geplante vs. kriseninduzierte Nachfolge</li><li>Governance-Formalität: informal / teilinstitutionalisiert / hochformalisiert</li><li>Unternehmensgröße: €15 Mio. bis €2,5 Mrd.+; 80 bis 11.000+ Mitarbeitende</li><li>Generationen: Erst-, Geschwister-, Cousinen-Konsortien</li></ul>
-            </div>
-          </div>
-          <div>
-            <div class="t-block"><h4>Datenanalyse: Gioia-Methodik</h4>
-              <p>Gioia et al. (2013): Systematische Kodierung durch First-Order-Codes (Informantenperspektiven) → Second-Order-Themes (theoretische Aggregation) → Aggregate Dimensions (abstrakte Konzepte). Prozessorientierte Strategie, Innerfall- und Kreuzfallanalyse.</p>
-            </div>
-            <div class="t-block"><h4>Qualitätssicherung</h4>
-              <ul><li>Triangulation: Mehrere Datenquellen, mehrere Informanten pro Fall</li><li>Thick Descriptions für Übertragbarkeit</li><li>Reflexivität: Dokumentierte Forscherpositionierung</li><li>Analytische (nicht statistische) Generalisierbarkeit</li></ul>
-            </div>
-          </div>
-        </div>
-        <p class="ref-tag">Dubois, A., &amp; Gadde, L.-E. (2002). Systematic combining: An abductive approach to case research. <em>Journal of Business Research, 55</em>(7), 553–560. | Gioia, D. A., Corley, K. G., &amp; Hamilton, A. L. (2013). Seeking qualitative rigor in inductive research. <em>Organizational Research Methods, 16</em>(1), 15–31. | Yin, R. K. (2017). <em>Case study research and applications</em> (6th ed.). Sage.</p>
-      </div>
-    </div>
-
-    <div class="tab-panel" id="d4">
-      <div class="theory-card">
-        <h3>Zentrale empirische Befunde</h3>
-        <p class="t-sub">Sechs übergreifende Befundcluster aus 102 Interviews · Vier Nachfolgekonfigurationen · Zwölf Akteursarchetypen</p>
-        <div class="t-cols">
-          <div>
-            <div class="t-block"><h4>Befund 1: Nachfolgebereitschaft als relationale Ko-Konstruktion</h4><p>Individuelle Bereitschaft ist kein statisches Merkmal, sondern ein relational ko-konstruierter Prozess – geformt durch Interaktion zwischen persönlicher Anpassungsfähigkeit und historisch-emotionalem Kontext des Unternehmens.</p></div>
-            <div class="t-block"><h4>Befund 2: Vertrauen als rekursiver Prozess</h4><p>Vertrauen entwickelt sich in vier zeitlichen Schichten: initiale Einschätzungsphase → relationale Vertiefung → symbolisches Alignment → institutionelle Verankerung. Frühe soziale Signale wirken unverhältnismäßig stark.</p></div>
-            <div class="t-block"><h4>Befund 3: Governance-Rekonfigurationen</h4><p>Governance-Strukturen, ursprünglich auf Familienkontrolle ausgerichtet, unterliegen rekursiven Rekonfigurationen: von Schutzlogik zu Wachstumslogik, von informaler Familienlogik zu formalisierten Entscheidungsrechten.</p></div>
-          </div>
-          <div>
-            <div class="t-block"><h4>Befund 4: Legitimationsaufbau durch symbolisches Alignment</h4><p>Rollenlegitimität entsteht durch symbolisches Alignment zwischen den Handlungen des Nachfolgers und der narrativen Identität des Unternehmens. Symbolische Tipping Points (erste Führungsentscheidung, Umgang mit Krise, Einbeziehung des Gründers) sind kritische Momente.</p></div>
-            <div class="t-block"><h4>Befund 5: SEW-Evolution und kulturelle Adaptation</h4><p>Erfolgreiche Transitionen balancieren SEW-Erhalt mit Transformationserfordernissen – nicht durch Verleugnung der Familienidentität, sondern durch narrative Rahmung von Innovation als Weiterentwicklung familiärer Werte.</p></div>
-            <div class="t-block"><h4>Befund 6: Vier Nachfolgekonfigurationen</h4>
-              <div class="config-grid" style="margin-top:.5rem">
-                <div class="config-card"><div class="c-tag">Legacy Steward</div><h4>Stabiler Fortführer</h4><p style="font-size:.83rem">Formale Governance, relationales Vertrauen. Schrittweise strategische Ausrichtung.</p></div>
-                <div class="config-card"><div class="c-tag">Strategic Revitaliser</div><h4>Strategischer Erneuerer</h4><p style="font-size:.83rem">Klares strategisches Mandat, externe Advisors, leistungsorientierte Strukturen.</p></div>
-                <div class="config-card"><div class="c-tag">Hybrid Ambiguity</div><h4>Hybride Ambiguität</h4><p style="font-size:.83rem">Gemischte Governance, ungeklärte Entscheidungsrechte – Entgleisungsrisiko.</p></div>
-                <div class="config-card"><div class="c-tag">Institutional Designer</div><h4>Institutioneller Gestalter</h4><p style="font-size:.83rem">Bewusstes Governance-Design, Strukturklarheit, Professionalisierung.</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tab-panel" id="d5">
-      <div class="theory-card">
-        <h3>Das MSTM-Framework: Mechanisms – Structure – Trust – Mandate</h3>
-        <p class="t-sub">Ein rekursives, mehrebeniges Mid-Range-Framework zur Erklärung externer Nachfolge</p>
-        <div class="t-cols">
-          <div>
-            <div class="t-block"><h4>M – Mechanisms (Symbolische &amp; relationale Prozesse)</h4>
-              <p><strong>Definition:</strong> Die symbolischen und relationalen Prozesse, durch die externe Führungskräfte gegenüber zentralen Stakeholdern legitimiert, vertrauenswürdig und akzeptabel werden.</p>
-              <ul><li>Symbolisches Signaling: Handlungen, Rituale, Narrative</li><li>Narrative Alignment: Ko-Autorschaft von Organisationsidentitäts-Geschichten</li><li>Cultural Decoding: Verstehen und Respektieren von Gründungsmythen</li><li>Stakeholder Engagement Rituals: Regelmäßige Konsultationen mit Familie, Mitarbeitenden, Beratern</li><li>Behavioral Consistency: Vorhersagbares, verlässliches Handeln</li></ul>
-            </div>
-            <div class="t-block"><h4>S – Structure (Governance &amp; institutionelle Grundlagen)</h4>
-              <p><strong>Definition:</strong> Die formalen und informalen Governance-Mechanismen, die Rollen, Entscheidungsrechte und Performanzerwartungen während externer Nachfolge klären.</p>
-              <ul><li>Formale Governance-Körper: Beiräte, Familienräte, Aufsichtsräte</li><li>Decision Rights Clarity: Schriftliche Protokolle über Entscheidungszuständigkeiten</li><li>Rollenklarheit und Leistungsbewertungsrahmen</li><li>Strukturelle Reife: informal → teilinstitutionalisiert → hochformalisiert</li></ul>
-            </div>
-          </div>
-          <div>
-            <div class="t-block"><h4>T – Trust (Relationales &amp; institutionelles Vertrauen)</h4>
-              <p><strong>Definition:</strong> Die Qualität der Beziehungen zwischen Eigentümerfamilie und externen Führungskräften, aufgebaut durch frühe soziale Signale und institutionelles Scaffolding.</p>
-              <ul><li>Relationales Vertrauen (persönlich, kompetenzbasiert, wohlwollensbasiert)</li><li>Institutionelles Vertrauen (in Governance-Strukturen und Prozesse)</li><li>Zeitliche Schichten: Skepsis → Konsistenz → Vertiefung → Verankerung</li><li>Fragilität: Misalignment-Handlungen können rasch Vertrauen erodieren</li></ul>
-            </div>
-            <div class="t-block"><h4>M – Mandate (Rollenlegitimität &amp; Autoritätsentwicklung)</h4>
-              <p><strong>Definition:</strong> Die evoluierende Autorisierung und Legitimität, die externen Führungskräften durch Familie, Mitarbeitende und Stakeholder gewährt wird.</p>
-              <ul><li>Contested → Conditional → Shared → Established → Institutionalized Mandate</li><li>Narrative Legitimität: Mandat durch Alignment mit Organisationsidentität</li><li>Mandatsrisiken: Erodierende Klarheit, familiale Veto-Macht ohne Legitimität</li></ul>
-            </div>
-          </div>
-        </div>
-
-        <h4 style="color:var(--navy);font-size:1rem;margin:1.8rem 0 .8rem">MSTM Diagnostic Dashboard (Neusser, 2026, Table 32)</h4>
-        <div style="overflow-x:auto">
-          <table class="mstm-table">
-            <thead><tr><th>MSTM Dimension</th><th>🔴 Niedrige Reife (Risiko)</th><th>🟡 Mittlere Reife (Warnung)</th><th>🟢 Hohe Reife (Stabilität)</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Mechanisms</strong><br><small>Symbolische &amp; relationale Prozesse</small></td><td class="td-low">Gründungsgeschichte missachtet; kaum Stakeholder-Engagement; inkonsistente Botschaften; kulturelle Dissonanz</td><td class="td-mid">Gemischte Signale; selektives Engagement; erste Narrative-Alignment-Versuche; entstehende kulturelle Spannungen</td><td class="td-high">Klare Gründungsgeschichten-Positionierung; konsistenter Kulturrespekt; regelmäßige Engagement-Rituale; aktiv unterstützte Integration</td></tr>
-              <tr><td><strong>Structure</strong><br><small>Governance &amp; institutionelle Grundlagen</small></td><td class="td-low">Informale, ad-hoc-Governance; überlappende Rollen; keine Entscheidungsprotokolle; keine Leistungsmetriken</td><td class="td-mid">Teilweise formalisiert; einige Schriftprozeduren; entstehende Beiratsstrukturen; begrenzte Rollenklarheit</td><td class="td-high">Formale Governance-Strukturen; klare Entscheidungsrechte; dokumentierte Prozeduren; angemessene Familienbeteiligung; strategische Metriken</td></tr>
-              <tr><td><strong>Trust</strong><br><small>Relationales &amp; institutionelles Vertrauen</small></td><td class="td-low">Frühe Skepsis; schwache institutionelle Unterstützung; inkonsistentes Verhalten; wahrgenommenes Wert-Misalignment</td><td class="td-mid">Entstehende Beziehungen mit einigen Familienmitgliedern; institutionelle Mechanismen vorhanden aber untergenutzt</td><td class="td-high">Starkes relationales Vertrauen; aktive und vertrauenswürdige institutionelle Mechanismen; behaviorale Konsistenz; Vertrauensausweitung</td></tr>
-              <tr><td><strong>Mandate</strong><br><small>Rollenlegitimität &amp; Autoritätsentwicklung</small></td><td class="td-low">Umstrittenes Mandat; begrenzte Autorität; hohe Familienkontrolle; fehlende strategische Richtung; Legitimationsdefizit</td><td class="td-mid">Konditionales Mandat; definierte Autoritätsbereiche; weiterhin hohe Familienbeteiligung; schrittweise Legitimität</td><td class="td-high">Etabliertes Mandat mit klarer Autorität; angemessene Familienbeteiligung; strategische Klarheit; starke Legitimität; expandierende Autorität</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="ref-tag">Neusser, C. (2026). <em>Navigating external succession in German Mittelstand family-owned manufacturing companies</em> [DBA dissertation, Table 32: MSTM Framework Diagnostic Dashboard]. Henley Business School, University of Reading.</p>
-      </div>
-    </div>
-
-    <div class="tab-panel" id="d6">
-      <div class="theory-card">
-        <h3>Sechs konzeptuelle Propositionen</h3>
-        <p class="t-sub">Abduktiv aus 102 Interviews entwickelt – mid-range theoretische Beiträge zur Nachfolge- und Familienunternehmensforschung</p>
-        <div class="prop-grid">
-          <div class="prop-card"><div class="prop-num">Proposition 1</div><h4>EXT-Bereitschaft als relationale Ko-Konstruktion</h4><p style="font-size:.87rem">Externe Nachfolgebereitschaft ist kein individuelles Merkmal, sondern ein relational ko-konstruierter Prozess – geformt durch Interaktion zwischen persönlicher Anpassungsfähigkeit und historisch-emotionalem Kontext des Unternehmens. (Basis: org. Lernen, SEW)</p></div>
-          <div class="prop-card"><div class="prop-num">Proposition 2</div><h4>Relationales Vertrauen als rekursiver Prozess</h4><p style="font-size:.87rem">Relationales Vertrauen zwischen Eigentümerfamilie und externen Nachfolgern ist ein rekursiver Prozess – beeinflusst durch frühe soziale Signale und institutionelles Scaffolding, mediiert durch symbolisches Alignment. (Basis: Stewardship-Theorie)</p></div>
-          <div class="prop-card"><div class="prop-num">Proposition 3</div><h4>Institutionelle Vorbereitung als Moderator</h4><p style="font-size:.87rem">Institutionelle Vorbereitung moderiert den Effekt von Nachfolgebereitschaft auf Integrationsergebnisse – aber nur, wenn Governance-Mechanismen aktiv genutzt und kulturell internalisiert sind. Symbolische Strukturen können Autorität schwächen. (Basis: Agenturtheorie)</p></div>
-          <div class="prop-card"><div class="prop-num">Proposition 4</div><h4>Rollenlegitimität durch symbolisches Alignment</h4><p style="font-size:.87rem">Rollenlegitimität entsteht durch symbolisches Alignment zwischen den Handlungen des Nachfolgers und der narrativen Identität des Unternehmens – und wird durch die Bereitschaft der Familie zur Ko-Autorschaft der Führungsgeschichte aufrechterhalten. (Basis: SEW, Legitimationstheorie)</p></div>
-          <div class="prop-card"><div class="prop-num">Proposition 5</div><h4>Misalignment als rekursive Fragilität</h4><p style="font-size:.87rem">Misalignment in den vier Domänen (Kompetenz, Vertrauen, Governance, Legitimität) führt zu rekursiver Fragilität im Nachfolgeprozess – kumulative Misalignments erhöhen das Risiko strategischer Inertia, relationaler Brüche oder Führungsabgang.</p></div>
-          <div class="prop-card"><div class="prop-num">Proposition 6</div><h4>Mehrebenen-Lernen und emotionales Verlernen</h4><p style="font-size:.87rem">Erfolgreiche externe Nachfolge erfordert Mehrebenen-Lernen von Nachfolger und Familiensystem – nicht nur kognitive Adaptation, sondern auch emotionales Verlernen (Relinquishing founder centrality) und narrative Transformation.</p></div>
-        </div>
-      </div>
+    <div style="text-align:center">
+      <a href="dba.html" class="btn btn-primary" style="font-size:.92rem;padding:.75rem 2rem">Vollständige Dissertation &amp; MSTM-Framework →</a>
     </div>
   </div>
 </section>
 
-<!-- MSTM / DREI-SÄULEN -->
-<section id="modell">
+<!-- REFERENZLISTE -->
+<section id="referenzen">
   <div class="container">
-    <div class="section-label">Eigenentwickeltes Forschungsmodell</div>
-    <h2 class="section-title">Das Drei-Säulen-Modell der Erneuerungsfähigkeit</h2>
-    <p class="section-subtitle">Synthese aus MSTM-Forschung (DBA 2026), Dynamic Capabilities (Teece et al., 1997) und 25 Jahren Transformationspraxis. Anwendung auf Organisation &amp; Change Management in der Hochschullehre.</p>
-    <div class="pillars">
-      <div class="pillar"><div class="pillar-head"><span style="font-size:1.8rem">🧭</span><div><div class="p-sub">I. Stabilitätselemente</div><h3>Strategische Klarheit</h3></div></div>
-        <div class="pillar-body"><ul>
-          <li>Klare, nicht-verhandelbare strategische Richtung</li>
-          <li>Explizite Mandatstrukturen (↔ MSTM: Mandate)</li>
-          <li>Schafft psychologische Sicherheit für Wandel</li>
-          <li>Parallele zur HRO-Prinzip: Sensitivity to operations</li>
-        </ul></div>
-      </div>
-      <div class="pillar"><div class="pillar-head"><span style="font-size:1.8rem">⚡</span><div><div class="p-sub">II. Agilitätselemente</div><h3>Prozessuale Autonomie</h3></div></div>
-        <div class="pillar-body"><ul>
-          <li>Teams entscheiden innerhalb klarer Grenzen selbst</li>
-          <li>Entscheidungsarchitektur statt Hierarchie (↔ MSTM: Structure)</li>
-          <li>Contextual Ambidexterity (Gibson &amp; Birkinshaw, 2004)</li>
-          <li>Schnelle Anpassung an VUCA-Kontexte möglich</li>
-        </ul></div>
-      </div>
-      <div class="pillar p-gold"><div class="pillar-head"><span style="font-size:1.8rem">🔄</span><div><div class="p-sub">III. Erneuerungselemente</div><h3>Systemische Lernschleifen</h3></div></div>
-        <div class="pillar-body"><ul>
-          <li>After-Action Reviews als institutionalisierte Routine</li>
-          <li>Org. Gedächtnis &amp; Wissenstransfer (↔ MSTM: Mechanisms)</li>
-          <li>Reconfiguring-Fähigkeit (Teece et al., 1997)</li>
-          <li>Wandel wird zur DNA der Organisation</li>
-        </ul></div>
-      </div>
-    </div>
-    <div style="margin-top:2.5rem;padding:1.6rem;background:rgba(255,255,255,.06);border-radius:var(--radius);border:1px solid rgba(255,255,255,.12);text-align:center">
-      <p style="font-size:1rem;color:rgba(255,255,255,.85);max-width:800px;margin:0 auto">Das Modell basiert auf dem <strong style="color:var(--teal)">MSTM-Framework (Neusser, 2026)</strong> und operationalisiert, wie Organisationen Erneuerungsfähigkeit nicht durch externe Programme, sondern durch <strong style="color:var(--teal)">institutionalisierte Routinen</strong> aufbauen. Es verbindet die Erkenntnisse der Familienunternehmensforschung mit dem organisationalen Change-Management-Kontext der Hochschullehre.</p>
-    </div>
-    <div style="margin-top:3.5rem">
-      <h3 style="color:var(--white);font-size:1.35rem;margin-bottom:.5rem">Paradigmenwechsel im Change Management</h3>
-      <p style="color:rgba(255,255,255,.62);margin-bottom:1.8rem;font-size:.93rem">Empirisch fundiert durch die Befunde der DBA-Forschung: Von episodischer Intervention zur institutionalisierten Erneuerungskompetenz.</p>
-      <div class="paradigm-grid">
-        <div class="p-col"><h3 style="color:var(--muted)">✗ Traditionelles CM</h3>
-          <div class="p-row"><span>✗</span><span>Episodisch – Projekt mit Anfang &amp; Ende</span></div>
-          <div class="p-row"><span>✗</span><span>Top-down konzipiert und kommuniziert</span></div>
-          <div class="p-row"><span>✗</span><span>Widerstand als Hindernis</span></div>
-          <div class="p-row"><span>✗</span><span>Erfolg = definierter Zielzustand erreicht</span></div>
-          <div class="p-row"><span>✗</span><span>Change-Experte als externer Katalysator</span></div>
-          <div class="p-row"><span>✗</span><span>Governance als Kontrollmechanismus</span></div>
-        </div>
-        <div class="p-col p-new"><h3 style="color:var(--teal)">✓ Erneuerungsorientiertes CM</h3>
-          <div class="p-row"><span style="color:var(--teal)">✓</span><span>Kontinuierlich (institutionalisierte Dauerkompetenz)</span></div>
-          <div class="p-row"><span style="color:var(--teal)">✓</span><span>Verteilt – Teams gestalten aktiv mit</span></div>
-          <div class="p-row"><span style="color:var(--teal)">✓</span><span>Widerstand als Diagnosesignal (Oreg, 2003)</span></div>
-          <div class="p-row"><span style="color:var(--teal)">✓</span><span>Erfolg = Erneuerungsfähigkeit (Dynamic Capabilities)</span></div>
-          <div class="p-row"><span style="color:var(--teal)">✓</span><span>Change als Führungsaufgabe auf allen Ebenen</span></div>
-          <div class="p-row"><span style="color:var(--teal)">✓</span><span>Governance als Legitimierungs- &amp; Ermächtigungsrahmen (MSTM)</span></div>
-        </div>
-      </div>
+    <div class="section-label">Literatur</div>
+    <h2 class="section-title">Referenzliste – Verwendete Quellen</h2>
+    <p class="section-subtitle">Alle im Fachvortrag und Wissensportal zitierten Quellen · APA 7 · alphabetisch</p>
+    <div style="columns:2;column-gap:2rem;font-size:.83rem;line-height:1.8;color:var(--text)" id="reflist">
+      <p><strong>Argote, L., &amp; Miron-Spektor, E.</strong> (2011). Organizational learning: From experience to knowledge. <em>Organization Science, 22</em>(5), 1123–1137.</p>
+      <p><strong>Barney, J. B.</strong> (1991). Firm resources and sustained competitive advantage. <em>Journal of Management, 17</em>(1), 99–120.</p>
+      <p><strong>Beer, M., &amp; Nohria, N.</strong> (2000). Cracking the code of change. <em>Harvard Business Review, 78</em>(3), 133–141.</p>
+      <p><strong>Berrone, P., Cruz, C., &amp; Gómez-Mejía, L. R.</strong> (2012). Socioemotional wealth in family firms. <em>Family Business Review, 25</em>(3), 258–279.</p>
+      <p><strong>Child, J.</strong> (1972). Organizational structure, environment and performance. <em>Sociology, 6</em>(1), 1–22.</p>
+      <p><strong>Chrisman, J. J., Chua, J. H., De Massis, A., Frattini, F., &amp; Wright, M.</strong> (2015). The ability and willingness paradox in family firm innovation. <em>Journal of Product Innovation Management, 32</em>(3), 310–318.</p>
+      <p><strong>Cohen, M. D., Burkhart, R., Dosi, G., Egidi, M., Marengo, L., Warglien, M., &amp; Winter, S.</strong> (1996). Routines and other recurring action patterns of organizations. <em>Industrial and Corporate Change, 5</em>(3), 653–698.</p>
+      <p><strong>Davis, J. H., Schoorman, F. D., &amp; Donaldson, L.</strong> (1997). Toward a stewardship theory of management. <em>Academy of Management Review, 22</em>(1), 20–47.</p>
+      <p><strong>Deephouse, D. L., &amp; Suchman, M.</strong> (2008). Legitimacy in organizational institutionalism. In R. Greenwood et al. (Eds.), <em>The SAGE handbook of organizational institutionalism</em> (pp. 49–77). Sage.</p>
+      <p><strong>DiMaggio, P. J., &amp; Powell, W. W.</strong> (1983). The iron cage revisited. <em>American Sociological Review, 48</em>(2), 147–160.</p>
+      <p><strong>Dubois, A., &amp; Gadde, L.-E.</strong> (2002). Systematic combining: An abductive approach to case research. <em>Journal of Business Research, 55</em>(7), 553–560.</p>
+      <p><strong>Duncan, R. B.</strong> (1976). The ambidextrous organization. In R. H. Kilmann et al. (Eds.), <em>The management of organization design</em> (Vol. 1, pp. 167–188).</p>
+      <p><strong>Edmondson, A. C.</strong> (1999). Psychological safety and learning behavior in work teams. <em>Administrative Science Quarterly, 44</em>(2), 350–383.</p>
+      <p><strong>Eisenhardt, K. M., &amp; Martin, J. A.</strong> (2000). Dynamic capabilities: What are they? <em>Strategic Management Journal, 21</em>(10–11), 1105–1121.</p>
+      <p><strong>Fama, E. F., &amp; Jensen, M. C.</strong> (1983). Separation of ownership and control. <em>Journal of Law and Economics, 26</em>(2), 301–325.</p>
+      <p><strong>Feldman, M. S.</strong> (2000). Organizational routines as a source of continuous change. <em>Organization Science, 11</em>(6), 611–629.</p>
+      <p><strong>Feldman, M. S., &amp; Pentland, B. T.</strong> (2003). Reconceptualizing organizational routines as a source of flexibility and change. <em>Administrative Science Quarterly, 48</em>(1), 94–118.</p>
+      <p><strong>Gibson, C. B., &amp; Birkinshaw, J.</strong> (2004). The antecedents, consequences, and mediating role of organizational ambidexterity. <em>Academy of Management Journal, 47</em>(2), 209–226.</p>
+      <p><strong>Gioia, D. A., Corley, K. G., &amp; Hamilton, A. L.</strong> (2013). Seeking qualitative rigor in inductive research. <em>Organizational Research Methods, 16</em>(1), 15–31.</p>
+      <p><strong>Gómez-Mejía, L. R., Haynes, K. T., Núñez-Nickel, M., Jacobson, K. J. L., &amp; Moyano-Fuentes, J.</strong> (2007). Socioemotional wealth and business risks in family-controlled firms. <em>Administrative Science Quarterly, 52</em>(1), 106–137.</p>
+      <p><strong>Hannan, M. T., &amp; Freeman, J.</strong> (1977). The population ecology of organizations. <em>American Journal of Sociology, 82</em>(5), 929–964.</p>
+      <p><strong>Hannan, M. T., &amp; Freeman, J.</strong> (1984). Structural inertia and organizational change. <em>American Sociological Review, 49</em>(2), 149–164.</p>
+      <p><strong>Jensen, M. C., &amp; Meckling, W. H.</strong> (1976). Theory of the firm. <em>Journal of Financial Economics, 3</em>(4), 305–360.</p>
+      <p><strong>Kniberg, H., &amp; Ivarsson, A.</strong> (2012). <em>Scaling agile @ Spotify</em>. Spotify White Paper.</p>
+      <p><strong>Kolb, D. A.</strong> (1984). <em>Experiential learning: Experience as the source of learning and development</em>. Prentice Hall.</p>
+      <p><strong>Kotter, J. P.</strong> (1996). <em>Leading change</em>. Harvard Business School Press.</p>
+      <p><strong>LaPorte, T. R., &amp; Consolini, P. M.</strong> (1991). Working in practice but not in theory. <em>Journal of Public Administration Research and Theory, 1</em>(1), 19–47.</p>
+      <p><strong>Laloux, F.</strong> (2014). <em>Reinventing organizations</em>. Nelson Parker.</p>
+      <p><strong>March, J. G.</strong> (1991). Exploration and exploitation in organizational learning. <em>Organization Science, 2</em>(1), 71–87.</p>
+      <p><strong>Meyer, J. W., &amp; Rowan, B.</strong> (1977). Institutionalized organizations. <em>American Journal of Sociology, 83</em>(2), 340–363.</p>
+      <p><strong>Nelson, R. R., &amp; Winter, S. G.</strong> (1982). <em>An evolutionary theory of economic change</em>. Harvard University Press.</p>
+      <p><strong>Neusser, C.</strong> (2025). Ecological succession as a model for family business transitions. <em>Journal of Family Business Strategy</em>. <a href="https://doi.org/10.1016/j.jfbs.2025.100648" target="_blank" style="color:var(--teal)">https://doi.org/10.1016/j.jfbs.2025.100648</a></p>
+      <p><strong>Neusser, C.</strong> (2026). <em>Navigating external succession in German 'Mittelstand' family-owned manufacturing companies</em> [DBA dissertation]. Henley Business School, University of Reading.</p>
+      <p><strong>Revans, R. W.</strong> (1980). <em>Action learning: New techniques for management</em>. Blond &amp; Briggs.</p>
+      <p><strong>Sarasvathy, S. D.</strong> (2001). Causation and effectuation: Toward a theoretical shift. <em>Academy of Management Review, 26</em>(2), 243–263.</p>
+      <p><strong>Suchman, M. C.</strong> (1995). Managing legitimacy. <em>Academy of Management Review, 20</em>(3), 571–610.</p>
+      <p><strong>Teece, D. J.</strong> (2007). Explicating dynamic capabilities. <em>Strategic Management Journal, 28</em>(13), 1319–1350.</p>
+      <p><strong>Teece, D. J., Pisano, G., &amp; Shuen, A.</strong> (1997). Dynamic capabilities and strategic management. <em>Strategic Management Journal, 18</em>(7), 509–533.</p>
+      <p><strong>Tushman, M. L., &amp; O'Reilly, C. A.</strong> (1996). Ambidextrous organizations. <em>California Management Review, 38</em>(4), 8–29.</p>
+      <p><strong>Weick, K. E.</strong> (1993). The collapse of sensemaking in organizations. <em>Administrative Science Quarterly, 38</em>(4), 628–652.</p>
+      <p><strong>Weick, K. E., &amp; Sutcliffe, K. M.</strong> (2007). <em>Managing the unexpected</em> (2nd ed.). Jossey-Bass.</p>
+      <p><strong>Yin, R. K.</strong> (2017). <em>Case study research and applications</em> (6th ed.). Sage.</p>
+      <p><strong>Zhang, R.</strong> (2014). <em>Haier: A sea of users</em>. Ivey Business School Case.</p>
     </div>
   </div>
 </section>
@@ -1062,12 +920,12 @@
   <div class="container">
     <div class="section-label">Forschungsagenda</div>
     <h2 class="section-title">Laufende &amp; geplante Forschungsprojekte</h2>
-    <p class="section-subtitle">Angewandte Forschung mit Praxisrelevanz – in Verbindung mit dem ISMA Research Center, ACE²-EU und regionalen Partnern in Kärnten.</p>
+    <p class="section-subtitle">Angewandte Forschung mit Praxisrelevanz – in Verbindung mit ISMA Research Center, ACE²-EU und EURAM.</p>
     <div class="research-grid">
-      <div class="rc"><div class="rc-num">Projekt 01</div><h3>Erneuerungsfähigkeit in österreichischen KMU</h3><p>Wie entwickeln mittelständische Unternehmen Dynamic Capabilities (Teece et al., 1997) ohne Konzernressourcen? Empirische Studie auf Basis des MSTM-Modells (Neusser, 2026) mit qualitativer Fallstudienforschung, Ziel: Skalierung auf österreichischen Mittelstand.</p><div class="rc-meta"><span class="badge b-meth">Qualitative Fallstudie</span><span class="badge b-meth">Grounded Theory</span><span class="badge b-fund">FWF / BMBWF</span><span class="badge b-part">WKO Kärnten</span><span class="badge b-part">IV Kärnten</span></div></div>
+      <div class="rc"><div class="rc-num">Projekt 01</div><h3>Erneuerungsfähigkeit in österreichischen KMU</h3><p>Wie entwickeln mittelständische Unternehmen Dynamic Capabilities (Teece et al., 1997) ohne Konzernressourcen? Empirische Studie auf Basis des MSTM-Modells (Neusser, 2026) mit qualitativer Fallstudienforschung, Ziel: Skalierung auf österreichischen Mittelstand.</p><div class="rc-meta"><span class="badge b-meth">Qualitative Fallstudie</span><span class="badge b-meth">Grounded Theory</span><span class="badge b-fund">FWF / BMBWF</span><span class="badge b-part">WKO Österreich</span><span class="badge b-part">IV Österreich</span></div></div>
       <div class="rc"><div class="rc-num">Projekt 02</div><h3>Change Governance in Familienunternehmen</h3><p>Erweiterung der DBA-Forschung: Wie gestalten Familienunternehmen Transformationsprozesse unter den spezifischen Bedingungen von SEW, Eigentumskonzentration und Generationsübergängen? Längsschnittstudie, Ziel: Journal of Management Studies.</p><div class="rc-meta"><span class="badge b-meth">Mixed Methods</span><span class="badge b-meth">Längsschnitt</span><span class="badge b-fund">FFG / EU Horizon</span><span class="badge b-part">ACE²-EU</span><span class="badge b-part">IFERA</span></div></div>
-      <div class="rc"><div class="rc-num">Projekt 03</div><h3>Digitale Transformation &amp; Wandlungsfähigkeit</h3><p>Welche organisationalen Kapazitäten benötigen Unternehmen, um Digitalstrategien in echte Transformation umzuwandeln? Verknüpfung von IT-Adoption-Forschung und OE-Theorie. Relevanz: Technologiestandort Kärnten/Steiermark.</p><div class="rc-meta"><span class="badge b-meth">Survey (n≥300)</span><span class="badge b-meth">SEM / PLS-SEM</span><span class="badge b-fund">FFG Digital</span><span class="badge b-part">ISMA Research Center</span></div></div>
-      <div class="rc"><div class="rc-num">Projekt 04</div><h3>MSTM-Modell: Quantitative Validierung</h3><p>Das MSTM-Modell (Neusser, 2026) soll durch konfirmatorische Faktoranalyse quantitativ validiert werden. Ziel: Publizierbare Skala und Benchmark-Instrument für Praktiker und Berater. Angestrebte Journals: <em>Family Business Review</em>, <em>Organization Studies</em>.</p><div class="rc-meta"><span class="badge b-meth">Konfirmatorische FA</span><span class="badge b-meth">PLS-SEM</span><span class="badge b-fund">Eigenmittel / FH</span><span class="badge b-part">AOM · EURAM</span></div></div>
+      <div class="rc"><div class="rc-num">Projekt 03</div><h3>Digitale Transformation &amp; Wandlungsfähigkeit</h3><p>Welche organisationalen Kapazitäten benötigen Unternehmen, um Digitalstrategien in echte Transformation umzuwandeln? Verknüpfung von IT-Adoption-Forschung und OE-Theorie. Relevanz: Technologiestandort DACH.</p><div class="rc-meta"><span class="badge b-meth">Survey (n≥300)</span><span class="badge b-meth">SEM / PLS-SEM</span><span class="badge b-fund">FFG Digital</span><span class="badge b-part">ISMA Research Center</span></div></div>
+      <div class="rc"><div class="rc-num">Projekt 04</div><h3>MSTM-Modell: Quantitative Validierung</h3><p>Das MSTM-Modell (Neusser, 2026) soll durch konfirmatorische Faktoranalyse quantitativ validiert werden. Ziel: Publizierbare Skala und Benchmark-Instrument für Praktiker und Berater. Angestrebte Journals: <em>Family Business Review</em>, <em>Organization Studies</em>.</p><div class="rc-meta"><span class="badge b-meth">Konfirmatorische FA</span><span class="badge b-meth">PLS-SEM</span><span class="badge b-fund">Eigenmittel</span><span class="badge b-part">AOM · EURAM</span></div></div>
     </div>
   </div>
 </section>
@@ -1090,7 +948,7 @@
 
       <div class="pub">
         <h4>Neusser, C. (2018). <em>Critical Success Factors in the Transition of German Family-owned Manufacturing SME Companies to External Management.</em></h4>
-        <p class="p-meta">Verlag Dr. Kovač, Hamburg. ISBN: 978-3-339-10XXX-X</p>
+        <p class="p-meta">Verlag Dr. Kovač, Hamburg</p>
         <p class="p-abstract">Empirische Studie zu Erfolgsfaktoren beim Übergang von Familienunternehmen zu externer Führung. Grundlage für die spätere DBA-Forschung zum MSTM-Modell. Erste systematische Erfassung von Governance- und Vertrauensmechanismen im deutschen Mittelstand.</p>
         <div class="p-tags"><span class="pill">Monographie</span><span class="pill">Externe Nachfolge</span><span class="pill">KMU</span><span class="pill">Mittelstand</span></div>
       </div>
@@ -1199,7 +1057,7 @@
         <div class="ci"><div class="ci-icon">📱</div><div><div class="ci-label">Mobil</div><div class="ci-value">+49 151 625 00 802</div></div></div>
         <div class="ci"><div class="ci-icon">🔬</div><div><div class="ci-label">ORCID</div><div class="ci-value"><a href="https://orcid.org/0000-0001-6484-1421" target="_blank">0000-0001-6484-1421</a></div></div></div>
         <div class="ci"><div class="ci-icon">📚</div><div><div class="ci-label">Google Scholar</div><div class="ci-value"><a href="https://scholar.google.com/citations?user=ZPGTwF8AAAAJ" target="_blank">scholar.google.com</a></div></div></div>
-        <div class="ci"><div class="ci-icon">🏛️</div><div><div class="ci-label">Professur</div><div class="ci-value"><a href="https://www.fh-kaernten.at" target="_blank">FH Kärnten · Fakultät Wirtschaft &amp; Management</a><br><span style="font-size:.82rem;color:rgba(255,255,255,.45)">Campus Villach, Europastraße 4</span></div></div></div>
+
       </div>
       <div class="contact-cta-box">
         <h3>Forschungsschwerpunkte</h3>
@@ -1223,9 +1081,9 @@
 
 <footer>
   <div class="container">
-    <p>Dr. Christian Neusser, DBA &nbsp;·&nbsp; Organisation &amp; Change Management &nbsp;·&nbsp; Fachhochschule Kärnten &nbsp;·&nbsp; Version 2.0</p>
+    <p>Dr. Christian Neusser, DBA &nbsp;·&nbsp; Organisation &amp; Change Management</p>
     <p style="margin-top:.4rem"><a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> &nbsp;·&nbsp; <a href="https://scholar.google.com/citations?user=ZPGTwF8AAAAJ" target="_blank">Google Scholar</a> &nbsp;·&nbsp; <a href="changelog.html">Changelog</a></p>
-    <p style="margin-top:.7rem;font-size:.74rem;opacity:.45">Version 2.1 · April 2026 · Alle Inhalte © Dr. Christian Neusser, DBA · Quellenangaben nach APA 7 · <a href="ueber-mich.html">Über mich</a> · <a href="praxisbeispiele.html">Praxisbeispiele</a></p>
+    <p style="margin-top:.7rem;font-size:.74rem;opacity:.45">Version 0.9.1 · April 2026 · Alle Inhalte © Dr. Christian Neusser, DBA · Quellenangaben nach APA 7 · <a href="ueber-mich.html">Über mich</a> · <a href="praxisbeispiele.html">Praxisbeispiele</a></p>
   </div>
 </footer>
 
@@ -1242,10 +1100,8 @@ function switchTab(id,btn){
   document.getElementById(id).classList.add('active');
   btn.classList.add('active');
 }
-// Hamburger menu
-const navToggle=document.getElementById('nav-toggle');
-const navLinks=document.getElementById('navlinks');
-if(navToggle){navToggle.addEventListener('click',()=>{navLinks.classList.toggle('open')})}
+// Hamburger nav
+(function(){const t=document.getElementById('nav-toggle'),m=document.getElementById('nav-menu');if(!t||!m)return;t.addEventListener('click',function(){const o=m.classList.toggle('open');t.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){m.classList.remove('open');t.textContent='☰'}))})();
 // Close menu on link click
 navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 // Active nav

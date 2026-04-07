@@ -1,120 +1,250 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Changelog – Dr. Christian Neusser, DBA | O&CM Website</title>
-  <style>
-    :root{--navy:#1A3A5C;--teal:#0D7EA0;--gold:#E8A020;--white:#fff;--light-bg:#F0F6FA;--muted:#6B8BA4;--text:#2C3E50;--radius:8px}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Segoe UI',Calibri,Arial,sans-serif;color:var(--text);background:var(--white);line-height:1.65}
-    h1,h2,h3{font-family:Georgia,serif}
-    a{color:var(--teal);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:860px;margin:0 auto;padding:0 2rem}
-    nav{background:var(--navy);padding:.9rem 0}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:860px;margin:0 auto;padding:0 2rem}
-    .nav-brand{font-family:Georgia,serif;color:#fff;font-size:.95rem;font-weight:bold}
-    .nav-brand span{color:var(--teal)}
-    .nav-back{color:rgba(255,255,255,.7);font-size:.85rem}
-    .hero-cl{background:linear-gradient(135deg,var(--navy) 60%,#0e2d4a);color:#fff;padding:3.5rem 0 2.5rem;border-left:6px solid var(--teal)}
-    .hero-cl .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:.7rem}
-    .hero-cl h1{font-size:2rem;margin-bottom:.5rem}
-    .hero-cl p{color:rgba(255,255,255,.65);font-size:.93rem}
-    main{padding:3rem 0 5rem}
-    .version-block{margin-bottom:3rem}
-    .version-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:2px solid var(--teal)}
-    .v-badge{background:var(--navy);color:#fff;padding:.3rem .9rem;border-radius:20px;font-size:.82rem;font-weight:700;font-family:'Segoe UI',sans-serif}
-    .v-badge.current{background:var(--teal)}
-    .v-date{font-size:.85rem;color:var(--muted)}
-    .v-title{font-size:1.2rem;color:var(--navy)}
-    .change-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:.6rem}
-    .change-item{display:flex;align-items:flex-start;gap:.85rem;font-size:.92rem;padding:.6rem .9rem;border-radius:6px;background:var(--light-bg)}
-    .change-type{flex-shrink:0;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:.22rem .65rem;border-radius:10px;border:1px solid}
-    .ct-new{background:#E8F4FA;color:var(--teal);border-color:var(--teal)}
-    .ct-update{background:#FFF8E7;color:#9A6B0E;border-color:var(--gold)}
-    .ct-fix{background:#F0FFF4;color:#2E7D52;border-color:#68B587}
-    .ct-science{background:#F5E6FF;color:#7B2D8B;border-color:#C084D4}
-    footer{background:#0e2234;color:rgba(255,255,255,.42);padding:1.5rem 0;font-size:.8rem;text-align:center}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changelog · Dr. Christian Neusser, DBA</title>
+<style>
+:root {
+  --navy:    #1A3A5C;
+  --teal:    #0D7EA0;
+  --gold:    #E8A020;
+  --white:   #FFFFFF;
+  --light-bg:#F0F6FA;
+  --muted:   #6B8BA4;
+  --text:    #2C3E50;
+  --border:  #D0DDE8;
+  --radius:  8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; color: var(--text); background: var(--white); line-height: 1.65; }
+h1, h2, h3 { font-family: Georgia, serif; }
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+
+/* ── NAV ── */
+nav#navbar { background: var(--navy); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 58px; }
+.nav-brand { color: var(--white); font-family: Georgia, serif; font-size: 1rem; font-weight: bold; text-decoration: none; white-space: nowrap; }
+.nav-brand span { color: var(--gold); }
+.nav-toggle { background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; padding: .2rem .5rem; line-height: 1; }
+.nav-menu { display: none; flex-direction: column; background: var(--navy); padding: .75rem 2rem 1.25rem; border-top: 1px solid rgba(255,255,255,.1); gap: .1rem; }
+.nav-menu.open { display: flex; }
+.nav-menu a { color: #aabccc; text-decoration: none; font-size: .88rem; padding: .45rem 0; border-bottom: 1px solid rgba(255,255,255,.06); transition: color .2s; }
+.nav-menu a:last-child { border-bottom: none; }
+.nav-menu a:hover, .nav-menu a.active { color: var(--white); }
+
+/* ── HERO ── */
+.hero-cl {
+  background: linear-gradient(135deg, var(--navy) 60%, #0e2d4a);
+  color: var(--white);
+  padding: 3.5rem 0 2.5rem;
+  border-left: 6px solid var(--gold);
+}
+.hero-cl .eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .7rem; }
+.hero-cl h1 { font-size: 2rem; margin-bottom: .5rem; }
+.hero-cl p { color: rgba(255,255,255,.65); font-size: .93rem; }
+.version-pill { display: inline-block; background: var(--teal); color: var(--white); font-size: .75rem; font-weight: 700; padding: .25rem .75rem; border-radius: 20px; margin-bottom: 1rem; font-family: 'Segoe UI', sans-serif; }
+
+/* ── MAIN ── */
+main { padding: 3rem 0 5rem; }
+.version-block { margin-bottom: 3.5rem; }
+.version-header {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.6rem; padding-bottom: .9rem;
+  border-bottom: 2px solid var(--teal);
+  flex-wrap: wrap;
+}
+.v-badge {
+  background: var(--navy); color: var(--white);
+  padding: .3rem .9rem; border-radius: 20px;
+  font-size: .82rem; font-weight: 700; font-family: 'Segoe UI', sans-serif;
+  white-space: nowrap;
+}
+.v-badge.current { background: var(--teal); }
+.v-badge.legacy { background: var(--muted); }
+.v-date { font-size: .85rem; color: var(--muted); }
+.v-title { font-size: 1.15rem; color: var(--navy); font-family: Georgia, serif; }
+.change-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: .55rem; }
+.change-item {
+  display: flex; align-items: flex-start; gap: .85rem;
+  font-size: .9rem; padding: .65rem .9rem;
+  border-radius: 6px; background: var(--light-bg);
+}
+.change-type {
+  flex-shrink: 0; font-size: .66rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  padding: .22rem .65rem; border-radius: 10px; border: 1px solid;
+  margin-top: .1rem;
+}
+.ct-new     { background: #E8F4FA; color: var(--teal);    border-color: var(--teal); }
+.ct-update  { background: #FFF8E7; color: #9A6B0E;         border-color: var(--gold); }
+.ct-fix     { background: #F0FFF4; color: #2E7D52;         border-color: #68B587; }
+.ct-remove  { background: #FEE2E2; color: #C0392B;         border-color: #FCA5A5; }
+.ct-science { background: #F5E6FF; color: #7B2D8B;         border-color: #C084D4; }
+.ct-ux      { background: #E0F2FE; color: #0369A1;         border-color: #7DD3FC; }
+
+.section-label-cl {
+  font-size: .72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .15em; color: var(--teal); margin: 1.8rem 0 .8rem;
+}
+.summary-box {
+  background: var(--light-bg); border-radius: var(--radius);
+  padding: 1.25rem 1.5rem; border-left: 4px solid var(--muted);
+  font-size: .9rem; line-height: 1.7;
+}
+.summary-box strong { color: var(--navy); }
+
+/* ── FOOTER ── */
+footer { background: #0e2234; color: rgba(255,255,255,.42); padding: 1.5rem 0; font-size: .8rem; text-align: center; }
+footer a { color: var(--teal); }
+</style>
 </head>
 <body>
-<nav><div class="nav-inner"><div class="nav-brand">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></div><a href="index.html" class="nav-back">← Zurück zur Website</a></div></nav>
 
-<div class="hero-cl"><div class="container">
-  <div class="eyebrow">Website-Versionierung</div>
-  <h1>Changelog</h1>
-  <p>Vollständige Änderungshistorie der wissenschaftlichen Website zu Organisation &amp; Change Management. Alle inhaltlichen, strukturellen und wissenschaftlichen Änderungen werden hier dokumentiert.</p>
-</div></div>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
+  </div>
+  <div class="nav-menu" id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="index.html#lehre">Fachvortrag &amp; Lehre</a>
+    <a href="index.html#wissen">Wissensportal</a>
+    <a href="dba.html">Doktorarbeit (Detail)</a>
+    <a href="lehrformate.html">Lehrformate (Detail)</a>
+    <a href="index.html#modell">MSTM-Modell</a>
+    <a href="index.html#forschung">Forschung &amp; Publikationen</a>
+    <a href="index.html#blog">Blog</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="changelog.html" class="active">Changelog</a>
+  </div>
+</nav>
 
-<main><div class="container">
+<!-- HERO -->
+<div class="hero-cl">
+  <div class="container">
+    <div class="eyebrow">Website-Versionierung</div>
+    <div class="version-pill">Aktuelle Version: 0.9.1</div>
+    <h1>Changelog</h1>
+    <p>Vollständige Änderungshistorie der wissenschaftlichen Präsentations-Website zu Organisation &amp; Change Management – alle inhaltlichen, strukturellen und technischen Änderungen.</p>
+  </div>
+</div>
 
+<main>
+<div class="container">
+
+  <!-- ── v0.9.1 (CURRENT) ── -->
   <div class="version-block">
     <div class="version-header">
-      <span class="v-badge current">v2.1</span>
+      <span class="v-badge current">v0.9.1</span>
       <span class="v-date">April 2026</span>
-      <span class="v-title">Bugfixes, Publikationskorrektur &amp; Fokus auf Fachlichkeit</span>
+      <span class="v-title">Navigation, Struktur, CMS &amp; FH-Neutralisierung</span>
     </div>
+
+    <div class="section-label-cl">Navigation &amp; Struktur</div>
     <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Paradigmenwechsel-Text unsichtbar:</strong> Weiß-auf-weiß-Problem behoben – <code>color:var(--text)</code> auf <code>.p-row</code> gesetzt, sodass Text in den Vergleichsboxen wieder sichtbar ist.</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Navbar-Badge-Artefakt:</strong> Blauer Rahmen neben „Profil" behoben durch Entfernung des Profil-Nav-Links. Nav-Badge (v2.1) korrekt im Branding-Bereich positioniert.</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Mobile Responsivität:</strong> Hamburger-Menü (☰) für mobile Viewports ergänzt. Nav-Links öffnen sich bei Klick. Verbesserte Breakpoints für Tabs und Container-Padding.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Profil-Sektion entfernt:</strong> Persönliche Drei-Identitäten-Karten entfernt. Website fokussiert jetzt vollständig auf wissenschaftliche Inhalte: Berufungsvorlesung, DBA-Dissertation, MSTM-Modell und Forschungsschwerpunkte.</span></li>
-      <li class="change-item"><span class="change-type ct-science">Wissenschaft</span><span><strong>Publikationsliste korrigiert:</strong> Nicht erschienenen Artikel (FBR 2025) entfernt. Alle Publikationen aus dem offiziellen Lebenslauf (Stand März 2026) übernommen: Veröffentlicht, Forthcoming und Under Review mit korrekten bibliografischen Angaben nach APA 7.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Konferenz-/Netzwerk-Info erweitert:</strong> AOM, EURAM (Co-Organizer/Track-Chair 2026), NCSB (Co-Organizer 2026), ACERE 2026 Sydney, Reviewer-Tätigkeiten und Mitgliedschaften vollständig aufgeführt.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Always-Hamburger-Navigation:</strong> Einheitliches Hamburger-Menü (☰/✕) auf allen Seiten – keine Desktop-/Mobile-Unterscheidung mehr. Name „Dr. Christian Neusser, DBA · O&amp;CM" immer als separates Branding sichtbar.</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Menü auf Unterseiten:</strong> dba.html, lehrformate.html, praxisbeispiele.html, blog-admin.html, changelog.html, ueber-mich.html erhalten alle dieselbe konsistente Hamburger-Navigation mit vollem Menü.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>„Home"-Link:</strong> Erster Eintrag im Hamburger-Menü führt zu #hero (Hauptseite oben).</span></li>
+    </ul>
+
+    <div class="section-label-cl">Neue Seiten</div>
+    <ul class="change-list">
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>dba.html – Dissertation (Detailseite):</strong> Eigenständige Seite mit vollständiger DBA-Darstellung: Abstract, Forschungsfragen, Theoretisches Framework (7 Perspektiven), Gioia-Methode, MSTM-Framework (4 Dimensionen), Kernbefunde (6), Propositionen P1–P6, 12 Akteursarchetypen, Statistiken (102 Interviews, 42 Unternehmen, Straight Pass).</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>lehrformate.html – Lehrformate (Detailseite):</strong> Eigenständige Seite mit didaktischen Formaten, wissenschaftlicher Begründung (konstruktivistisch, erfahrungsbasiert, Kolb) und Anwendungsbeispielen: VentureLab (10 Wochen), Change Practitioner Line, OT-Seminar, Action Learning. Hochschulengagements (DHBW Stuttgart seit 10/2004, DHBW CAS Heilbronn seit 04/2019, FAU 10/2005–09/2021).</span></li>
+    </ul>
+
+    <div class="section-label-cl">Hauptseite (index.html)</div>
+    <ul class="change-list">
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Hero-Eyebrow neutralisiert:</strong> „FH-Professur · Organisation &amp; Change Management · Fachhochschule Kärnten" → „Organisation &amp; Change Management · Berufungsvortrag April 2026".</span></li>
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>FH Kärnten CTA-Button:</strong> Button „Zur FH Kärnten Website" aus Hero-Sektion entfernt.</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>DBA-Sektion → Teaser-Karte:</strong> Vollständige DBA-Inhalte (27 KB) durch kompakte Teaser-Karte ersetzt (4 Stats, Forschungsfrage, MSTM-Teaser, CTA zu dba.html).</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Referenzliste:</strong> Eigenständige Sektion „Verwendete Literatur" mit ca. 40 APA-7-Einträgen in 2-spaltigem Layout vor dem Forschungsbereich eingefügt.</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Forschungsprojekte bereinigt:</strong> „WKO Kärnten" → „WKO Österreich", „IV Kärnten" → „IV Österreich", „Eigenmittel / FH" → „Eigenmittel", „Technologiestandort Kärnten/Steiermark" → „Technologiestandort DACH".</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Monographie ISBN:</strong> Platzhalter „978-3-339-10XXX-X" durch korrekte Verlagsangabe ersetzt.</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Versionsnummer:</strong> Footer „Version 2.1" → „Version 0.9.1".</span></li>
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>FH Kärnten Kontakt:</strong> Kontakteintrag „Fachhochschule Kärnten" aus Kontaktsektion entfernt.</span></li>
+    </ul>
+
+    <div class="section-label-cl">Über-mich-Seite (ueber-mich.html)</div>
+    <ul class="change-list">
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>Rechtswissenschaften:</strong> Timeline-Eintrag Rechtswissenschaften vollständig entfernt.</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Hero-Subtitle neutralisiert:</strong> „Kandidat FH-Professur Organisation &amp; Change Management · FH Kärnten" → „Organisation &amp; Change Management · Berufungskandidat".</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>E-Mail-Adresse:</strong> christian.neusser@googlemail.com → christian.neusser@me.com (überall einheitlich).</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Profilfoto:</strong> Professionelles Foto aus Lebenslauf extrahiert und als Base64-inline-Bild eingebettet.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Karrieresektion:</strong> 10 Karrierestationen als Karten: Groupe Atlantic, Oerlikon, V.FRAAS, 4C GROUP, DB Regio (×2), FATH Group (11 Jahre), Siemens/Honeywell Carve-outs, KPMG, Advisory Boards.</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Akademische Zeitleiste:</strong> DBA 04/2021–01/2026, MSc 10/2018–04/2021, MBA 04/2014–09/2017, Diplom-Betriebswirt 10/2001–06/2005.</span></li>
+    </ul>
+
+    <div class="section-label-cl">Blog-Admin (blog-admin.html)</div>
+    <ul class="change-list">
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Login-Schutz:</strong> Vollbild-Login-Overlay mit SHA-256-Passwort-Authentifizierung (crypto.subtle). Session-Persistenz via sessionStorage.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Persistente Verbindungseinstellungen:</strong> GitHub-Token, Repository, Branch und Dateipfad werden in localStorage gespeichert und beim nächsten Login automatisch geladen und verbunden.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Auto-Connect:</strong> Nach erfolgreichem Login wird automatisch die GitHub-Verbindung mit gespeicherten Einstellungen hergestellt.</span></li>
+      <li class="change-item"><span class="change-type ct-ux">UX</span><span><strong>Einstellungen löschen:</strong> Neuer „🗑 Löschen"-Button zum Entfernen gespeicherter Verbindungsdaten aus localStorage.</span></li>
+      <li class="change-item"><span class="change-type ct-ux">UX</span><span><strong>Beiträge bearbeiten:</strong> Bestehende Beiträge können aus der Beitrags-Liste geöffnet, bearbeitet und gespeichert werden. Löschen mit Bestätigungsdialog.</span></li>
+    </ul>
+
+    <div class="section-label-cl">Technisches &amp; Übergreifendes</div>
+    <ul class="change-list">
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>E-Mail google:</strong> christian.neusser@googlemail.com auf allen Seiten entfernt – einheitlich christian.neusser@me.com.</span></li>
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>FH-Professur im Footer:</strong> „Kandidat für FH-Professur" aus allen Footern entfernt.</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>VentureLab Dauer korrigiert:</strong> „6 Wochen" → „10 Wochen" (alle Vorkommen in index.html und ueber-mich.html).</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>posts.json:</strong> 4 initiale Blog-Beiträge angelegt: MSTM-Framework, VentureLab, EURAM Track-Chair, Haier Rendanheyi.</span></li>
     </ul>
   </div>
 
+  <!-- ── bis v0.9.0 (ZUSAMMENFASSUNG) ── -->
   <div class="version-block">
     <div class="version-header">
-      <span class="v-badge">v2.0</span>
-      <span class="v-date">April 2026</span>
-      <span class="v-title">Wissenschaftliche Vertiefung &amp; Doktorarbeit-Integration</span>
+      <span class="v-badge legacy">bis v0.9.0</span>
+      <span class="v-date">Februar – April 2026</span>
+      <span class="v-title">Aufbau &amp; Entwicklung (Zusammenfassung)</span>
     </div>
+
+    <div class="summary-box" style="margin-bottom:1rem">
+      <p>Die folgenden Versionen dokumentieren den schrittweisen Aufbau der wissenschaftlichen Berufungspräsentations-Website von der ersten Rohfassung (v1.0) bis zum Abschluss der zweiten Überarbeitungsrunde (v2.1). Die Änderungen sind hier zusammengefasst; Details wurden in v0.9.1 systematisch überarbeitet.</p>
+    </div>
+
     <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Sektion „Doktorarbeit":</strong> Vollständige wissenschaftliche Aufbereitung der DBA-Dissertation (Neusser, 2026) – Abstract, Forschungsfragen (5 Objectives), theoretischer Rahmen (7 Perspektiven), Methodik (Gioia, abduktiv, 102 Interviews), empirische Befunde, MSTM-Framework mit Diagnostic Dashboard, sechs Propositionen.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>MSTM Diagnostic Dashboard (Tabelle):</strong> Basierend auf Neusser (2026, Table 32) – operationalisiert alle vier MSTM-Dimensionen auf drei Reifegraden (niedrig/mittel/hoch) mit konkreten Indikatoren.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Wissensportal erweitert auf 8 Tabs:</strong> Hinzugefügt: Legitimationstheorie (Suchman, 1995; DiMaggio &amp; Powell, 1983), Socioemotional Wealth &amp; Stewardship (Gómez-Mejía et al., 2007; Davis et al., 1997), Agenturtheorie &amp; Governance (Jensen &amp; Meckling, 1976; Fama &amp; Jensen, 1983).</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Changelog-Seite:</strong> Separate Seite zur vollständigen Versionsdokumentation aller Änderungen.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Wissensportal – bestehende Tabs:</strong> Alle fünf bestehenden Theorie-Deep-Dives inhaltlich vertieft mit kritischer Würdigung, erweiterten APA-7-Quellenangaben und DOIs. Neuer Bezug zur DBA-Forschung in jedem Tab.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Lehre-Sektion:</strong> Alle fünf Modulblöcke mit vollständigen APA-7-Zitaten erweitert. Kritische Würdigung der CM-Modelle ergänzt (Beer &amp; Nohria, 2000). Widerstand als Diagnosesignal mit Quellenangabe (Oreg, 2003).</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Publikationen-Sektion:</strong> Abstracts zu jeder Publikation ergänzt. ORCID-Verlinkung in Sektionsheader. Konferenzbeitragshinweis (EURAM, AOM, IFERA) und laufende Einreichungen ergänzt.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>MSTM/Drei-Säulen-Modell:</strong> Explizite theoretische Verknüpfungen zu Teece et al. (1997), Gibson &amp; Birkinshaw (2004) und HRO-Prinzipien (Weick &amp; Sutcliffe, 2007) in jeder Säule ergänzt. Paradigmenwechsel-Tabelle mit wissenschaftlichen Quellenangaben.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Navbar:</strong> Versionsanzeige (v2.0 Badge), neuer Nav-Link „Doktorarbeit", Changelog-Link in Gold hervorgehoben.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Hero-Sektion:</strong> DBA-Zitationsblock ergänzt, neue Hero-Statistiken (102 Interviews, 42 Fallstudien), Button-Link zur FH Kärnten Website.</span></li>
-      <li class="change-item"><span class="change-type ct-science">Wissenschaft</span><span><strong>Zitationsstandard:</strong> Vollständige Umstellung auf APA 7 in allen Sektionen. DOI-Angaben bei allen verfügbaren Quellen. Hedging-Sprache durchgehend verwendet („Findings suggest...", „The study proposes...", „Evidence indicates...").</span></li>
-      <li class="change-item"><span class="change-type ct-science">Wissenschaft</span><span><strong>Kritische Würdigung:</strong> Jede Theorie enthält nun explizit Limitationen, Kontroversen und offene Forschungsfragen – wissenschaftliche Objektivität statt unkritischer Darstellung.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Grundstruktur (v1.0):</strong> Single-Page-HTML-Website mit Sektionen Profil, Lehre, Wissensportal (5 Tabs), Drei-Säulen-Modell, Forschung (4 Projekte), Publikationen, Kontakt. Design-Tokens aus Berufungsvortrag-PPTX (Navy #1A3A5C, Teal #0D7EA0, Gold #E8A020). Tab-Navigation, Scroll-Animationen, GitHub Pages Deployment.</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Wissenschaftliche Vertiefung (v2.0):</strong> DBA-Zitationsblock und MSTM-Framework-Darstellung, 7 Theorieperspektiven im Wissensportal, APA-7-Zitationsstandard, wissenschaftliche Quellenangaben in Vergleichsboxen, Kritische Würdigungen, Hedging-Sprache, DOI-Angaben.</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Bugfixes &amp; UX (v2.1):</strong> Weiß-auf-weiß Textfehler in Paradigmenwechsel-Boxen behoben, Navbar-Badge-Artefakt beseitigt, Hamburger-Menü für mobile Viewports, verbesserte Breakpoints, Scroll-↑↓-Pfeile, „Home"-Link in Nav.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Unterseiten:</strong> ueber-mich.html (Karriere, Akademie, Publikationen), praxisbeispiele.html (4 Change-Mandate: Deutsche Bahn, Oerlikon, Groupe Atlantic, Mittelstand), blog-admin.html (GitHub-CMS Grundgerüst).</span></li>
+      <li class="change-item"><span class="change-type ct-science">Wissenschaft</span><span><strong>MSTM-Framework:</strong> Vollständige Darstellung des Mechanisms–Structure–Trust–Mandate-Modells mit 4 Dimensionen, 6 Propositionen, 12 Akteursarchetypen und Verknüpfung zu Dynamic Capabilities (Teece, 1997), Ambidexterität (Gibson &amp; Birkinshaw, 2004) und HRO (Weick &amp; Sutcliffe, 2007).</span></li>
     </ul>
   </div>
 
-  <div class="version-block">
-    <div class="version-header">
-      <span class="v-badge">v1.0</span>
-      <span class="v-date">April 2026 (Erstentwurf)</span>
-      <span class="v-title">Initiale Website-Erstellung</span>
-    </div>
-    <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Grundstruktur:</strong> Single-Page-HTML-Website mit 7 Sektionen: Profil, Lehre, Wissensportal (5 Tabs), Drei-Säulen-Modell, Forschung (4 Projekte), Publikationen, Kontakt.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Farbsystem:</strong> Design-Tokens aus Berufungsvortrags-PPTX übernommen (Navy #1A3A5C, Teal #0D7EA0, Gold #E8A020).</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Interaktivität:</strong> Akkordeon für Lehrsektionen, Tab-Navigation für Wissensportal, Scroll-Animationen, aktive Nav-Links.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Wissensportal (5 Tabs):</strong> Strukturelle Trägheit, Ambidexterität, Dynamic Capabilities, Org. Routinen, HRO &amp; Resilienz.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>GitHub-Bereitstellung:</strong> index.html, .nojekyll, README.md für GitHub Pages Deployment.</span></li>
-    </ul>
-  </div>
-
-  <div style="background:var(--light-bg);border-radius:8px;padding:1.4rem 1.6rem;border-left:4px solid var(--teal);margin-top:2rem">
-    <h3 style="font-size:.95rem;color:var(--navy);margin-bottom:.5rem">Geplante Features (v3.0)</h3>
-    <ul style="padding-left:1.2rem;font-size:.88rem;display:flex;flex-direction:column;gap:.3rem">
+  <!-- ── ROADMAP ── -->
+  <div style="background:var(--light-bg);border-radius:var(--radius);padding:1.4rem 1.6rem;border-left:4px solid var(--teal);margin-top:2rem">
+    <h3 style="font-size:.95rem;color:var(--navy);margin-bottom:.75rem">Geplante Features (v1.0+)</h3>
+    <ul style="padding-left:1.2rem;font-size:.88rem;display:flex;flex-direction:column;gap:.4rem">
       <li>Interaktives MSTM-Diagnose-Tool (Self-Assessment für Praktiker)</li>
       <li>Downloadbereich: Lehrfolien, Fallstudien-Templates, MSTM-Checkliste</li>
-      <li>Blog / Working Papers Sektion</li>
       <li>Mehrsprachigkeit (DE/EN)</li>
-      <li>Kontaktformular (Backend-Anbindung)</li>
+      <li>Kontaktformular</li>
+      <li>Quantitative Validierung MSTM-Skala (PLS-SEM)</li>
+      <li>EURAM 2026 Track-Dokumentation</li>
     </ul>
   </div>
 
-</div></main>
-<footer><div class="container">
-  <p>Dr. Christian Neusser, DBA &nbsp;·&nbsp; <a href="index.html">Zurück zur Website</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a></p>
-</div></footer>
+</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Dr. Christian Neusser, DBA &nbsp;·&nbsp; <a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="index.html">Zur Website</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){const t=document.getElementById('nav-toggle'),m=document.getElementById('nav-menu');if(!t||!m)return;t.addEventListener('click',function(){const o=m.classList.toggle('open');t.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){m.classList.remove('open');t.textContent='☰'}))})();
+</script>
 </body>
 </html>

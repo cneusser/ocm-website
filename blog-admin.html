@@ -21,17 +21,16 @@
   body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; background: var(--light-bg); color: var(--text); min-height: 100vh; }
 
   /* ── NAV ── */
-  nav {
-    background: var(--navy);
-    padding: 0 1.5rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 56px; position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,.25);
-  }
-  .nav-brand { color: var(--white); font-family: Georgia, serif; font-size: 1rem; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: .5rem; }
-  .nav-badge { background: var(--teal); color: var(--white); font-size: .68rem; padding: .1rem .45rem; border-radius: 3px; font-family: 'Segoe UI', sans-serif; font-weight: normal; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: .88rem; margin-left: 1.2rem; transition: color .2s; }
-  .nav-links a:hover { color: var(--white); }
+  nav#navbar { background: var(--navy); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; height: 56px; }
+  .nav-brand { color: var(--white); font-family: Georgia, serif; font-size: 1rem; font-weight: bold; text-decoration: none; white-space: nowrap; }
+  .nav-brand span { color: var(--gold); }
+  .nav-toggle { background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; padding: .2rem .5rem; line-height: 1; }
+  .nav-menu { display: none; flex-direction: column; background: var(--navy); padding: .75rem 1.5rem 1.25rem; border-top: 1px solid rgba(255,255,255,.1); gap: .1rem; }
+  .nav-menu.open { display: flex; }
+  .nav-menu a { color: #aabccc; text-decoration: none; font-size: .88rem; padding: .45rem 0; border-bottom: 1px solid rgba(255,255,255,.06); transition: color .2s; }
+  .nav-menu a:last-child { border-bottom: none; }
+  .nav-menu a:hover, .nav-menu a.active { color: var(--white); }
 
   /* ── HEADER ── */
   header {
@@ -216,14 +215,24 @@
 
 
 <!-- NAV -->
-<nav>
-  <a class="nav-brand" href="index.html">
-    Dr. Christian Neusser, DBA · O&amp;CM
-    <span class="nav-badge">Admin</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html">← Zur Website</a>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
+  </div>
+  <div class="nav-menu" id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="index.html#lehre">Fachvortrag &amp; Lehre</a>
+    <a href="index.html#wissen">Wissensportal</a>
+    <a href="dba.html">Doktorarbeit (Detail)</a>
+    <a href="lehrformate.html">Lehrformate (Detail)</a>
+    <a href="index.html#forschung">Forschung &amp; Publikationen</a>
+    <a href="index.html#blog">Blog</a>
+    <a href="index.html#kontakt">Kontakt</a>
     <a href="ueber-mich.html">Über mich</a>
+    <a href="praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="blog-admin.html" class="active">Blog Admin</a>
+    <a href="changelog.html">Changelog</a>
   </div>
 </nav>
 
@@ -236,7 +245,7 @@
 
 <!-- SECURITY NOTICE -->
 <div class="security-notice">
-  Ihr GitHub-Token wird <strong>nicht gespeichert</strong> und nur im Arbeitsspeicher dieser Browser-Session gehalten. Bitte für jede Session neu eingeben.
+  Verbindungseinstellungen werden lokal im Browser gespeichert. Token und Repository werden beim nächsten Öffnen automatisch geladen. Klicken Sie „Einstellungen löschen", um gespeicherte Daten zu entfernen.
 </div>
 
 <!-- SETUP PANEL -->
@@ -259,10 +268,11 @@
       <label for="gh-file">Pfad zu posts.json</label>
       <input type="text" id="gh-file" placeholder="posts.json" value="posts.json">
     </div>
-    <div>
+    <div style="display:flex;flex-direction:column;gap:.4rem;">
       <button class="btn btn-primary" id="btn-connect" onclick="connectGitHub()">
         Verbinden
       </button>
+      <button class="btn btn-ghost btn-sm" onclick="clearSavedSettings()" title="Gespeicherte Einstellungen löschen">🗑 Löschen</button>
     </div>
   </div>
   <div style="margin-top:.75rem; display:flex; align-items:center; gap:.75rem;">
@@ -632,6 +642,48 @@ async function deletePostById(id) {
   }
 }
 
+// ─── Persistent Settings (localStorage) ──────────────────────────────────────
+const LS_KEY = 'neusser_blog_gh_settings';
+
+function saveSettings() {
+  const settings = {
+    token:  document.getElementById('gh-token').value.trim(),
+    repo:   document.getElementById('gh-repo').value.trim(),
+    branch: document.getElementById('gh-branch').value.trim(),
+    file:   document.getElementById('gh-file').value.trim()
+  };
+  localStorage.setItem(LS_KEY, JSON.stringify(settings));
+}
+
+function loadSettings() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    if (s.token)  document.getElementById('gh-token').value  = s.token;
+    if (s.repo)   document.getElementById('gh-repo').value   = s.repo;
+    if (s.branch) document.getElementById('gh-branch').value = s.branch;
+    if (s.file)   document.getElementById('gh-file').value   = s.file;
+    return !!(s.token && s.repo);
+  } catch(e) { return false; }
+}
+
+function clearSavedSettings() {
+  if (!confirm('Gespeicherte Verbindungseinstellungen (Token, Repository) wirklich löschen?')) return;
+  localStorage.removeItem(LS_KEY);
+  document.getElementById('gh-token').value = '';
+  document.getElementById('gh-repo').value = '';
+  document.getElementById('gh-branch').value = 'main';
+  document.getElementById('gh-file').value = 'posts.json';
+  setConnected(false);
+  showStatus('Gespeicherte Einstellungen gelöscht.', 'info');
+}
+
+// Override connectGitHub to also save settings
+const _origConnect = connectGitHub;
+connectGitHub = async function() {
+  saveSettings();
+  await _origConnect();
+};
+
 // ─── Init ─────────────────────────────────────────────────────────────────────
 document.getElementById('f-date').value = today();
 document.getElementById('f-teaser').addEventListener('input', updatePreview);
@@ -664,6 +716,12 @@ async function doLogin() {
     sessionStorage.setItem('blog_admin_auth', '1');
     document.getElementById('login-overlay').style.display = 'none';
     document.body.classList.remove('locked');
+    // After login: load saved settings and auto-connect if available
+    const hasSettings = loadSettings();
+    if (hasSettings) {
+      showStatus('Gespeicherte Verbindungseinstellungen geladen. Verbinde automatisch…', 'info');
+      setTimeout(connectGitHub, 400);
+    }
   } else {
     errEl.style.display = 'block';
     errEl.textContent = 'Falscher Benutzername oder Passwort.';
@@ -678,14 +736,21 @@ async function doLogin() {
     const overlay = document.getElementById('login-overlay');
     if (overlay) overlay.style.display = 'none';
     document.body.classList.remove('locked');
+    // Load saved settings and auto-connect if token present
+    const hasSettings = loadSettings();
+    if (hasSettings) {
+      setTimeout(connectGitHub, 300);
+    }
   } else {
-    // Focus the username field
     setTimeout(() => {
       const u = document.getElementById('login-user');
       if (u) { u.focus(); }
     }, 100);
   }
 })();
+
+// Hamburger nav
+(function(){const t=document.getElementById('nav-toggle'),m=document.getElementById('nav-menu');if(!t||!m)return;t.addEventListener('click',function(){const o=m.classList.toggle('open');t.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){m.classList.remove('open');t.textContent='☰'}))})();
 </script>
 </body>
 </html>
