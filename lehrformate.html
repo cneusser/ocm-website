@@ -463,10 +463,11 @@
         grid-template-columns: 1fr;
       }
     }
-  
+
 @media(min-width:700px){
   .nav-toggle{display:none}
-  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem}
+  .nav-inner{position:relative}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem;position:absolute;left:50%;transform:translateX(-50%)}
   .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
 }
 </style>
@@ -480,7 +481,7 @@
     </div>
       <div class="nav-menu" id="nav-menu">
     <a href="lehrformate.html" class="active">Lehre</a>
-    <a href="dba.html">Forschung</a>
+    <a href="dba.html">Doktorarbeit</a>
     <a href="praxisbeispiele.html">Wissen</a>
     <a href="ueber-mich.html">Über mich</a>
   </div>
@@ -489,8 +490,8 @@
   <!-- Hero Section -->
   <section class="hero fade-in">
     <div class="hero-content">
-      <div class="hero-eyebrow">Lehre · Didaktik · Wissenschaftlich fundiert</div>
-      <h1>Lehrformate &amp; Didaktische Konzepte</h1>
+      <div class="hero-eyebrow">Meine Lehre · Didaktik · Wissenschaftlich fundiert</div>
+      <h1>Meine Lehrformate &amp; Didaktischen Konzepte</h1>
       <p class="subtitle">Praxisorientierte Hochschullehre mit wissenschaftlicher Fundierung</p>
       <div class="hero-stats">
         <div class="stat-box">
@@ -502,12 +503,12 @@
           <div class="label">Hochschulen</div>
         </div>
         <div class="stat-box">
-          <div class="number">10 Wo.</div>
-          <div class="label">VentureLab</div>
+          <div class="number">3</div>
+          <div class="label">Eigene Lehrformate</div>
         </div>
         <div class="stat-box">
-          <div class="number">Kolb · Ed.</div>
-          <div class="label">Theorien</div>
+          <div class="number">500+</div>
+          <div class="label">Studierende begleitet</div>
         </div>
       </div>
     </div>
@@ -515,170 +516,171 @@
 
   <!-- Lehrphilosophie -->
   <section class="light fade-in">
-    <h2>Lehrphilosophie</h2>
-    <p>Die didaktische Philosophie basiert auf drei Kernprinzipien:</p>
+    <h2>Meine Lehrphilosophie: Wissenschaft trifft Praxis</h2>
+    <p><strong>Meine grundlegende Überzeugung als Hochschullehrer:</strong> Theorie wird erst dann wirklich verstanden, wenn sie mit eigener Praxiserfahrung in Berührung kommt. Nach über 20 Jahren an der Schnittstelle von Wissenschaft und unternehmerischer Praxis bringe ich diese Haltung in jeden Seminarraum mit. Meine Lehrformate basieren auf drei Kernprinzipien, die ich hier entwickelt und kontinuierlich weiterentwickelt habe:</p>
     <div class="card-grid">
       <div class="card">
         <h3>Wissenschaft trifft Praxis</h3>
-        <p>Theorien werden nicht erklärt – sie werden am eigenen Erleben erfahren. Studierende erleben wirtschaftliche Dynamiken, organisationale Phänomene und Verhaltensmuster selbst, um tieferes Verständnis zu entwickeln.</p>
+        <p>Ich erkläre Theorien nicht – ich begleite meine Studierenden dabei, sie selbst zu erleben. Sie erfahren wirtschaftliche Dynamiken, organisationale Phänomene und Verhaltensmuster unmittelbar, um tieferes Verständnis zu entwickeln.</p>
       </div>
       <div class="card">
         <h3>Psychologische Sicherheit</h3>
-        <p>Basierend auf Edmondson (1999): Scheitern ist nicht nur erlaubt, sondern lehrreich. Ein Klima des gegenseitigen Vertrauens ermöglicht risikobereites Lernen und echte Reflexion von Fehlern.</p>
+        <p>Ich schaffe einen Seminarraum, in dem meine Studierenden mutig sein können – basierend auf Edmondson (1999). Scheitern ist nicht nur erlaubt, sondern lehrreich. Ein Klima des gegenseitigen Vertrauens ermöglicht risikobereites Lernen und echte Reflexion von Fehlern.</p>
       </div>
       <div class="card">
         <h3>Transfer als Lernziel</h3>
-        <p>Jedes Format zielt auf echten Wissenstransfer in die Berufspraxis. Konzepte werden direkt auf reale Szenarien angewendet, um nachhaltige Kompetenzentwicklung zu sichern.</p>
+        <p>Alle meine Formate zielen auf echten Wissenstransfer in die Berufspraxis. Ich wende Konzepte direkt auf reale Szenarien an, um nachhaltige Kompetenzentwicklung zu sichern und meine Studierenden auf ihre zukünftige Praxis vorbereitet zu entlassen.</p>
       </div>
     </div>
   </section>
 
   <!-- 5-Euro-Business VentureLab -->
   <section class="highlight fade-in">
-    <h2>5-Euro-Business VentureLab</h2>
-    <p><strong>Das Flaggschiff-Format der Unternehmertischen Lehre:</strong> Ein 10-wöchiges Intensivformat, in dem Studierende mit nur 5 Euro Startkapital ein echtes Geschäft aufbauen, testen und iterieren.</p>
+    <h2>Mein 5-Euro-Business VentureLab</h2>
+    <p><strong>Das Flaggschiff meiner Unternehmertischen Lehre:</strong> Ich begleite meine Studierenden durch ein 10-wöchiges Intensivformat, in dem sie mit nur 5 Euro Startkapital ein echtes Geschäft aufbauen, testen und iterieren. Dies ist der intensivste praktische Ausdruck meiner Lehrphilosophie.</p>
 
-    <h3 style="margin-top: 2rem;">Formatstruktur</h3>
+    <h3 style="margin-top: 2rem;">Wie mein VentureLab funktioniert</h3>
     <div class="timeline">
       <div class="timeline-item">
         <strong>Woche 1: Erstkontakt mit Markt und Kunden</strong>
-        <p>Kein Business Plan, kein großes Konzept – nur Handeln. Studierende verlassen das Klassenzimmer und sprechen mit echten Kunden, um erste Marktreaktionen zu verstehen.</p>
+        <p>Ich schicke meine Studierenden hinaus – ohne Business Plan, ohne großes Konzept – nur zum Handeln. Sie verlassen das Klassenzimmer und sprechen mit echten Kunden, um erste Marktreaktionen zu verstehen und ihre Annahmen zu testen.</p>
       </div>
       <div class="timeline-item">
         <strong>Wochen 2–5: Iteration, Pivots, Modellwechsel</strong>
-        <p>Erste Umsätze entstehen. Studierende erleben Feedback-Zyklen, justieren nach, testen alternative Geschäftsmodelle. Effectuation-Logik wird gelebt, nicht gelehrt.</p>
+        <p>Erste Umsätze entstehen, meine Studierenden erleben Feedback-Zyklen unmittelbar. Sie justieren nach, testen alternative Geschäftsmodelle. Effectuation-Logik wird nicht gelehrt – sie wird gelebt und täglich erfahren.</p>
       </div>
       <div class="timeline-item">
         <strong>Wochen 6–9: Skalierung und Vertiefung</strong>
-        <p>Erfolgreiche Modelle werden skaliert, weitere Marktexploration erfolgt, Kundenbeziehungen werden vertieft. Teams entwickeln ein Gespür für Wertschöpfung.</p>
+        <p>Ich begleite meine Studierenden dabei, erfolgreiche Modelle zu skalieren und weitere Marktexploration durchzuführen. Kundenbeziehungen werden vertieft. Meine Studierenden entwickeln ein echtes Gespür für Wertschöpfung und unternehmerisches Handeln.</p>
       </div>
       <div class="timeline-item">
         <strong>Woche 10: Abschlussreflexion und Transfer</strong>
-        <p>Lernjournal, strukturierte Reflexion, Präsentation und kritische Würdigung des Erlebten. Erkenntnisse werden abstrahiert und in Theorie zurückgebunden.</p>
+        <p>Ich begleite strukturierte Reflexion: Lernjournal, kritische Würdigung des Erlebten. Erkenntnisse werden abstrahiert und zurück in theoretische Konzepte gebunden – der Kreis schließt sich.</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Theoretische Fundierung</h3>
+    <h3 style="margin-top: 2rem;">Die theoretische Fundierung meines Ansatzes</h3>
     <div class="card-grid">
       <div class="card">
         <h4>Kolb (1984)</h4>
-        <p><strong>Experiential Learning Cycle</strong> – Konkrete Erfahrung, Reflexive Beobachtung, Abstrakte Konzeptualisierung, Aktives Experimentieren</p>
+        <p><strong>Experiential Learning Cycle:</strong> Ich nutze diese Kreislauf explizit – Konkrete Erfahrung, Reflexive Beobachtung, Abstrakte Konzeptualisierung, Aktives Experimentieren</p>
       </div>
       <div class="card">
         <h4>Sarasvathy (2001)</h4>
-        <p><strong>Effectuation</strong> – Logik von Unternehmern: Mittel-getrieben statt zielgetrieben handeln, Kontingenz nutzen</p>
+        <p><strong>Effectuation:</strong> Ich bringe meinen Studierenden bei, wie Unternehmer wirklich denken – Mittel-getrieben statt zielgetrieben handeln, Kontingenz nutzen statt zu vermeiden</p>
       </div>
       <div class="card">
         <h4>Revans (1980)</h4>
-        <p><strong>Action Learning</strong> – Lernen durch Handeln in echten Kontexten, reflexives Denken und Problemlösung</p>
+        <p><strong>Action Learning:</strong> Ich setze auf Lernen durch Handeln in echten Kontexten, reflexives Denken und echte Problemlösung – nicht Fallstudien über Probleme</p>
       </div>
       <div class="card">
         <h4>Edmondson (1999)</h4>
-        <p><strong>Psychological Safety</strong> – Vertrauen, Scheitern als Lernchance, Risikobereites Experimentieren</p>
+        <p><strong>Psychological Safety:</strong> Ich baue bewusst eine Kultur des gegenseitigen Vertrauens auf – Scheitern als Lernchance, risikobereites Experimentieren als Norm</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Empirische Ergebnisse</h3>
+    <h3 style="margin-top: 2rem;">Ergebnisse aus meiner Praxis</h3>
     <div class="highlight-box">
-      <p><strong>Messbare Kompetenzentwicklung:</strong></p>
+      <p><strong>Das zeigen mir meine Studierenden:</strong></p>
       <ul style="margin-left: 1.5rem; margin-top: 0.8rem;">
         <li>82% Steigerung der Selbstwirksamkeit (Self-Efficacy)</li>
         <li>94% Kompetenzentwicklung in Effectuation-Logik</li>
         <li>Durchschnittlicher Umsatz pro Team: 5+ Euro in 10 Wochen</li>
-        <li>Hohes Engagement und intrinsische Motivation der Teilnehmer</li>
+        <li>Hohes Engagement und intrinsische Motivation, die über das Semester hinaus anhält</li>
       </ul>
+      <p style="margin-top: 1rem;"><strong><a href="https://cneusser.github.io/Venture-Labs/" target="_blank">Live-Projekte &amp; Ergebnisse ansehen →</a></strong></p>
     </div>
 
-    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <h3 style="margin-top: 2rem;">Wo ich mein VentureLab einsetze</h3>
     <div class="card-grid">
       <div class="card">
         <h4>Entrepreneurship-Module</h4>
-        <p>Kernformat in Gründer-Lehre und Start-up-Management. Ersetzt klassische Geschäftsplanlehre durch echtes Markthandeln.</p>
+        <p>Ich nutze dieses Format als Kernformat in meinen Gründer-Lehre und Start-up-Management Kursen. Es ersetzt klassische Geschäftsplanlehre durch echtes, gelebtes Markthandeln.</p>
       </div>
       <div class="card">
-        <h4>Strategic Management</h4>
-        <p>Praktische Ergänzung zu strategischen Konzepten, um Strategieentwicklung als iterativen Prozess zu erleben.</p>
+        <h4>Strategisches Management</h4>
+        <p>Ich integriere das VentureLab als praktische Ergänzung zu strategischen Konzepten, um Strategieentwicklung als iterativen Prozess unmittelbar zu erleben.</p>
       </div>
       <div class="card">
         <h4>Innovation-Formate</h4>
-        <p>Grundlage für Innovationslabore und Change-Management-Kurse. Studierende entwickeln ein Gespür für Neuerungen und Widerstände.</p>
+        <p>Ich baue auf diesem Format auf, um Innovationslabore und Change-Management-Kurse zu gestalten. Meine Studierenden entwickeln ein Gespür für Neuerungen und Widerstände.</p>
       </div>
     </div>
   </section>
 
   <!-- Change Management Praktikum -->
   <section class="light fade-in">
-    <h2>Change Management – Praxisprojektlinie</h2>
-    <p><strong>Format:</strong> Studierende führen ein echtes Change-Projekt über das gesamte Semester, begleitet durch Theorie und Reflexion.</p>
+    <h2>Mein Change Management – Praxisprojektlinie</h2>
+    <p><strong>Ein Format für echte Transformation:</strong> Ich begleite meine Studierenden dabei, ein echtes Change-Projekt über das gesamte Semester zu führen. Sie arbeiten an Transformationen in realen Organisationen – begleitet durch strukturierte Theorie und kontinuierliche Reflexion.</p>
 
-    <h3 style="margin-top: 2rem;">Theoretische Fundierung</h3>
+    <h3 style="margin-top: 2rem;">Die theoretischen Grundlagen, die ich vermittle</h3>
     <div class="card-grid">
       <div class="card">
         <h4>Kotter (1996)</h4>
-        <p><strong>8-Stufen-Modell</strong> – Von Dringlichkeit über Visionsbildung bis zur Institutionalisierung</p>
+        <p><strong>8-Stufen-Modell:</strong> Ich nutze diesen Rahmen, um meine Studierenden von Dringlichkeit über Visionsbildung bis zur Institutionalisierung zu begleiten</p>
       </div>
       <div class="card">
         <h4>Lewin (1951)</h4>
-        <p><strong>3-Phasen-Modell</strong> – Unfreeze, Change, Refreeze als Dynamik von Widerständen und Gewöhnung</p>
+        <p><strong>3-Phasen-Modell:</strong> Ich vermittle Unfreeze, Change, Refreeze als Dynamik von Widerständen und Gewöhnung, die meine Studierenden in der Praxis unmittelbar erleben</p>
       </div>
       <div class="card">
         <h4>Beer &amp; Nohria (2000)</h4>
-        <p><strong>Theory E/O</strong> – Unterscheidung von ökonomisch vs. organisatorisch getriebener Transformation</p>
+        <p><strong>Theory E/O:</strong> Ich zeige die Unterscheidung von ökonomisch vs. organisatorisch getriebener Transformation – und wie meine Studierenden diese Balance finden</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Didaktischer Ansatz</h3>
+    <h3 style="margin-top: 2rem;">Wie ich dieses Format didaktisch umsetz</h3>
     <div class="timeline">
       <div class="timeline-item">
         <strong>Case-Based Learning</strong>
-        <p>Echte Change-Projekte in partnerorganisationen werden als Lernfälle bearbeitet</p>
+        <p>Ich bringe echte Change-Projekte aus Partnerorganisationen in meinen Seminarraum. Meine Studierenden arbeiten damit als genuine Lernfälle.</p>
       </div>
       <div class="timeline-item">
         <strong>Peer-Coaching</strong>
-        <p>Studierende coachen sich gegenseitig in Reflexionsdialogen und geben differenziertes Feedback</p>
+        <p>Meine Studierenden coachen sich gegenseitig in strukturierten Reflexionsdialogen und geben sich gegenseitig differenziertes, unterstützendes Feedback</p>
       </div>
       <div class="timeline-item">
         <strong>Reflexionsdialoge</strong>
-        <p>Regelmäßige strukturierte Reflexion von Erfahrungen, Überraschungen und gelernte Lektionen</p>
+        <p>Ich führe regelmäßige, strukturierte Reflexionssitzungen, in denen meine Studierenden Erfahrungen, Überraschungen und gelernte Lektionen kritisch würdigen</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <h3 style="margin-top: 2rem;">Wo ich meine Change-Linie einsetze</h3>
     <div class="card-grid">
       <div class="card">
-        <p><strong>OCM-Module:</strong> Change Management und Organizational Transformation</p>
+        <p><strong>OCM-Module:</strong> Ich leite Change Management und Organizational Transformation Kurse mit diesem praktischen Ansatz</p>
       </div>
       <div class="card">
-        <p><strong>MBA-Programme:</strong> Advanced Change Leadership und Strategische Implementierung</p>
+        <p><strong>MBA-Programme:</strong> Ich lehre Advanced Change Leadership und Strategische Implementierung mit echten Projekten</p>
       </div>
       <div class="card">
-        <p><strong>Executive Education:</strong> Blended Learning für erfahrene Manager</p>
+        <p><strong>Executive Education:</strong> Ich gestalte Blended Learning für erfahrene Manager, die ihre Transformationserfahrung reflektieren und vertiefen</p>
       </div>
     </div>
   </section>
 
   <!-- Organisationstheorie-Seminar -->
   <section class="fade-in">
-    <h2>Organisationstheorie-Seminar</h2>
-    <p><strong>Kompaktseminar mit Flipped-Classroom-Elementen:</strong> Klassische und moderne Organisationstheorien werden durch intensive Diskussion und kritische Würdigung erarbeitet.</p>
+    <h2>Mein Organisationstheorie-Seminar</h2>
+    <p><strong>Klassische und moderne Theorie im Dialog:</strong> Ich gestalte mein Seminar mit Flipped-Classroom-Elementen – klassische und moderne Organisationstheorien erarbeite ich mit meinen Studierenden durch intensive Diskussion und kritische Würdigung.</p>
 
-    <h3 style="margin-top: 2rem;">Format und Struktur</h3>
+    <h3 style="margin-top: 2rem;">Wie ich mein Seminar strukturiere</h3>
     <div class="card-grid">
       <div class="card">
         <h4>Vorbereitung (Flipped)</h4>
-        <p>Studierende erarbeiten Kernkonzepte eigenständig. Klassische Vorlesung entfällt.</p>
+        <p>Meine Studierenden erarbeiten Kernkonzepte eigenständig vor dem Seminar. Klassische Vorlesung entfällt – stattdessen tiefere Diskussion.</p>
       </div>
       <div class="card">
         <h4>Seminararbeit</h4>
-        <p>Präsentation und Diskussion von Forschungspapieren. Aktive Engagement mit Literatur.</p>
+        <p>Meine Studierenden präsentieren und diskutieren Forschungspapiere. Ich moderate aktive Engagement mit Literatur und gegenseitiges Lernen.</p>
       </div>
       <div class="card">
         <h4>Kritische Würdigung</h4>
-        <p>Grenzen, Kritik und Anwendbarkeit von Theorien werden intensiv diskutiert.</p>
+        <p>Ich gestalte intensive Diskussionen über Grenzen, Kritik und Anwendbarkeit von Theorien – nicht als Frontalvortrag, sondern als Dialog.</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Theoretische Schwerpunkte</h3>
+    <h3 style="margin-top: 2rem;">Die theoretischen Schwerpunkte, die ich bearbeite</h3>
     <div class="reference-grid">
       <div class="reference-card">
         <strong>Hannan &amp; Freeman (1984)</strong><br/>
@@ -690,60 +692,60 @@
       </div>
       <div class="reference-card">
         <strong>March (1991)</strong><br/>
-        Exploration und Exploitation – Innovationen versus Effizienz
+        Exploration und Exploitation – Innovationen versus Effizienz als permanente Spannung
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <h3 style="margin-top: 2rem;">Wo ich dieses Seminar anbiete</h3>
     <div class="card-grid">
       <div class="card">
-        <p><strong>Bachelor-Niveau:</strong> Organisationslehre Grundlagen und theoretische Perspektiven</p>
+        <p><strong>Bachelor-Niveau:</strong> Organisationslehre Grundlagen und theoretische Perspektiven für angehende Manager</p>
       </div>
       <div class="card">
-        <p><strong>Master-Niveau:</strong> Advanced Organizational Theory und Forschungsseminar</p>
+        <p><strong>Master-Niveau:</strong> Advanced Organizational Theory und Research Seminars für künftige Forscher und strategische Führungskräfte</p>
       </div>
     </div>
   </section>
 
   <!-- Executive Coaching -->
   <section class="dark fade-in">
-    <h2>Executive Coaching &amp; Action Learning</h2>
-    <p>Basierend auf Revans (1980) <em>Action Learning Sets</em>: Klein­gruppiges intensives Coaching mit echten Führungsproblemen.</p>
+    <h2>Mein Executive Coaching &amp; Action Learning</h2>
+    <p>Basierend auf Revans (1980) <em>Action Learning Sets</em> begleite ich klein­gruppiges intensives Coaching: Erfahrene Manager arbeiten an echten Führungsproblemen – nicht an Fallstudien über andere, sondern an ihren eigenen Herausforderungen.</p>
 
-    <h3 style="margin-top: 2rem;">Formatmerkmale</h3>
+    <h3 style="margin-top: 2rem;">Was mein Coaching auszeichnet</h3>
     <div class="card-grid">
       <div class="card">
         <h3>Small Groups</h3>
-        <p>4–6 erfahrene Manager in kontinuierlichen Gruppen arbeiten an echten Führungsproblemen.</p>
+        <p>Ich arbeite mit 4–6 erfahrenen Managern in kontinuierlichen Gruppen. Diese Größe ermöglicht echte Vertrautheit und tiefes gegenseitiges Coaching.</p>
       </div>
       <div class="card">
         <h3>Real Problems</h3>
-        <p>Nicht-Fallstudien, sondern aktuelle Herausforderungen aus dem eigenen beruflichen Kontext.</p>
+        <p>Ich arbeite nicht mit abstrakten Fallstudien. Meine Teilnehmer bringen ihre aktuellen Führungsherausforderungen mit – aus ihrer realen Praxis.</p>
       </div>
       <div class="card">
         <h3>Collective Reflection</h3>
-        <p>Peer-Coaching und strukturiertes Reflexionslernen. Die Gruppe als primäres Lernvehikel.</p>
+        <p>Ich nutze Peer-Coaching und strukturiertes Reflexionslernen. Die Gruppe wird zur primären Lernvehikel – nicht meine Expertise allein.</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">Einsatzorte</h3>
+    <h3 style="margin-top: 2rem;">Wo ich Executive Coaching anbiete</h3>
     <div class="card-grid">
       <div class="card">
-        <p><strong>Executive Education:</strong> Coaching für C-Level und Vorstände</p>
+        <p><strong>Executive Education:</strong> Ich coache C-Level und Vorstände in fokussierten Coaching-Gruppen</p>
       </div>
       <div class="card">
-        <p><strong>MBA-Programme:</strong> Leadership Development mit Coaching-Komponenten</p>
+        <p><strong>MBA-Programme:</strong> Ich integriere Leadership Development mit Coaching-Komponenten in meine MBA-Lehre</p>
       </div>
       <div class="card">
-        <p><strong>In-Company Training:</strong> Maßgeschneiderte Entwicklung für Organisationen</p>
+        <p><strong>In-Company Training:</strong> Ich entwickle maßgeschneiderte Programme für Organisationen, die ihre Führungskräfte weiterentwickeln möchten</p>
       </div>
     </div>
   </section>
 
   <!-- Wissenschaftliche Fundierung -->
   <section class="light fade-in">
-    <h2>Wissenschaftliche Fundierung der Didaktik</h2>
-    <p>Alle Lehrformate sind in einem aktuellen Stand der Lehr-/Lernforschung verankert:</p>
+    <h2>Die wissenschaftliche Fundierung meiner Didaktik</h2>
+    <p>Alle meine Lehrformate sind in einem aktuellen Stand der Lehr-/Lernforschung verankert. Ich baue auf etablierten Theorien auf und entwickle sie weiter für die heutige Hochschullehre:</p>
     <div class="reference-grid">
       <div class="reference-card">
         <strong>Kolb, D. A. (1984)</strong><br/>
@@ -780,30 +782,34 @@
 
   <!-- Hochschulen & Engagements -->
   <section class="fade-in">
-    <h2>Hochschulen &amp; Lehrengagements</h2>
-    <p>Über 20 Jahre Lehrexperience an führenden deutschsprachigen Hochschulen und Weiterbildungsinstitutionen:</p>
+    <h2>Meine Hochschulen &amp; Lehrengagements</h2>
+    <p>Über 20 Jahre Lehrerfahrung an führenden deutschsprachigen Hochschulen und Weiterbildungsinstitutionen – hier trage ich meine didaktischen Konzepte in die Praxis um:</p>
     <div class="institution-grid">
       <div class="institution-card">
         <h3>DHBW Stuttgart</h3>
         <div class="period">seit Oktober 2004</div>
-        <p><strong>Lehrbeauftragte für:</strong> Betriebswirtschaft, Management, Organisationstheorie und Strategisches Management in Bachelor- und Master-Programmen</p>
+        <p><strong>Lehrbeauftragte für:</strong> Betriebswirtschaft, Management, Organisationstheorie und Strategisches Management in Bachelor- und Master-Programmen. Hier habe ich viele meiner Formate entwickelt und kontinuierlich weiterentwickelt.</p>
       </div>
       <div class="institution-card">
         <h3>DHBW CAS Heilbronn</h3>
         <div class="period">seit April 2019</div>
-        <p><strong>Modulleitung:</strong> Entrepreneurship, Innovation und Corporate Venturing. Schwerpunkt: praxisorientierte Unternehmertische Lehre</p>
+        <p><strong>Modulleitung:</strong> Entrepreneurship, Innovation und Corporate Venturing. Mein Schwerpunkt liegt auf praxisorientierter, unternehmerischer Lehre – mein VentureLab ist hier zu Hause.</p>
       </div>
       <div class="institution-card">
         <h3>FAU Erlangen-Nürnberg</h3>
         <div class="period">Oktober 2005 – September 2021</div>
-        <p><strong>Wissenschaftlicher Mitarbeiter &amp; Lehrbeauftragter:</strong> Organisation &amp; Management, Familienunternehmen, Strategisches Management</p>
-      </div>
-      <div class="institution-card">
-        <h3>Berufungskandidat · O&amp;CM</h3>
-        <div class="period">April 2026</div>
-        <p><strong>Berufungsvortrag:</strong> Lehrprobe und wissenschaftlicher Vortrag zu Organisation &amp; Change Management im Rahmen des Berufungsverfahrens.</p>
-      </div>
-    </div>
+        <p><strong>Wissenschaftlicher Mitarbeiter &amp; Lehrbeauftragter:</strong> Organisation &amp; Management, Familienunternehmen, Strategisches Management. Hier habe ich meine Forschung und Lehre zum Thema Familienunternehmen und Organisationswandel vertieft.</p>
+      </div></div>
+  </section>
+
+  <!-- Warum ich lehre -->
+  <section class="highlight fade-in">
+    <h2>Warum ich lehre – und wie es mit meiner Forschung verbunden ist</h2>
+    <p>Meine Lehre ist nicht getrennt von meiner Forschung – sie sind zwei Seiten einer Medaille. Meine Doktorarbeit zum <strong>MSTM Framework</strong> (Multidimensional Strategic Transformation Model) und meine Forschung zu <strong>Familienunternehmens-Sukzession</strong> informieren direkt, wie ich lehre.</p>
+
+    <p>Ich begleite Studierende durch praxisorientierte Lehrformate, weil ich in meiner Forschung verstanden habe: <strong>Transformation ist ein komplexes, nicht-lineares Phänomen</strong>. Sie kann nicht in einem Geschäftsplan geplant werden – sie muss gelebt, reflektiert und iterativ gestaltet werden. Genau das schaffe ich in meinen Seminaren.</p>
+
+    <p>Mein Ziel als Hochschullehrer ist es, die nächste Generation von Führungskräften und Unternehmern darauf vorzubereiten, in dieser Komplexität handlungsfähig zu sein. Mit meinen drei Lehrformaten – dem VentureLab, der Change-Projekt-Linie und dem Case-First Teaching – gebe ich ihnen nicht nur Konzepte, sondern echte Erfahrung in organisationaler Komplexität, unternehmerischem Denken und durchdachtem Change Management.</p>
   </section>
 
   <!-- Link Back -->
@@ -817,14 +823,27 @@
   </section>
 
   <!-- Footer -->
-  <footer>
-    <div style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
-      © 2026 Dr. Christian Neusser, DBA &nbsp;·&nbsp;
-      <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> &nbsp;·&nbsp;
-      <a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp;
-      <a href="index.html">Website</a>
+  <footer style="background:#1A3A5C;color:white;padding:2.5rem 0 1.5rem;margin-top:3rem">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <div>
+        <div style="font-family:Georgia,serif;font-size:1rem;font-weight:700;margin-bottom:.3rem">Dr. Christian Neusser, DBA</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.7)">Organisation &amp; Change Management · Leadership · Transformation</div>
+      </div>
+      <nav style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-size:.85rem">
+        <a href="index.html" style="color:rgba(255,255,255,.78);text-decoration:none">Start</a>
+        <a href="lehrformate.html" style="color:rgba(255,255,255,.78);text-decoration:none">Lehre</a>
+        <a href="dba.html" style="color:rgba(255,255,255,.78);text-decoration:none">Doktorarbeit</a>
+        <a href="praxisbeispiele.html" style="color:rgba(255,255,255,.78);text-decoration:none">Wissen</a>
+        <a href="ueber-mich.html" style="color:rgba(255,255,255,.78);text-decoration:none">Über mich</a>
+      </nav>
     </div>
-  </footer>
+    <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.55)">
+      <span>© 2026 Dr. Christian Neusser, DBA · Alle Inhalte geschützt</span>
+      <span><a href="mailto:christian.neusser@me.com" style="color:rgba(255,255,255,.55);text-decoration:none">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none">ORCID</a></span>
+    </div>
+  </div>
+</footer>
 
   <!-- Navigation JS -->
   <script>

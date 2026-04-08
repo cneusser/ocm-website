@@ -145,7 +145,8 @@ footer a { color: var(--teal); text-decoration: none; }
 
 @media(min-width:700px){
   .nav-toggle{display:none}
-  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem}
+  .nav-inner{position:relative}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem;position:absolute;left:50%;transform:translateX(-50%)}
   .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
 }
 </style>
@@ -160,7 +161,7 @@ footer a { color: var(--teal); text-decoration: none; }
   </div>
     <div class="nav-menu" id="nav-menu">
     <a href="lehrformate.html">Lehre</a>
-    <a href="dba.html">Forschung</a>
+    <a href="dba.html">Doktorarbeit</a>
     <a href="praxisbeispiele.html">Wissen</a>
     <a href="ueber-mich.html" class="active">Über mich</a>
   </div>
@@ -249,7 +250,18 @@ footer a { color: var(--teal); text-decoration: none; }
         <span class="tl-tag">Controlling</span>
       </div>
 
-
+      <div class="tl-item fade-in">
+        <div class="tl-year">Seit 04/2026</div>
+        <div class="tl-title">Habilitand – Organisationsdesign &amp; Familiäre Nachfolge</div>
+        <div class="tl-inst">Universität Siegen · Betriebswirtschaftslehre</div>
+        <div class="tl-desc">
+          Die Habilitation baut direkt auf den Erkenntnissen des MSTM-Frameworks meiner DBA-Dissertation auf.
+          Schwerpunkt: Organisationsdesign und familiäre Nachfolge in Familienunternehmen.
+        </div>
+        <span class="tl-tag">Habilitation</span>
+        <span class="tl-tag">Universität Siegen</span>
+        <span class="tl-tag">seit April 2026</span>
+      </div>
 
       <div class="tl-item fade-in">
         <div class="tl-year">Laufend</div>
@@ -290,6 +302,20 @@ footer a { color: var(--teal); text-decoration: none; }
     <h2 class="section-title fade-in">Stationen &amp; Mandate</h2>
     <div class="career-grid">
 
+      <div class="career-card c-gold fade-in">
+        <div class="career-period">Laufend</div>
+        <div class="career-role">Managing Partner</div>
+        <div class="career-org"><a href="https://www.phalanx.de" target="_blank">Phalanx GmbH</a> · Unternehmensberatung für Transformation &amp; Nachfolge</div>
+        <div class="career-desc">Als Managing Partner der Phalanx GmbH begleite ich Familienunternehmen und mittelständische Organisationen bei Transformations-, Transaktions- und Nachfolgeprozessen. Phalanx ist meine unternehmerische Heimat – ein Beratungshaus, das ich aufgebaut habe und das die Schnittstelle von Wissenschaft und Praxis verkörpert.</div>
+      </div>
+
+      <div class="career-card c-gold fade-in">
+        <div class="career-period">01/2006 – 12/2013</div>
+        <div class="career-role">Gründer &amp; Geschäftsführer</div>
+        <div class="career-org"><a href="https://www.vend-consulting.de" target="_blank">VEND Consulting GmbH</a></div>
+        <div class="career-desc">Gründung und Aufbau der VEND Consulting GmbH mit Fokus auf Organisations- und Prozessberatung im deutschen Mittelstand. Verkauf der Unternehmensanteile 2013.</div>
+      </div>
+
       <div class="career-card c-teal fade-in">
         <div class="career-period">11/2024 – 08/2025</div>
         <div class="career-role">Chief Restructuring Officer (CRO)</div>
@@ -313,9 +339,9 @@ footer a { color: var(--teal); text-decoration: none; }
 
       <div class="career-card c-gold fade-in">
         <div class="career-period">01/2018 – 12/2025</div>
-        <div class="career-role">Gründer &amp; Geschäftsführer</div>
+        <div class="career-role">Associate Partner</div>
         <div class="career-org">4C GROUP · Unternehmensberatung für Transformation &amp; Change</div>
-        <div class="career-desc">Aufbau und Führung einer Beratungsgesellschaft mit Fokus auf Organisations­transformation, Change-Management-Mandate und Executive Interim. Begleitung der CRO-Mandate bei Groupe Atlantic, Oerlikon, V.FRAAS u.a.</div>
+        <div class="career-desc">Als Associate Partner der 4C GROUP begleitete ich komplexe Transformations- und Change-Management-Mandate in deutschen Mittelstandsunternehmen, darunter Groupe Atlantic, Oerlikon und V.FRAAS.</div>
       </div>
 
       <div class="career-card fade-in">
@@ -360,6 +386,20 @@ footer a { color: var(--teal); text-decoration: none; }
         <div class="career-desc">Strategische Begleitung wachstumsstarker Tech-Unternehmen in den Bereichen KI-Automatisierung, SaaS und digitale Produktentwicklung.</div>
       </div>
 
+    </div>
+
+    <div style="margin-top:2.5rem;">
+      <div class="research-grid">
+        <div class="res-card fade-in" style="border-left-color: var(--gold);">
+          <h4>Business Angel &amp; BAND-Mitglied</h4>
+          <p>
+            Als Business Angel halte ich aktuell <strong>14 Beteiligungen</strong> an früh- und wachstumsfinanzierten Startups,
+            vorwiegend aus dem <strong>B2B-SaaS-</strong> und <strong>DeepTech-Bereich</strong>. Im <strong>BAND</strong>
+            (Bundesverband Business Angels Deutschland) engagiere ich mich aktiv für den Aufbau einer nachhaltigen
+            Startup-Ökosystem-Kultur im deutschsprachigen Raum.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -460,55 +500,57 @@ footer a { color: var(--teal); text-decoration: none; }
     <h2 class="section-title fade-in">Ausgewählte Publikationen</h2>
 
     <ul class="pub-list">
+
       <li class="pub-item fade-in">
         <span class="pub-badge badge-pub">Veröffentlicht</span>
         <div class="pub-text">
-          Neusser, C. (2025). Ecological succession as a model for family business
-          transitions: Succession, legitimacy, and dynamic change.
-          <em>Journal of Family Business Strategy (JFBS)</em>.
-          <a href="https://doi.org/10.1016/j.jfbs.2025.100648" target="_blank">
-            https://doi.org/10.1016/j.jfbs.2025.100648
-          </a>
-          <em>(Open Access)</em>
+          Neusser, C. (2025). Ecological succession as a model for family business transitions.
+          <em>Journal of Family Business Strategy</em> (Open Access).
         </div>
       </li>
+
+      <li class="pub-item fade-in">
+        <span class="pub-badge badge-pub">Veröffentlicht</span>
+        <div class="pub-text">
+          Neusser, C. (2018). <em>Critical Success Factors in the Transition of German Family-owned Manufacturing SME Companies to External Management</em>.
+          Verlag Dr. Kovač.
+        </div>
+      </li>
+
+      <li class="pub-item fade-in">
+        <span class="pub-badge badge-pub">Veröffentlicht</span>
+        <div class="pub-text">
+          Brem, A., Kreusel, N., &amp; Neusser, C. (2008). Performance measurement in SMEs.
+          <em>International Journal of Globalisation and Small Business, 2</em>(4), 411–427.
+        </div>
+      </li>
+
       <li class="pub-item forthcoming fade-in">
-        <span class="pub-badge badge-forthcoming">Forthcoming</span>
+        <span class="pub-badge badge-forthcoming">Accepted/Forthcoming</span>
         <div class="pub-text">
-          Neusser, C. (forthcoming). Gaining legitimacy in transition: The role of
-          trust in organizational change processes.
-          <em>Family Business Review (FBR)</em>.
+          Neusser, C., &amp; Belitski, M. (2026). Ecological Models in Family Business Succession.
+          In <em>Elgar Companion to Family Business and the SDGs</em>. Edward Elgar.
         </div>
       </li>
+
+      <li class="pub-item forthcoming fade-in">
+        <span class="pub-badge badge-forthcoming">Accepted/Forthcoming</span>
+        <div class="pub-text">
+          Neusser, C., &amp; Weller, M. (2026). Reframing Innovation: How Female Successors Redefine Risk.
+          <em>ZfKE – Zeitschrift für KMU und Entrepreneurship</em>.
+        </div>
+      </li>
+
       <li class="pub-item review fade-in">
-        <span class="pub-badge badge-review">Under Review</span>
+        <span class="pub-badge badge-review">Under Review (3 Papers)</span>
         <div class="pub-text">
-          Neusser, C. (under review). From disruption to renewal: Unpacking the
-          mechanisms of organizational resilience.
-          <em>Journal of Business Venturing (JBV)</em>.
+          Drei weitere Manuskripte befinden sich im Review bei <em>Family Business Review</em>,
+          <em>Entrepreneurship Theory &amp; Practice</em> und <em>Journal of Family Business Strategy</em>.
         </div>
       </li>
+
     </ul>
 
-    <div style="margin-top:1.8rem">
-      <div class="section-label" style="margin-top:0;margin-bottom:.7rem">Praxispublikationen</div>
-      <ul class="pub-list">
-        <li class="pub-item fade-in" style="border-left-color:var(--navy)">
-          <span class="pub-badge" style="background:#e0f2fe;color:#075985">Praktiker</span>
-          <div class="pub-text">
-            Neusser, C. (div. Jahre). Fachbeiträge zum Thema Projektmanagement in mittelständischen Strukturen.
-            <em>Fachzeitschriften &amp; Praxispublikationen</em>.
-          </div>
-        </li>
-        <li class="pub-item fade-in" style="border-left-color:var(--navy)">
-          <span class="pub-badge" style="background:#e0f2fe;color:#075985">Praktiker</span>
-          <div class="pub-text">
-            Neusser, C. (div. Jahre). Fachbeiträge zum Thema Controlling in KMU.
-            <em>Fachzeitschriften &amp; Praxispublikationen</em>.
-          </div>
-        </li>
-      </ul>
-    </div>
 
     <a class="orcid-link fade-in" href="https://orcid.org/0000-0001-6484-1421" target="_blank">
       <svg width="20" height="20" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -521,35 +563,53 @@ footer a { color: var(--teal); text-decoration: none; }
   </div>
 </section>
 
-<!-- KONFERENZEN -->
+<!-- WISSENSCHAFTLICHES NETZWERK & ENGAGEMENT -->
 <section>
   <div class="inner">
     <div class="section-label fade-in">Netzwerk &amp; Konferenzen</div>
-    <h2 class="section-title fade-in">Wissenschaftliches Engagement</h2>
+    <h2 class="section-title fade-in">Wissenschaftliches Netzwerk &amp; Engagement</h2>
     <div class="conf-grid">
 
       <div class="conf-card fade-in">
-        <div class="conf-name">EURAM 2026 · Stockholm</div>
+        <div class="conf-name">EURAM 2026 · Kristiansand, Norwegen</div>
         <div class="conf-role">Co-Organizer &amp; Track-Chair</div>
-        <div class="conf-desc">Track: Change Governance in komplexen Organisationen. European Academy of Management – eine der bedeutendsten Managementkonferenz-Plattformen Europas.</div>
+        <div class="conf-desc">Track: „Change Governance in komplexen Organisationen". European Academy of Management – eine der bedeutendsten Managementkonferenz-Plattformen Europas.</div>
       </div>
 
       <div class="conf-card fade-in">
-        <div class="conf-name">NCSB 2026</div>
+        <div class="conf-name">NCSB 2026 · Bodø, Norwegen</div>
         <div class="conf-role">Co-Organizer</div>
         <div class="conf-desc">Nordic Conference on Small Business Research. Fokus auf Familienunternehmen, KMU und unternehmerischen Wandel.</div>
       </div>
 
       <div class="conf-card fade-in">
-        <div class="conf-name">ACERE 2026 · Sydney</div>
+        <div class="conf-name">AOM 2026 · Philadelphia, USA</div>
         <div class="conf-role">Konferenzteilnahme</div>
-        <div class="conf-desc">Australian Centre for Entrepreneurship Research Exchange. Internationaler Austausch zu Entrepreneurship und experiential learning in der Hochschullehre.</div>
+        <div class="conf-desc">Academy of Management Annual Meeting. Präsentation und Networking zu Organizational Change und Family Business Research.</div>
       </div>
 
       <div class="conf-card fade-in">
-        <div class="conf-name">AOM &amp; EURAM</div>
-        <div class="conf-role">Reviewer</div>
-        <div class="conf-desc">Peer-Review-Tätigkeit für die Academy of Management (AOM) und EURAM in den Bereichen Organisation, Change Management und Familienunternehmensforschung.</div>
+        <div class="conf-name">IFERA 2026 · Napoli, Italien</div>
+        <div class="conf-role">Konferenzteilnahme</div>
+        <div class="conf-desc">International Family Enterprise Research Academy. Forschungsaustausch zu Familienunternehmen und Nachfolge.</div>
+      </div>
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">DTS 2026 · Napoli, Italien</div>
+        <div class="conf-role">Konferenzteilnahme</div>
+        <div class="conf-desc">Succession &amp; Transition-fokussierte Konferenz im Kontext von Familienunternehmen.</div>
+      </div>
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">FERC 2026 · Nizza, Frankreich</div>
+        <div class="conf-role">Konferenzteilnahme</div>
+        <div class="conf-desc">Family Enterprise Research Conference. Zentrale Plattform für international vernetzte Familienunternehmensforschung.</div>
+      </div>
+
+      <div class="conf-card fade-in">
+        <div class="conf-name">ACERE 2026 · Sydney, Australien</div>
+        <div class="conf-role">Konferenzteilnahme</div>
+        <div class="conf-desc">Australian Centre for Entrepreneurship Research Exchange. Internationaler Austausch zu Entrepreneurship und experiential learning in der Hochschullehre.</div>
       </div>
 
     </div>
@@ -576,12 +636,26 @@ footer a { color: var(--teal); text-decoration: none; }
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <p>© 2026 Dr. Christian Neusser, DBA ·
-    <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> ·
-    <a href="index.html">Zur Website</a> ·
-    <a href="changelog.html">Changelog</a>
-  </p>
+<footer style="background:#1A3A5C;color:white;padding:2.5rem 0 1.5rem;margin-top:3rem">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <div>
+        <div style="font-family:Georgia,serif;font-size:1rem;font-weight:700;margin-bottom:.3rem">Dr. Christian Neusser, DBA</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.7)">Organisation &amp; Change Management · Leadership · Transformation</div>
+      </div>
+      <nav style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-size:.85rem">
+        <a href="index.html" style="color:rgba(255,255,255,.78);text-decoration:none">Start</a>
+        <a href="lehrformate.html" style="color:rgba(255,255,255,.78);text-decoration:none">Lehre</a>
+        <a href="dba.html" style="color:rgba(255,255,255,.78);text-decoration:none">Doktorarbeit</a>
+        <a href="praxisbeispiele.html" style="color:rgba(255,255,255,.78);text-decoration:none">Wissen</a>
+        <a href="ueber-mich.html" style="color:rgba(255,255,255,.78);text-decoration:none">Über mich</a>
+      </nav>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.55)">
+      <span>© 2026 Dr. Christian Neusser, DBA · Alle Inhalte geschützt</span>
+      <span><a href="mailto:christian.neusser@me.com" style="color:rgba(255,255,255,.55);text-decoration:none">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none">ORCID</a></span>
+    </div>
+  </div>
 </footer>
 
 <script>
