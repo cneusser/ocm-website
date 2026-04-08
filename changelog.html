@@ -100,6 +100,13 @@ main { padding: 3rem 0 5rem; }
 /* ── FOOTER ── */
 footer { background: #0e2234; color: rgba(255,255,255,.42); padding: 1.5rem 0; font-size: .8rem; text-align: center; }
 footer a { color: var(--teal); }
+
+@media(min-width:700px){
+  .nav-toggle{display:none}
+  .nav-inner{position:relative}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem;position:absolute;left:50%;transform:translateX(-50%)}
+  .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
+}
 </style>
 </head>
 <body>
@@ -110,19 +117,11 @@ footer a { color: var(--teal); }
     <a class="nav-brand" href="index.html">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
     <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
   </div>
-  <div class="nav-menu" id="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="index.html#lehre">Fachvortrag &amp; Lehre</a>
-    <a href="index.html#wissen">Wissensportal</a>
-    <a href="dba.html">Doktorarbeit (Detail)</a>
-    <a href="lehrformate.html">Lehrformate (Detail)</a>
-    <a href="index.html#modell">MSTM-Modell</a>
-    <a href="index.html#forschung">Forschung &amp; Publikationen</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="index.html#kontakt">Kontakt</a>
+    <div class="nav-menu" id="nav-menu">
+    <a href="lehrformate.html">Lehre</a>
+    <a href="dba.html">Doktorarbeit</a>
+    <a href="praxisbeispiele.html">Wissen</a>
     <a href="ueber-mich.html">Über mich</a>
-    <a href="praxisbeispiele.html">Praxisbeispiele</a>
-    <a href="changelog.html" class="active">Changelog</a>
   </div>
 </nav>
 
@@ -130,7 +129,7 @@ footer a { color: var(--teal); }
 <div class="hero-cl">
   <div class="container">
     <div class="eyebrow">Website-Versionierung</div>
-    <div class="version-pill">Aktuelle Version: 0.9.1</div>
+    <div class="version-pill">Aktuelle Version: 0.8.1</div>
     <h1>Changelog</h1>
     <p>Vollständige Änderungshistorie der wissenschaftlichen Präsentations-Website zu Organisation &amp; Change Management – alle inhaltlichen, strukturellen und technischen Änderungen.</p>
   </div>
@@ -142,70 +141,42 @@ footer a { color: var(--teal); }
   <!-- ── v0.9.1 (CURRENT) ── -->
   <div class="version-block">
     <div class="version-header">
-      <span class="v-badge current">v0.9.1</span>
+      <span class="v-badge current">v0.8.1</span>
       <span class="v-date">April 2026</span>
-      <span class="v-title">Navigation, Struktur, CMS &amp; FH-Neutralisierung</span>
+      <span class="v-title">Navigation, Struktur, Inhalte &amp; Berufungsvortrag-Begleitung</span>
     </div>
 
     <div class="section-label-cl">Navigation &amp; Struktur</div>
     <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Always-Hamburger-Navigation:</strong> Einheitliches Hamburger-Menü (☰/✕) auf allen Seiten – keine Desktop-/Mobile-Unterscheidung mehr. Name „Dr. Christian Neusser, DBA · O&amp;CM" immer als separates Branding sichtbar.</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Menü auf Unterseiten:</strong> dba.html, lehrformate.html, praxisbeispiele.html, blog-admin.html, changelog.html, ueber-mich.html erhalten alle dieselbe konsistente Hamburger-Navigation mit vollem Menü.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>„Home"-Link:</strong> Erster Eintrag im Hamburger-Menü führt zu #hero (Hauptseite oben).</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Menüreduktion:</strong> Navigation von 12 auf 4 Punkte – Lehre / Doktorarbeit / Wissen / Über mich. Blog und Aktuelles entfernt.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Desktop-Navbar:</strong> Auf Desktops (≥ 700 px) werden Navigationspunkte jetzt prominent horizontal und zentriert in der Navbar angezeigt – kein Hamburger-Zwang mehr.</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Umbenennung:</strong> „Ich" → „Über mich" (ans Ende gestellt), „Forschung" → „Doktorarbeit".</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Anker-Links:</strong> Alle Sprungziele geprüft und bereinigt (kein #modell mehr). Konsistent auf allen 7 Seiten.</span></li>
     </ul>
 
-    <div class="section-label-cl">Neue Seiten</div>
+    <div class="section-label-cl">Inhalt – Berufungsvortrag-PPTX (berufungsvortrag_v3.pptx)</div>
     <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>dba.html – Dissertation (Detailseite):</strong> Eigenständige Seite mit vollständiger DBA-Darstellung: Abstract, Forschungsfragen, Theoretisches Framework (7 Perspektiven), Gioia-Methode, MSTM-Framework (4 Dimensionen), Kernbefunde (6), Propositionen P1–P6, 16 Akteursarchetypen, Statistiken (102 Interviews, 42 Unternehmen, Straight Pass).</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>lehrformate.html – Lehrformate (Detailseite):</strong> Eigenständige Seite mit didaktischen Formaten, wissenschaftlicher Begründung (konstruktivistisch, erfahrungsbasiert, Kolb) und Anwendungsbeispielen: VentureLab (10 Wochen), Change Practitioner Line, OT-Seminar, Action Learning. Hochschulengagements (DHBW Stuttgart seit 10/2004, DHBW CAS Heilbronn seit 04/2019, FAU 10/2005–09/2021).</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Folie 13 – Praxisbeispiele:</strong> Goldene Beispiel-Boxen unter jedem Org-Modell: DB Regio Bus, Siemens, FATH Gruppe, Spotify, Haier Group.</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Folie 14 – Teal-Umbenennung:</strong> „Divisionale Transformation" → „Teal / Dezentrale Organisation" + DB Regio Bus Anker-Callout.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Folie 15 – DB Regio Roter Faden:</strong> Goldene Callouts zu Sensing, Seizing, Reconfiguring mit konkretem DB Regio Bus Bezug.</span></li>
     </ul>
 
-    <div class="section-label-cl">Hauptseite (index.html)</div>
+    <div class="section-label-cl">Inhalt – Website</div>
     <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Hero-Eyebrow neutralisiert:</strong> „FH-Professur · Organisation &amp; Change Management · Fachhochschule Kärnten" → „Organisation &amp; Change Management · Berufungsvortrag April 2026".</span></li>
-      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>FH Kärnten CTA-Button:</strong> Button „Zur FH Kärnten Website" aus Hero-Sektion entfernt.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>DBA-Sektion → Teaser-Karte:</strong> Vollständige DBA-Inhalte (27 KB) durch kompakte Teaser-Karte ersetzt (4 Stats, Forschungsfrage, MSTM-Teaser, CTA zu dba.html).</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Referenzliste:</strong> Eigenständige Sektion „Verwendete Literatur" mit ca. 40 APA-7-Einträgen in 2-spaltigem Layout vor dem Forschungsbereich eingefügt.</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Forschungsprojekte bereinigt:</strong> „WKO Kärnten" → „WKO Österreich", „IV Kärnten" → „IV Österreich", „Eigenmittel / FH" → „Eigenmittel", „Technologiestandort Kärnten/Steiermark" → „Technologiestandort DACH".</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Monographie ISBN:</strong> Platzhalter „978-3-339-10XXX-X" durch korrekte Verlagsangabe ersetzt.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>Versionsnummer:</strong> Footer „Version 2.1" → „Version 0.9.1".</span></li>
-      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>FH Kärnten Kontakt:</strong> Kontakteintrag „Fachhochschule Kärnten" aus Kontaktsektion entfernt.</span></li>
-    </ul>
-
-    <div class="section-label-cl">Über-mich-Seite (ueber-mich.html)</div>
-    <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>Rechtswissenschaften:</strong> Timeline-Eintrag Rechtswissenschaften vollständig entfernt.</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Hero-Subtitle neutralisiert:</strong> „Kandidat FH-Professur Organisation &amp; Change Management · FH Kärnten" → „Organisation &amp; Change Management · Berufungskandidat".</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>E-Mail-Adresse:</strong> christian.neusser@googlemail.com → christian.neusser@me.com (überall einheitlich).</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Profilfoto:</strong> Professionelles Foto aus Lebenslauf extrahiert und als Base64-inline-Bild eingebettet.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Karrieresektion:</strong> 10 Karrierestationen als Karten: Groupe Atlantic, Oerlikon, V.FRAAS, 4C GROUP, DB Regio (×2), FATH Group (11 Jahre), Siemens/Honeywell Carve-outs, KPMG, Advisory Boards.</span></li>
-      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>Akademische Zeitleiste:</strong> DBA 04/2021–01/2026, MSc 10/2018–04/2021, MBA 04/2014–09/2017, Diplom-Betriebswirt 10/2001–06/2005.</span></li>
-    </ul>
-
-    <div class="section-label-cl">Blog-Admin (blog-admin.html)</div>
-    <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Login-Schutz:</strong> Vollbild-Login-Overlay mit SHA-256-Passwort-Authentifizierung (crypto.subtle). Session-Persistenz via sessionStorage.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Persistente Verbindungseinstellungen:</strong> GitHub-Token, Repository, Branch und Dateipfad werden in localStorage gespeichert und beim nächsten Login automatisch geladen und verbunden.</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Auto-Connect:</strong> Nach erfolgreichem Login wird automatisch die GitHub-Verbindung mit gespeicherten Einstellungen hergestellt.</span></li>
-      <li class="change-item"><span class="change-type ct-ux">UX</span><span><strong>Einstellungen löschen:</strong> Neuer „🗑 Löschen"-Button zum Entfernen gespeicherter Verbindungsdaten aus localStorage.</span></li>
-      <li class="change-item"><span class="change-type ct-ux">UX</span><span><strong>Beiträge bearbeiten:</strong> Bestehende Beiträge können aus der Beitrags-Liste geöffnet, bearbeitet und gespeichert werden. Löschen mit Bestätigungsdialog.</span></li>
-    </ul>
-
-    <div class="section-label-cl">Technisches &amp; Übergreifendes</div>
-    <ul class="change-list">
-      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>E-Mail google:</strong> christian.neusser@googlemail.com auf allen Seiten entfernt – einheitlich christian.neusser@me.com.</span></li>
-      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>FH-Professur im Footer:</strong> „Kandidat für FH-Professur" aus allen Footern entfernt.</span></li>
-      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>VentureLab Dauer korrigiert:</strong> „6 Wochen" → „10 Wochen" (alle Vorkommen in index.html und ueber-mich.html).</span></li>
-      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>posts.json:</strong> 4 initiale Blog-Beiträge angelegt: MSTM-Framework, VentureLab, EURAM Track-Chair, Haier Rendanheyi.</span></li>
+      <li class="change-item"><span class="change-type ct-new">Neu</span><span><strong>Wissensportal (praxisbeispiele.html) – Komplettumbau:</strong> 5-stufiges Org-Modell-Spektrum, DB Regio Bus als roter Faden (3 Phasen), Unternehmens-Deep-Dives mit History, kritischen und positiven Stimmen.</span></li>
+      <li class="change-item"><span class="change-type ct-fix">Fix</span><span><strong>DBA-Inhalte korrigiert:</strong> Alle 16 Akteursarchetypen und 4 Nachfolge-Konfigurationen aus der echten Viva-Präsentation extrahiert und ersetzt (vorher falsch).</span></li>
+      <li class="change-item"><span class="change-type ct-update">Update</span><span><strong>VentureLab Link:</strong> Direktlink zu cneusser.github.io/Venture-Labs/ ergänzt.</span></li>
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>Blog / Aktuelles:</strong> Ticker-Leiste, Blog-Sektion und Blog-Modal aus index.html entfernt.</span></li>
+      <li class="change-item"><span class="change-type ct-remove">Entfernt</span><span><strong>Berufungsvortrag-Referenz:</strong> „Berufungsvortrag April 2026" aus Hero-Eyebrow und Lehrformate-Seite entfernt.</span></li>
     </ul>
   </div>
 
   <!-- ── bis v0.9.0 (ZUSAMMENFASSUNG) ── -->
   <div class="version-block">
     <div class="version-header">
-      <span class="v-badge legacy">bis v0.9.0</span>
-      <span class="v-date">Februar – April 2026</span>
-      <span class="v-title">Aufbau &amp; Entwicklung (Zusammenfassung)</span>
+      <span class="v-badge legacy">v0.8</span>
+      <span class="v-date">Februar – März 2026</span>
+      <span class="v-title">Basisaufbau – Mehrseiten-Website (Zusammenfassung)</span>
     </div>
 
     <div class="summary-box" style="margin-bottom:1rem">

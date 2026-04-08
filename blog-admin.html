@@ -190,6 +190,13 @@
   .login-hint { text-align: center; font-size: .75rem; color: rgba(255,255,255,.28); margin-top: 1.2rem; }
   body.locked { overflow: hidden; }
 
+
+@media(min-width:700px){
+  .nav-toggle{display:none}
+  .nav-inner{position:relative}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem;position:absolute;left:50%;transform:translateX(-50%)}
+  .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
+}
 </style>
 </head>
 <body class="locked">
@@ -220,19 +227,11 @@
     <a class="nav-brand" href="index.html">Dr. Christian Neusser, DBA &nbsp;·&nbsp; <span>O&amp;CM</span></a>
     <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
   </div>
-  <div class="nav-menu" id="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="index.html#lehre">Fachvortrag &amp; Lehre</a>
-    <a href="index.html#wissen">Wissensportal</a>
-    <a href="dba.html">Doktorarbeit (Detail)</a>
-    <a href="lehrformate.html">Lehrformate (Detail)</a>
-    <a href="index.html#forschung">Forschung &amp; Publikationen</a>
-    <a href="index.html#blog">Blog</a>
-    <a href="index.html#kontakt">Kontakt</a>
+    <div class="nav-menu" id="nav-menu">
+    <a href="lehrformate.html">Lehre</a>
+    <a href="dba.html">Doktorarbeit</a>
+    <a href="praxisbeispiele.html">Wissen</a>
     <a href="ueber-mich.html">Über mich</a>
-    <a href="praxisbeispiele.html">Praxisbeispiele</a>
-    <a href="blog-admin.html" class="active">Blog Admin</a>
-    <a href="changelog.html">Changelog</a>
   </div>
 </nav>
 

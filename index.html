@@ -206,14 +206,6 @@
     .p-col.p-new h3{border-color:var(--teal);color:var(--navy)}
     .p-row{display:flex;gap:.85rem;align-items:flex-start;padding:.55rem 0;border-bottom:1px dashed #e0ecf4;font-size:.89rem;color:var(--text)}
     .p-row:last-child{border-bottom:none}
-    /* ── NEWS TICKER ── */
-    #ticker-bar{background:var(--navy);border-bottom:2px solid var(--gold);overflow:hidden;height:34px;display:flex;align-items:center}
-    #ticker-bar .ticker-label{flex-shrink:0;background:var(--gold);color:var(--white);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:0 .9rem;height:100%;display:flex;align-items:center;white-space:nowrap}
-    .ticker-track{display:flex;align-items:center;white-space:nowrap;animation:ticker-scroll 40s linear infinite;will-change:transform}
-    .ticker-track:hover{animation-play-state:paused}
-    .ticker-item{font-size:.78rem;color:rgba(255,255,255,.82);padding:0 2.5rem;cursor:pointer}
-    .ticker-item span{color:var(--gold);font-weight:600;margin-right:.5rem}
-    @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     /* ── BLOG ── */
     .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
     @media(max-width:900px){.blog-grid{grid-template-columns:repeat(2,1fr)}}
@@ -283,7 +275,8 @@
   
 @media(min-width:700px){
   .nav-toggle{display:none}
-  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem}
+  .nav-inner{position:relative}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem;position:absolute;left:50%;transform:translateX(-50%)}
   .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
 }
 </style>
@@ -301,24 +294,15 @@
   </div>
     <div class="nav-menu" id="nav-menu">
     <a href="lehrformate.html">Lehre</a>
-    <a href="dba.html">Forschung</a>
+    <a href="dba.html">Doktorarbeit</a>
     <a href="praxisbeispiele.html">Wissen</a>
     <a href="ueber-mich.html">Über mich</a>
   </div>
 </nav>
-
-<!-- NEWS TICKER -->
-<div id="ticker-bar">
-  <div class="ticker-label">Aktuell</div>
-  <div style="overflow:hidden;flex:1;position:relative">
-    <div class="ticker-track" id="ticker-track"><!-- filled by JS --></div>
-  </div>
-</div>
-
 <!-- HERO -->
 <section id="hero">
   <div class="container">
-    <div class="hero-eyebrow">Organisation &amp; Change Management · Berufungsvortrag April 2026</div>
+    <div class="hero-eyebrow">Organisation &amp; Change Management · Leadership · Transformation</div>
     <h1>Organisation &amp; Change Management:<br><span>Erneuerungsfähigkeit als organisationale Kernkompetenz</span></h1>
     <p class="hero-subtitle">Wissenschaftlich fundierte, praxisorientierte Lehre und Forschung an der Schnittstelle von Organisationsdesign, Legitimität und Wandel.</p>
     <div class="hero-thesis">
@@ -531,6 +515,9 @@
             <li>Geplante Publikation: <em>Effectuation &amp; Psychological Safety in experiential learning contexts</em> (JBV, under prep.)</li>
           </ul>
         </div>
+      </div>
+      <div style="margin-top:1.5rem;text-align:center">
+        <a href="https://cneusser.github.io/Venture-Labs/" target="_blank" class="btn btn-primary" style="font-size:.88rem">Live-Ergebnisse &amp; Studentenprojekte ansehen →</a>
       </div>
       <p class="ref-tag" style="margin-top:1rem">Kolb, D. A. (1984). <em>Experiential learning</em>. Prentice Hall. | Sarasvathy, S. D. (2001). Causation and effectuation. <em>AMR, 26</em>(2). | Revans, R. (1980). <em>Action learning</em>. Blond &amp; Briggs. | Edmondson, A. C. (1999). Psychological safety and learning behavior. <em>ASQ, 44</em>(2).</p>
     </div>
@@ -1014,27 +1001,6 @@
   </div>
 </section>
 
-<!-- BLOG -->
-<section id="blog">
-  <div class="container">
-    <div class="section-label">Blog · Forschung &amp; Praxis</div>
-    <h2 class="section-title">Aktuelle Beiträge</h2>
-    <p class="section-subtitle">Gedanken zu Organisationstheorie, Change Management, Lehre und Praxis – regelmäßig aktualisiert.</p>
-    <div class="blog-grid" id="blog-grid">
-      <div style="color:var(--muted);font-size:.9rem;grid-column:1/-1">Beiträge werden geladen…</div>
-    </div>
-    <div style="margin-top:1.5rem;text-align:center">
-      <a href="blog-admin.html" class="btn btn-outline" style="border-color:var(--teal);color:var(--teal);font-size:.82rem">Admin: Beitrag verfassen →</a>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG MODAL -->
-<div class="blog-modal-overlay" id="blog-modal" onclick="closeBlogModal(event)">
-  <div class="blog-modal">
-    <div class="blog-modal-head">
-      <button class="blog-modal-close" onclick="closeBlogModal(null)">✕</button>
-      <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:.35rem" id="modal-cat"></div>
       <h2 id="modal-title"></h2>
       <div class="blog-modal-meta" id="modal-meta"></div>
     </div>
@@ -1077,11 +1043,25 @@
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p>Dr. Christian Neusser, DBA &nbsp;·&nbsp; Organisation &amp; Change Management</p>
-    <p style="margin-top:.4rem"><a href="mailto:christian.neusser@me.com">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> &nbsp;·&nbsp; <a href="https://scholar.google.com/citations?user=ZPGTwF8AAAAJ" target="_blank">Google Scholar</a> &nbsp;·&nbsp; <a href="changelog.html">Changelog</a></p>
-    <p style="margin-top:.7rem;font-size:.74rem;opacity:.45">Version 0.9.1 · April 2026 · Alle Inhalte © Dr. Christian Neusser, DBA · Quellenangaben nach APA 7 · <a href="ueber-mich.html">Über mich</a> · <a href="praxisbeispiele.html">Praxisbeispiele</a></p>
+<footer style="background:#1A3A5C;color:white;padding:2.5rem 0 1.5rem;margin-top:3rem">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <div>
+        <div style="font-family:Georgia,serif;font-size:1rem;font-weight:700;margin-bottom:.3rem">Dr. Christian Neusser, DBA</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.7)">Organisation &amp; Change Management · Leadership · Transformation</div>
+      </div>
+      <nav style="display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-size:.85rem">
+        <a href="index.html" style="color:rgba(255,255,255,.78);text-decoration:none">Start</a>
+        <a href="lehrformate.html" style="color:rgba(255,255,255,.78);text-decoration:none">Lehre</a>
+        <a href="dba.html" style="color:rgba(255,255,255,.78);text-decoration:none">Doktorarbeit</a>
+        <a href="praxisbeispiele.html" style="color:rgba(255,255,255,.78);text-decoration:none">Wissen</a>
+        <a href="ueber-mich.html" style="color:rgba(255,255,255,.78);text-decoration:none">Über mich</a>
+      </nav>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;justify-content:space-between;font-size:.78rem;color:rgba(255,255,255,.55)">
+      <span>© 2026 Dr. Christian Neusser, DBA · Alle Inhalte geschützt</span>
+      <span><a href="mailto:christian.neusser@me.com" style="color:rgba(255,255,255,.55);text-decoration:none">christian.neusser@me.com</a> &nbsp;·&nbsp; <a href="https://orcid.org/0000-0001-6484-1421" target="_blank" style="color:rgba(255,255,255,.55);text-decoration:none">ORCID</a></span>
+    </div>
   </div>
 </footer>
 
@@ -1154,12 +1134,6 @@ document.querySelectorAll('.identity-card,.acc-item,.rc,.pub,.pillar,.p-col,.pro
   // Blog modal
   window._posts=posts;
 
-  // Ticker
-  const track=document.getElementById('ticker-track');
-  if(track && posts.length){
-    const items=posts.map(p=>`<span class="ticker-item" onclick="document.getElementById('blog').scrollIntoView({behavior:'smooth'})"><span>${p.category}</span>${p.title}</span>`).join('');
-    track.innerHTML=items+items; // duplicate for seamless loop
-  }
 })();
 
 window.openBlogModal=function(i){
