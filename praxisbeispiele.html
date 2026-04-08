@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Praxisbeispiele · Dr. Christian Neusser, DBA</title>
+<title>Wissensportal · Dr. Christian Neusser, DBA</title>
 <style>
 :root {
   --navy:    #1A3A5C;
@@ -16,110 +16,219 @@
   --border:  #D0DDE8;
   --accent:  #E8F4FA;
   --danger:  #C0392B;
+  --radius:  8px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Segoe UI', Calibri, Arial, sans-serif; color: var(--text); line-height: 1.65; background: var(--white); }
+h1, h2, h3, h4, h5 { font-family: Georgia, 'Times New Roman', serif; }
 
 /* ── NAV ── */
 nav#navbar { background: var(--navy); position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 58px; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 58px; max-width: 1100px; margin: 0 auto; }
 .nav-brand { color: var(--white); font-family: Georgia, serif; font-size: 1rem; font-weight: bold; text-decoration: none; white-space: nowrap; }
-.nav-brand span { color: var(--gold); }
-.nav-toggle { background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; padding: .2rem .5rem; line-height: 1; }
-.nav-menu { display: none; flex-direction: column; background: var(--navy); padding: .75rem 2rem 1.25rem; border-top: 1px solid rgba(255,255,255,.1); gap: .1rem; }
+.nav-brand span { color: var(--teal); }
+.nav-toggle { background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; padding: .2rem .5rem; line-height: 1; transition: color .2s; }
+.nav-toggle:hover { color: var(--teal); }
+.nav-menu { display: none; flex-direction: column; background: #112840; border-top: 2px solid var(--teal); padding: 0; }
 .nav-menu.open { display: flex; }
-.nav-menu a { color: #aabccc; text-decoration: none; font-size: .88rem; padding: .45rem 0; border-bottom: 1px solid rgba(255,255,255,.06); transition: color .2s; }
+.nav-menu a { color: rgba(255,255,255,.78); text-decoration: none; font-size: .88rem; font-weight: 500; padding: .75rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,.06); transition: background .15s, color .15s; }
 .nav-menu a:last-child { border-bottom: none; }
-.nav-menu a:hover, .nav-menu a.active { color: var(--white); }
+.nav-menu a:hover, .nav-menu a.active { color: var(--teal); background: rgba(255,255,255,.05); }
 
 /* ── HERO ── */
 .hero {
   background: linear-gradient(135deg, var(--navy) 60%, #0e2d4a);
   border-left: 6px solid var(--gold);
-  padding: 4rem 2rem 3.5rem;
+  padding: 4.5rem 2rem 3.5rem;
   color: var(--white);
 }
-.hero-inner { max-width: 900px; margin: 0 auto; }
+.hero-inner { max-width: 1000px; margin: 0 auto; }
 .hero-eyebrow { font-size: .78rem; text-transform: uppercase; letter-spacing: .15em; color: var(--gold); font-weight: bold; margin-bottom: .9rem; }
-.hero h1 { font-family: Georgia, serif; font-size: 2.2rem; font-weight: bold; line-height: 1.2; margin-bottom: .6rem; }
-.hero-sub { font-size: 1rem; color: #aabccc; margin-bottom: 2rem; }
-.hero-intro { font-size: .97rem; color: #d0dde8; max-width: 700px; line-height: 1.7; margin-bottom: 2.5rem; }
-.stats-row { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-.stat { text-align: center; }
-.stat-num { font-family: Georgia, serif; font-size: 2rem; font-weight: bold; color: var(--gold); line-height: 1; }
-.stat-label { font-size: .75rem; color: #aabccc; margin-top: .2rem; text-transform: uppercase; letter-spacing: .07em; }
+.hero h1 { font-size: 2.4rem; font-weight: bold; line-height: 1.2; margin-bottom: .6rem; }
+.hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.82); margin-bottom: .6rem; line-height: 1.5; }
+.hero-intro { font-size: .95rem; color: rgba(255,255,255,.72); max-width: 750px; line-height: 1.7; margin-bottom: 2.5rem; }
 
-/* ── CASE NAV (anchor links) ── */
-.case-nav { background: var(--light-bg); border-bottom: 1px solid var(--border); padding: .75rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; }
-.case-nav a { color: var(--teal); text-decoration: none; font-size: .85rem; font-weight: 600; padding: .3rem .6rem; border-radius: 4px; transition: background .2s; }
-.case-nav a:hover { background: var(--accent); }
+/* ── MAIN CONTENT ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+section { padding: 4.5rem 2rem; }
+section:nth-child(even) { background: var(--light-bg); }
+.section-label { font-family: 'Segoe UI', sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--teal); margin-bottom: .5rem; }
+.section-title { font-size: 2rem; color: var(--navy); margin-bottom: .9rem; }
+.section-subtitle { font-size: 1rem; color: var(--muted); max-width: 750px; margin-bottom: 2rem; }
 
-/* ── CASE STUDY ── */
-.case-section { padding: 4rem 2rem; }
-.case-section:nth-child(even) { background: var(--light-bg); }
-.case-inner { max-width: 920px; margin: 0 auto; }
+/* ── INTRO BANNER ── */
+.intro-banner { padding: 5rem 2rem; background: linear-gradient(135deg, var(--navy) 0%, #0D5280 100%); color: var(--white); text-align: left; }
+.intro-banner .container { max-width: 1100px; }
+.intro-banner .section-title { color: var(--white); font-size: 2.5rem; margin-bottom: .7rem; }
+.intro-banner .section-subtitle { color: rgba(255,255,255,.85); font-size: 1.15rem; max-width: 800px; }
 
-.case-header { margin-bottom: 2rem; }
-.case-badges { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.badge { display: inline-block; font-size: .72rem; font-weight: bold; padding: .2rem .55rem; border-radius: 4px; text-transform: uppercase; letter-spacing: .06em; }
-.badge-sector { background: var(--accent); color: var(--teal); border: 1px solid var(--teal); }
-.badge-mandate { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-.badge-year { background: #f3f4f6; color: #4b5563; border: 1px solid var(--border); }
-.case-title { font-family: Georgia, serif; font-size: 1.8rem; color: var(--navy); margin-bottom: .3rem; }
-.case-subtitle { font-size: 1rem; color: var(--muted); }
+/* ── SPECTRUM SECTION ── */
+.spectrum-intro { margin-bottom: 3rem; }
+.spectrum-intro p { font-size: .95rem; line-height: 1.7; margin-bottom: 1rem; }
+.spectrum-bar { display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; margin-bottom: 2.5rem; }
+@media (max-width: 768px) {
+  .spectrum-bar { grid-template-columns: 1fr; }
+}
+.spectrum-item { position: relative; }
+.spectrum-dot {
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg,
+    var(--navy) 0%,
+    #0B5B8E 25%,
+    var(--teal) 50%,
+    #0DA5BD 75%,
+    #1AC4D4 100%);
+  margin-bottom: .8rem;
+  box-shadow: 0 2px 8px rgba(13, 126, 160, .2);
+}
+.spectrum-label { font-size: .8rem; font-weight: 600; color: var(--navy); text-align: center; margin-bottom: 1.2rem; }
+.spectrum-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; }
+@media (max-width: 768px) {
+  .spectrum-cards { grid-template-columns: 1fr; }
+}
+.spectrum-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+  box-shadow: 0 2px 10px rgba(26, 58, 92, .08);
+}
+.spectrum-card h3 { font-size: 1rem; color: var(--navy); margin-bottom: .5rem; }
+.spectrum-card .card-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; color: var(--teal); font-weight: 600; margin-bottom: .6rem; display: block; }
+.spectrum-card p { font-size: .85rem; line-height: 1.6; color: var(--text); margin-bottom: .8rem; }
+.spectrum-card ul { padding-left: 1rem; font-size: .83rem; }
+.spectrum-card li { margin-bottom: .3rem; color: var(--muted); }
 
-.case-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; align-items: start; }
-@media(max-width:768px) { .case-grid { grid-template-columns: 1fr; } }
+/* ── ROTER FADEN SECTION ── */
+.roter-faden {
+  background: var(--white);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 2.2rem;
+  box-shadow: 0 4px 16px rgba(232, 160, 32, .12);
+  margin: 3rem 0;
+}
+.roter-faden h2 { font-size: 1.5rem; color: var(--navy); margin-bottom: 1.5rem; }
+.roter-faden h3 { font-size: 1.05rem; color: var(--navy); margin-top: 2rem; margin-bottom: .8rem; }
+.roter-faden h3:first-child { margin-top: 0; }
+.roter-faden p { font-size: .92rem; line-height: 1.7; margin-bottom: .9rem; color: var(--text); }
+.roter-faden ul { padding-left: 1.2rem; margin-bottom: 1.5rem; }
+.roter-faden li { font-size: .9rem; line-height: 1.6; margin-bottom: .4rem; color: var(--text); }
+.roter-faden strong { color: var(--navy); }
+.roter-faden em { color: var(--teal); font-style: italic; }
 
-.case-body h3 { font-family: Georgia, serif; font-size: 1.05rem; color: var(--navy); margin: 1.5rem 0 .6rem; }
-.case-body h3:first-child { margin-top: 0; }
-.case-body p { font-size: .93rem; line-height: 1.7; margin-bottom: .8rem; }
-.case-body ul { padding-left: 1.2rem; margin-bottom: .8rem; }
-.case-body li { font-size: .9rem; line-height: 1.6; margin-bottom: .4rem; }
+/* ── DEEP DIVES SECTION ── */
+.deep-dives { padding: 4.5rem 2rem; background: var(--white); }
+.deep-dives .container { max-width: 1100px; }
+.deep-dive-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(26, 58, 92, .08);
+  transition: box-shadow .3s, transform .3s;
+}
+.deep-dive-card:hover {
+  box-shadow: 0 4px 20px rgba(26, 58, 92, .15);
+  transform: translateY(-2px);
+}
+.ddv-header {
+  background: linear-gradient(135deg, var(--navy) 0%, #0B5B8E 100%);
+  color: var(--white);
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  transition: background .2s;
+}
+.ddv-header:hover {
+  background: linear-gradient(135deg, #132E46 0%, #0B5B8E 100%);
+}
+.ddv-header.open {
+  background: linear-gradient(135deg, var(--teal) 0%, #0B9CB5 100%);
+}
+.ddv-header h3 { font-size: 1.1rem; margin: 0; }
+.ddv-toggle { font-size: 1.3rem; color: var(--white); transition: transform .3s; }
+.ddv-header.open .ddv-toggle { transform: rotate(180deg); }
+.ddv-body {
+  display: none;
+  padding: 1.8rem;
+  background: var(--white);
+  border-top: 2px solid var(--teal);
+}
+.ddv-body.open { display: block; }
+.ddv-body h4 { font-size: .95rem; color: var(--navy); margin-top: 1.5rem; margin-bottom: .6rem; }
+.ddv-body h4:first-child { margin-top: 0; }
+.ddv-body p { font-size: .9rem; line-height: 1.7; margin-bottom: .8rem; }
+.ddv-body ul { padding-left: 1.2rem; margin-bottom: .8rem; }
+.ddv-body li { font-size: .88rem; line-height: 1.6; margin-bottom: .4rem; }
 
-/* Quote box */
-.quote-box { border-radius: 8px; padding: 1.25rem 1.5rem; margin-top: 1.5rem; position: relative; }
-.quote-box::before { content: '\201C'; font-family: Georgia, serif; font-size: 3.5rem; line-height: 0; position: absolute; top: 1.2rem; left: .8rem; opacity: .25; }
-.quote-box p { font-family: Georgia, serif; font-size: .97rem; line-height: 1.6; padding-left: 1.5rem; }
-.qb-teal { background: var(--accent); border-left: 4px solid var(--teal); color: var(--navy); }
-.qb-navy { background: #dbe6f0; border-left: 4px solid var(--navy); color: var(--navy); }
-.qb-gold { background: #fff8e8; border-left: 4px solid var(--gold); color: #4a3000; }
-
-/* Sidebar info card */
-.case-sidebar { display: flex; flex-direction: column; gap: 1rem; }
-.info-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem 1.25rem; }
-.info-card.highlight { background: var(--navy); border-color: var(--navy); }
-.info-card h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .7rem; }
-.info-card.highlight h4 { color: var(--gold); }
-.info-row { display: flex; justify-content: space-between; align-items: baseline; padding: .35rem 0; border-bottom: 1px solid var(--border); font-size: .88rem; gap: .5rem; }
-.info-row:last-child { border-bottom: none; }
-.info-label { color: var(--muted); font-size: .8rem; }
-.info-val { font-weight: 600; color: var(--navy); text-align: right; }
-.info-card.highlight .info-row { border-color: rgba(255,255,255,.12); }
-.info-card.highlight .info-label { color: #aabccc; }
-.info-card.highlight .info-val { color: var(--white); }
-
-.sci-link { font-size: .8rem; color: var(--teal); line-height: 1.5; font-style: italic; }
-
-/* ── CROSS-CUTTING INSIGHTS ── */
-.insights-section { background: var(--navy); padding: 4rem 2rem; }
-.insights-inner { max-width: 920px; margin: 0 auto; }
-.insights-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2rem; }
-@media(max-width:768px) { .insights-grid { grid-template-columns: 1fr; } }
-.insight-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 1.75rem 1.5rem; }
-.insight-num { font-family: Georgia, serif; font-size: 2.5rem; color: var(--gold); opacity: .6; line-height: 1; margin-bottom: .75rem; }
-.insight-card h3 { font-family: Georgia, serif; color: var(--white); font-size: 1.05rem; margin-bottom: .6rem; }
-.insight-card p { color: #aabccc; font-size: .88rem; line-height: 1.6; }
+/* ── DREI SÄULEN TEASER ── */
+.drei-saeulen-teaser {
+  background: linear-gradient(135deg, var(--navy) 0%, #0B5B8E 100%);
+  color: var(--white);
+  padding: 3.5rem 2rem;
+  border-left: 6px solid var(--gold);
+  margin: 3rem 0;
+}
+.drei-saeulen-teaser h3 { font-size: 1.4rem; color: var(--white); margin-bottom: 1rem; }
+.drei-saeulen-teaser p { font-size: .95rem; color: rgba(255,255,255,.82); margin-bottom: 1.5rem; line-height: 1.7; }
+.drei-saeulen-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 768px) {
+  .drei-saeulen-list { grid-template-columns: 1fr; }
+}
+.dsl-item {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  padding: 1.3rem;
+}
+.dsl-item h4 {
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--gold);
+  margin-bottom: .6rem;
+}
+.dsl-item p { font-size: .88rem; color: rgba(255,255,255,.78); }
+.drei-saeulen-cta { margin-top: 1.5rem; }
+.drei-saeulen-cta a {
+  display: inline-block;
+  color: var(--white);
+  background: var(--gold);
+  padding: .6rem 1.4rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .88rem;
+  transition: background .2s, color .2s;
+}
+.drei-saeulen-cta a:hover {
+  background: #d4911c;
+  color: var(--white);
+  text-decoration: none;
+}
 
 /* ── FOOTER ── */
-footer { background: #0e2438; color: #7a9ab5; font-size: .82rem; text-align: center; padding: 1.5rem; }
+footer {
+  background: #0e2438;
+  color: #7a9ab5;
+  font-size: .82rem;
+  text-align: center;
+  padding: 1.5rem;
+}
 footer a { color: var(--teal); text-decoration: none; }
-
-/* ── BACK LINKS ── */
-.back-bar { background: var(--light-bg); border-top: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
-.back-bar a { color: var(--teal); text-decoration: none; font-size: .88rem; font-weight: 600; }
-.back-bar a:hover { text-decoration: underline; }
 
 /* ── SCROLL ANIMATION ── */
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
@@ -135,394 +244,406 @@ footer a { color: var(--teal); text-decoration: none; }
     <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
   </div>
   <div class="nav-menu" id="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="index.html#lehre">Fachvortrag &amp; Lehre</a>
-    <a href="index.html#wissen">Wissensportal</a>
-    <a href="dba.html">Doktorarbeit (Detail)</a>
-    <a href="lehrformate.html">Lehrformate (Detail)</a>
-    <a href="index.html#modell">MSTM-Modell</a>
-    <a href="index.html#forschung">Forschung &amp; Publikationen</a>
+    <a href="ueber-mich.html">Ich</a>
+    <a href="lehrformate.html">Lehre</a>
+    <a href="dba.html">Forschung</a>
+    <a href="praxisbeispiele.html" class="active">Wissen</a>
     <a href="index.html#blog">Blog</a>
-    <a href="index.html#kontakt">Kontakt</a>
-    <a href="ueber-mich.html">Über mich</a>
-    <a href="praxisbeispiele.html" class="active">Praxisbeispiele</a>
-    <a href="changelog.html">Changelog</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Praxiserfahrung · 25 Jahre · DACH &amp; International</div>
-    <h1>Praxisbeispiele &amp; Mandate</h1>
-    <div class="hero-sub">Vier Change-Mandate aus meiner Führungspraxis – von der Diagnose bis zur nachhaltigen Transformation.</div>
-    <p class="hero-intro">
-      Die folgenden vier Mandate sind nicht Fallstudien aus Lehrbüchern – es sind meine eigenen Erfahrungen.
-      Das MSTM-Framework (Mechanisms–Structure–Trust–Mandate, Neusser 2026) ist
-      aus genau diesen Erfahrungen entstanden: induktiv, verankert, praxistauglich.
-    </p>
-    <div class="stats-row">
-      <div class="stat"><div class="stat-num">4</div><div class="stat-label">Mandate</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Länder</div></div>
-      <div class="stat"><div class="stat-num">~15.000</div><div class="stat-label">Betroffene MA</div></div>
-      <div class="stat"><div class="stat-num">2005–2025</div><div class="stat-label">Zeitraum</div></div>
-    </div>
+<!-- INTRO BANNER -->
+<div class="intro-banner fade-in">
+  <div class="container">
+    <h1 class="section-title">Wissensportal: Organisationsdesign &amp; Change Management</h1>
+    <p class="section-subtitle">Von Theorie zur Praxis — fundierte Einblicke in Organisationsmodelle, Unternehmenstransformationen und Change Management</p>
   </div>
 </div>
 
-<!-- ANCHOR NAV -->
-<div class="case-nav">
-  <a href="#db-regio">01 · Deutsche Bahn</a>
-  <a href="#oerlikon">02 · Oerlikon AG</a>
-  <a href="#groupe-atlantic">03 · Groupe Atlantic</a>
-  <a href="#mittelstand">04 · Mittelstand</a>
-  <a href="#insights">Übergreifende Insights</a>
-</div>
+<!-- DAS ORGANISATIONSSPEKTRUM -->
+<section id="spectrum">
+  <div class="container fade-in">
+    <div class="section-label">Organisationaler Rahmen</div>
+    <h2 class="section-title">Das Organisationsspektrum</h2>
+    <p class="section-subtitle">Fünf Modelle der Organisationsgestaltung — von klassischer Hierarchie bis zur selbstorganisierten Teal-Organisation.</p>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- CASE 01: DEUTSCHE BAHN -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<section class="case-section" id="db-regio">
-  <div class="case-inner">
-    <div class="case-header fade-in">
-      <div class="case-badges">
-        <span class="badge badge-year">2018 – 2020</span>
-        <span class="badge badge-sector">Öffentlicher Nahverkehr</span>
-        <span class="badge badge-mandate">Change Governance</span>
-      </div>
-      <div class="case-title">Deutsche Bahn AG · DB Regio Bus</div>
-      <div class="case-subtitle">Kontextuelle Ambidexterität · Mandatsklärung · After-Action Reviews</div>
+    <div class="spectrum-intro">
+      <p>
+        Organisationsformen sind nicht „besser" oder „schlechter" — sie sind <strong>kontextabhängig</strong>. Die folgende Systematik basiert auf:
+      </p>
+      <ul style="padding-left: 1.5rem; font-size: .95rem; line-height: 1.8;">
+        <li><strong>Weber</strong> und <strong>Taylor</strong> (Klassische Hierarchie) als Grundmodell</li>
+        <li><strong>Mintzberg</strong> (Divisionale Struktur) als Dezentralisierungsvariante</li>
+        <li><strong>Tushman &amp; O'Reilly</strong> (Ambidextrous Organization)</li>
+        <li><strong>Spotify Squad Model</strong> und <strong>Amazon Two-Pizza-Teams</strong> (Agiles Netzwerk)</li>
+        <li><strong>Laloux</strong> und <strong>Zhang Ruimin</strong> (Holacracy / Teal)</li>
+      </ul>
     </div>
 
-    <div class="case-grid">
-      <div class="case-body fade-in">
-
-        <h3>Kontext</h3>
-        <p>DB Regio Bus ist die Regionalbus-Sparte des Deutschen Bahn-Konzerns mit über 10.000 Mitarbeitenden – eingebettet in eine der größten und hierarchisch tiefsten Organisationen Europas. 80 Jahre gewachsene Strukturen, eine ausgeprägte Stabskultur und ein zunehmender Wettbewerbs- und Regulierungsdruck durch die Mobilitätswende bildeten den Kontext meines Mandats.</p>
-
-        <h3>Herausforderungen</h3>
-        <ul>
-          <li>Informationssilos und 6–8 Wochen Verzögerung bei Kundensignalen bis auf Vorstandsebene.</li>
-          <li>Fehlende Mandatsklarheit: Wer hat das Recht und die Pflicht, Wandelentscheidungen zu treffen?</li>
-          <li>Hierarchische Trägheit (Hannan &amp; Freeman 1984) trotz klarer strategischer Intention und ausreichend Budget.</li>
-          <li>Resistance to Change auf allen Hierarchieebenen – nicht aus Böswilligkeit, sondern aus fehlender Orientierung.</li>
-        </ul>
-
-        <h3>Intervention &amp; Vorgehen</h3>
-        <p>Die Diagnose erfolgte mit dem MSTM-Framework: Welche <em>Mechanisms</em> steuern Wandel? Welche <em>Structure</em> hemmt ihn? Wo fehlt <em>Trust</em>? Und: Wer hat das <em>Mandate</em> zu handeln? Die Befunde waren eindeutig: Die Strategie war klar und gut. Der Fehler lag nicht in der Richtung, sondern in der Entscheidungsarchitektur. In einem Staatskonzern mit 80 Jahren Tradition war kein explizites Mandat für dezentrale Wandelentscheidungen vorhanden.</p>
-        <p>Schrittweise wurden Mandatsstrukturen neu definiert, lokale Entscheidungsrechte für Change-Teams verankert und ein systematischer After-Action-Review-Zyklus eingeführt. Parallel wurde eine Sensing-Infrastruktur aufgebaut, die Kundensignale und Betriebsratsfeedback strukturiert aufnahm und verarbeitete – anstatt diese im Aggregationsprozess zu verlieren.</p>
-
-        <h3>Ergebnisse</h3>
-        <ul>
-          <li>Mandatsstruktur neu definiert → Entscheidungsgeschwindigkeit messbar erhöht (intern: ~40% weniger Eskalationszyklen).</li>
-          <li>After-Action Reviews eingeführt → Wissenstransfer institutionalisiert, nicht mehr als Einmalveranstaltung.</li>
-          <li>Sensing-Infrastruktur aufgebaut: Kundenfeedback erreichte Entscheidungsebenen in Echtzeit statt mit Wochenverzug.</li>
-        </ul>
-
-        <div class="quote-box qb-teal fade-in">
-          <p>Der Fehler war nicht die Strategie – sie war klar und gut. Der Fehler war das fehlende Mandat: Ohne explizite Entscheidungsarchitektur bleibt Wandel ein Wunsch.</p>
-        </div>
-
+    <!-- SPECTRUM BAR -->
+    <div class="spectrum-bar">
+      <div class="spectrum-item">
+        <div class="spectrum-dot"></div>
+        <div class="spectrum-label">Klassisch</div>
       </div>
-
-      <div class="case-sidebar fade-in">
-        <div class="info-card">
-          <h4>Eckdaten</h4>
-          <div class="info-row"><span class="info-label">Unternehmen</span><span class="info-val">Deutsche Bahn AG</span></div>
-          <div class="info-row"><span class="info-label">Sparte</span><span class="info-val">DB Regio Bus</span></div>
-          <div class="info-row"><span class="info-label">Zeitraum</span><span class="info-val">2018 – 2020</span></div>
-          <div class="info-row"><span class="info-label">Sektor</span><span class="info-val">ÖPNV / Mobility</span></div>
-          <div class="info-row"><span class="info-label">Land</span><span class="info-val">Deutschland</span></div>
-        </div>
-        <div class="info-card highlight">
-          <h4>MSTM-Diagnose</h4>
-          <div class="info-row"><span class="info-label">Mechanisms</span><span class="info-val">Schwach</span></div>
-          <div class="info-row"><span class="info-label">Structure</span><span class="info-val">Träge</span></div>
-          <div class="info-row"><span class="info-label">Trust</span><span class="info-val">Mittel</span></div>
-          <div class="info-row"><span class="info-label">Mandate</span><span class="info-val">Fehlend</span></div>
-        </div>
-        <div class="info-card">
-          <h4>Wissenschaftliche Basis</h4>
-          <p class="sci-link">Kontextuelle Ambidexterität (Gibson &amp; Birkinshaw 2004 AMJ) · Structural Inertia (Hannan &amp; Freeman 1984 ASR) · Dynamic Capabilities – Sensing (Teece et al. 1997 SMJ)</p>
-          <div style="margin-top:.75rem;">
-            <a href="https://www.deutschebahn.com" target="_blank" style="color:var(--teal); font-size:.8rem; text-decoration:none;">→ Deutsche Bahn AG ↗</a>
-          </div>
-        </div>
+      <div class="spectrum-item">
+        <div class="spectrum-dot"></div>
+        <div class="spectrum-label">Divisional</div>
+      </div>
+      <div class="spectrum-item">
+        <div class="spectrum-dot"></div>
+        <div class="spectrum-label">Ambidextrous</div>
+      </div>
+      <div class="spectrum-item">
+        <div class="spectrum-dot"></div>
+        <div class="spectrum-label">Agil</div>
+      </div>
+      <div class="spectrum-item">
+        <div class="spectrum-dot"></div>
+        <div class="spectrum-label">Holacracy</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- CASE 02: OERLIKON -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<section class="case-section" id="oerlikon">
-  <div class="case-inner">
-    <div class="case-header fade-in">
-      <div class="case-badges">
-        <span class="badge badge-year">2023 – 2025</span>
-        <span class="badge badge-sector">Industrietechnologie</span>
-        <span class="badge badge-mandate">Restrukturierung</span>
-      </div>
-      <div class="case-title">Oerlikon AG</div>
-      <div class="case-subtitle">Restrukturierungs-Governance · Seizing · Dezentrale Entscheidungsrechte</div>
-    </div>
-
-    <div class="case-grid">
-      <div class="case-body fade-in">
-
-        <h3>Kontext</h3>
-        <p>Oerlikon ist ein Schweizer Technologiekonzern mit Produktionsstandorten in Europa und Asien – spezialisiert auf Oberflächenlösungen, Faserherstellung und additive Fertigung. Der Transformationsdruck entstand durch Margenerosion, gestörte Lieferketten post-COVID und eine strategische Neuausrichtung des Konzernportfolios. Fünf Produktionsstandorte standen auf dem Prüfstand.</p>
-
-        <h3>Herausforderungen</h3>
-        <ul>
-          <li>5 Produktionsstandorte mit unklarer strategischer Zukunft – keine einheitliche Entscheidungsgrundlage.</li>
-          <li>Governance-Vakuum: Kein klares Entscheidungsmandat für standortübergreifende Restrukturierung.</li>
-          <li>Widerstand auf lokaler und Divisionsebene, verstärkt durch Unsicherheit über Zukunftspläne.</li>
-          <li>Soziale Komplexität: 3 Länder, 2 Betriebsräte, unterschiedliche Arbeitsrechtssysteme.</li>
-        </ul>
-
-        <h3>Intervention &amp; Vorgehen</h3>
-        <p>Der erste und entscheidende Schritt war die Einrichtung einer klaren Restrukturierungs-Governance: explizites Mandat für das Entscheidungsteam, wöchentliche Entscheidungszyklen statt monatlicher Aufsichtsrats-Boards. Lokale Umsetzungsteams erhielten echte Entscheidungsrechte im vereinbarten Rahmen – das ist Seizing nach Teece et al. (1997): Chancen konsequent umsetzen durch Governance für schnelle Entscheidungen.</p>
-        <p>Sozialpartner wurden nicht als Widerstand behandelt, sondern früh in die Diagnose eingebunden. Das schuf eine Vertrauensbasis, die schnellere Einigungen ermöglichte. Das Governance-Modell wurde nach Abschluss der ersten Standortentscheidungen als Blueprint für weitere Restrukturierungsprozesse im Konzern übernommen.</p>
-
-        <h3>Ergebnisse</h3>
-        <ul>
-          <li>5 Standortentscheidungen in 9 Monaten getroffen und kommuniziert – ein Bruchteil der branchenüblichen 2–3 Jahre.</li>
-          <li>Governance-Modell als konzernweiter Blueprint übernommen.</li>
-          <li>Sozialpartner-Integration führte zu weniger Eskalationen und konstruktiveren Einigungsprozessen.</li>
-        </ul>
-
-        <div class="quote-box qb-navy fade-in">
-          <p>Restrukturierung scheitert selten an der falschen Entscheidung – sie scheitert an zu langsamen Entscheidungen. Governance ist Speed.</p>
-        </div>
-
+    <!-- SPECTRUM CARDS -->
+    <div class="spectrum-cards">
+      <!-- 1. KLASSISCHE HIERARCHIE -->
+      <div class="spectrum-card fade-in">
+        <span class="card-label">Weber · Taylor</span>
+        <h3>Klassische Hierarchie</h3>
+        <p><strong>Merkmale:</strong> Klare Hierarchiestufen, standardisierte Prozesse, reproduzierbare Qualität. Optimal für stabile Umwelten und regulierte Märkte.</p>
+        <p><strong>Typische Branchen:</strong> Deutsche Bahn AG (vor 2018), Öffentliche Verwaltung, Großkonzerne in stabilen Sektoren.</p>
+        <p><strong>Grenzen:</strong> Informationsengpässe (Galbraith 1974), Entscheidungslatenz, Wandlungsresistenz (Hannan &amp; Freeman 1984).</p>
       </div>
 
-      <div class="case-sidebar fade-in">
-        <div class="info-card">
-          <h4>Eckdaten</h4>
-          <div class="info-row"><span class="info-label">Unternehmen</span><span class="info-val">Oerlikon AG</span></div>
-          <div class="info-row"><span class="info-label">Zeitraum</span><span class="info-val">2023 – 2025</span></div>
-          <div class="info-row"><span class="info-label">Sektor</span><span class="info-val">Industrietechnologie</span></div>
-          <div class="info-row"><span class="info-label">Länder</span><span class="info-val">CH / DE / AT</span></div>
-          <div class="info-row"><span class="info-label">Standorte</span><span class="info-val">5 Standorte</span></div>
-        </div>
-        <div class="info-card highlight">
-          <h4>MSTM-Diagnose</h4>
-          <div class="info-row"><span class="info-label">Mechanisms</span><span class="info-val">Vorhanden</span></div>
-          <div class="info-row"><span class="info-label">Structure</span><span class="info-val">Zu starr</span></div>
-          <div class="info-row"><span class="info-label">Trust</span><span class="info-val">Fragil</span></div>
-          <div class="info-row"><span class="info-label">Mandate</span><span class="info-val">Unklar</span></div>
-        </div>
-        <div class="info-card">
-          <h4>Wissenschaftliche Basis</h4>
-          <p class="sci-link">Dynamic Capabilities – Seizing (Teece et al. 1997 SMJ) · Change Governance (Neusser 2026) · Sensemaking (Weick 1995)</p>
-          <div style="margin-top:.75rem;">
-            <a href="https://www.oerlikon.com" target="_blank" style="color:var(--teal); font-size:.8rem; text-decoration:none;">→ Oerlikon AG ↗</a>
-          </div>
-        </div>
+      <!-- 2. DIVISIONALE STRUKTUR -->
+      <div class="spectrum-card fade-in">
+        <span class="card-label">Mintzberg</span>
+        <h3>Divisionale Struktur</h3>
+        <p><strong>Merkmale:</strong> Geschäftsbereiche mit eigener P&amp;L-Verantwortung. Fokus und Eigenverantwortung bei gemeinsamen Standards.</p>
+        <p><strong>Typische Unternehmen:</strong> Siemens AG, Robert Bosch GmbH, Küchenquelle (Transformation 2012–2016).</p>
+        <p><strong>Grenzen:</strong> Koordinationsaufwand, Silodenken, redundante Ressourcen.</p>
+      </div>
+
+      <!-- 3. AMBIDEXTROUS -->
+      <div class="spectrum-card fade-in">
+        <span class="card-label">Tushman &amp; O'Reilly</span>
+        <h3>Ambidextrous Organisation</h3>
+        <p><strong>Merkmale:</strong> Getrennte Einheiten für Exploitation und Exploration. Kerngeschäft bleibt stabil, explorative Einheiten agieren eigenständig.</p>
+        <p><strong>Typische Beispiele:</strong> FATH Gruppe Spalt (2005–2016), Apple, Gore-Tex.</p>
+        <p><strong>Kontextuelle Variante:</strong> Individuen managen Spannung selbst (Gibson &amp; Birkinshaw 2004) — Deutsche Bahn DB Regio (2018–2020).</p>
+      </div>
+
+      <!-- 4. AGILES NETZWERK -->
+      <div class="spectrum-card fade-in">
+        <span class="card-label">Spotify · Amazon</span>
+        <h3>Agiles Netzwerk</h3>
+        <p><strong>Merkmale:</strong> Autonome Mini-Teams mit gemeinsamen Standards. Hohe Reaktionsgeschwindigkeit, dezentrale Entscheidungen.</p>
+        <p><strong>Typische Unternehmen:</strong> Spotify (Squads, Tribes ab 2012), Amazon Two-Pizza-Teams (ab 2002), ING Bank.</p>
+        <p><strong>Grenzen:</strong> Koordinationschaos ohne strategische Kohärenz (Spotify revidierte das Modell 2019).</p>
+      </div>
+
+      <!-- 5. HOLACRACY / TEAL -->
+      <div class="spectrum-card fade-in">
+        <span class="card-label">Laloux · Haier</span>
+        <h3>Holacracy / Teal Organisation</h3>
+        <p><strong>Merkmale:</strong> Vollständige Selbstorganisation ohne traditionelle Hierarchie. Rollen statt Positionen, verteilte Autorität.</p>
+        <p><strong>Weltweite Beispiele:</strong> Haier Group (4.000 Microenterprises), Buurtzorg Netherlands (15.000 MA ohne Manager).</p>
+        <p><strong>Kritische Würdigung:</strong> Nicht universell überlegen. Kontextabhängig — funktioniert nicht in sicherheitskritischen Branchen.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- CASE 03: GROUPE ATLANTIC -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<section class="case-section" id="groupe-atlantic">
-  <div class="case-inner">
-    <div class="case-header fade-in">
-      <div class="case-badges">
-        <span class="badge badge-year">2022 – 2025</span>
-        <span class="badge badge-sector">Energie &amp; Haustechnik</span>
-        <span class="badge badge-mandate">Post-Merger Integration · PMO</span>
+<!-- ROTER FADEN: DB REGIO BUS -->
+<section id="roter-faden">
+  <div class="container">
+    <div class="roter-faden fade-in">
+      <h2>Deutsche Bahn AG — DB Regio Bus: Eine Transformation in 3 Phasen</h2>
+
+      <h3>Phase 1 – Ausgangslage (2018): Klassische Hierarchie</h3>
+      <ul>
+        <li><strong>40.000 Mitarbeiter</strong>, 6 Regionalgesellschaften, starke Gewerkschaft</li>
+        <li><strong>Herausforderung:</strong> Target Operating Model und neues Führungsmodell einführen</li>
+        <li><strong>Problem:</strong> Sensing-Defizit — Kundensignale und Betriebsrat-Feedback nicht systematisch verarbeitet</li>
+        <li><strong>Ergebnis der ersten 12 Monate:</strong> Reformversuche versanden trotz genehmigtem Budget und Vorstandsmandat</li>
+      </ul>
+
+      <h3>Phase 2 – Intervention: Vom Erkennen zum Handeln</h3>
+      <ul>
+        <li><strong>Dynamic Capability „Seizing":</strong> Wöchentliche Entscheidungszyklen statt monatlicher Boards</li>
+        <li><strong>Explizites Mandat</strong> für das Restrukturierungsteam → klare Entscheidungsarchitektur</li>
+        <li><strong>Kontextuelle Ambidexterität:</strong> Führungskräfte erhalten autonome Entscheidungsrechte im Rahmen gemeinsamer Standards</li>
+      </ul>
+
+      <h3>Phase 3 – Erneuerung: Change als Routine</h3>
+      <ul>
+        <li><strong>After-Action Reviews</strong> nach jeder Reformphase</li>
+        <li><strong>Dynamic Capability „Reconfiguring":</strong> Wandel wird zur organisationalen Routine</li>
+        <li><strong>Ergebnis:</strong> Strukturelle Transformation trotz ursprünglicher institutioneller Trägheit</li>
+      </ul>
+
+      <h3>Lernprinzip (Neusser, 2026)</h3>
+      <p>
+        Scheitern in Phase 1 war kein Managementversagen — es war das Ergebnis <em>struktureller Trägheit</em> (Hannan &amp; Freeman 1984).
+        Die Wende kam durch <strong>Mandatsklärung, Autonomie und systematisches Lernen</strong>. Ohne diese drei Elemente bleibt Wandel
+        ein Wunsch in Richtlinien.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVES: UNTERNEHMENSPROFILE -->
+<section class="deep-dives">
+  <div class="container fade-in">
+    <div class="section-label">Praxiswissen</div>
+    <h2 class="section-title">Deep Dives: Unternehmensprofile</h2>
+    <p class="section-subtitle">Detaillierte Einblicke in fünf Unternehmen, die zentrale Organisationsmodelle verkörpern.</p>
+
+    <!-- FATH GRUPPE -->
+    <div class="deep-dive-card">
+      <div class="ddv-header" onclick="toggleDDV(this)">
+        <h3>FATH Gruppe, Spalt (2005–2016) — Strukturelle Ambidexterität</h3>
+        <span class="ddv-toggle">▼</span>
       </div>
-      <div class="case-title">Groupe Atlantic</div>
-      <div class="case-subtitle">PMO · Reconfiguring · Institutionalisierte Lernschleifen</div>
+      <div class="ddv-body">
+        <h4>Hintergrund</h4>
+        <p>Mittelständisches Familienunternehmen, Spezialkomponenten für Automatisierung, Maschinen- und Anlagenbau. Sitz in Spalt (Bayern).</p>
+
+        <h4>Transformation</h4>
+        <p>Wachstum von 40 auf 400 Mitarbeiter über fünf Kontinente; Aufbau einer eigenständigen internationalen Explorationseinheit neben stabilem Kerngeschäft. Zeitraum: 2005–2016.</p>
+
+        <h4>Modell</h4>
+        <p><strong>Strukturelle Ambidexterität:</strong> Explorative Einheit mit eigenen KPIs, eigenem Budget und eigenem Team — separate von der stabilen Core-Unit.</p>
+
+        <h4>Positive Aspekte</h4>
+        <ul>
+          <li>Empirisches Paradebeispiel für Tushman &amp; O'Reillys Modell</li>
+          <li>Internationalisation ohne Disruption des Kerngeschäfts</li>
+          <li>Nachhaltige Ertragssteigerung durch strukturelle Trennung</li>
+        </ul>
+
+        <h4>Kritische Stimmen</h4>
+        <ul>
+          <li>Hoher Koordinationsaufwand zwischen Core und Explorationseinheit</li>
+          <li>Kulturelle Integration bleibt Herausforderung</li>
+          <li>Duale Governance kann zu Widersprüchen in der Strategie führen</li>
+        </ul>
+
+        <h4>Lernprinzip</h4>
+        <p><strong>Autonomie schafft Geschwindigkeit</strong> — aber Kohärenz muss bewusst gestaltet werden. Strukturelle Ambidexterität funktioniert nur, wenn strategische Kohärenz durch Management bewusst hergestellt wird.</p>
+      </div>
     </div>
 
-    <div class="case-grid">
-      <div class="case-body fade-in">
-
-        <h3>Kontext</h3>
-        <p>Groupe Atlantic ist ein familiengeführter französischer Industriekonzern (Umsatz ~3 Mrd. EUR) im Bereich Heizungs- und Klimatechnik mit einer aggressiven Akquisitionsstrategie. Mein Mandat umfasste die PMO-Leitung für die strukturierte Integration mehrerer Werke in vier europäischen Ländern – mit heterogenen Kulturen, Systemen und Unternehmensgeschichten.</p>
-
-        <h3>Herausforderungen</h3>
-        <ul>
-          <li>5 Werke, 4 Länder (FR, DE, PT, UK), 3 verschiedene ERP-Systeme ohne kompatible Datenbasis.</li>
-          <li>Kulturelle Diversität als Integrationshemmnis: Unterschiedliche Führungsverständnisse, Kommunikationsstile, Verhandlungslogiken.</li>
-          <li>Wissenssilos zwischen den übernommenen Einheiten – implizites Know-how in Gefahr, verloren zu gehen.</li>
-          <li>Reconfiguring von Ressourcen ohne Verlust lokalen Expertenwissens – die schwierigste Managementaufgabe dieser Art.</li>
-        </ul>
-
-        <h3>Intervention &amp; Vorgehen</h3>
-        <p>Das PMO wurde mit klaren Meilensteinen, Eskalationswegen und expliziten Entscheidungsprotokollen aufgebaut. Der entscheidende Unterschied zu klassischen Integrationsprojekten war die konsequente Institutionalisierung von Lernschleifen: Nach jeder Integrationsphase wurde ein strukturiertes After-Action Review durchgeführt – nicht als Formalie, sondern als echter Wissenstransfer-Mechanismus. Die Erkenntnisse flossen direkt in die nächste Integrationsphase ein.</p>
-        <p>Parallel wurde ein Cultural Mapping entwickelt, das die unterschiedlichen Führungslogiken der Werke sichtbar machte, und eine Champions-Struktur etabliert, in der lokale Führungspersönlichkeiten als Botschafter für den Integrationsprozess fungierten. Das Socioemotional Wealth (Gómez-Mejía et al. 2007) der Eigentümerfamilie wurde explizit in die Governance-Planung einbezogen – Reputation und Kontrolle stehen in Familienunternehmen oft über kurzfristiger Effizienz.</p>
-
-        <h3>Ergebnisse</h3>
-        <ul>
-          <li>Integrations-PMO als Best Practice im Konzern verankert und auf Folgeprojekte übertragen.</li>
-          <li>After-Action-Review-Zyklus institutionalisiert → messbare Verbesserung des Wissenstransfers zwischen Werken.</li>
-          <li>ERP-Harmonisierung auf Kurs: 36-Monats-Roadmap ohne wesentliche Planabweichungen.</li>
-        </ul>
-
-        <div class="quote-box qb-gold fade-in">
-          <p>Integration ist keine technische Aufgabe – sie ist eine Lernaufgabe. Wer nach jeder Phase reflektiert, lernt doppelt so schnell.</p>
-        </div>
-
+    <!-- SPOTIFY -->
+    <div class="deep-dive-card">
+      <div class="ddv-header" onclick="toggleDDV(this)">
+        <h3>Spotify (Squad Model, ab 2012) — Agiles Netzwerk</h3>
+        <span class="ddv-toggle">▼</span>
       </div>
+      <div class="ddv-body">
+        <h4>Hintergrund</h4>
+        <p>Schwedisches Streaming-Unternehmen, gegründet 2006, massives internationales Wachstum. Heute über 8.000 Mitarbeiter weltweit.</p>
 
-      <div class="case-sidebar fade-in">
-        <div class="info-card">
-          <h4>Eckdaten</h4>
-          <div class="info-row"><span class="info-label">Unternehmen</span><span class="info-val">Groupe Atlantic</span></div>
-          <div class="info-row"><span class="info-label">Zeitraum</span><span class="info-val">2022 – 2025</span></div>
-          <div class="info-row"><span class="info-label">Sektor</span><span class="info-val">Energie / Haustechnik</span></div>
-          <div class="info-row"><span class="info-label">Länder</span><span class="info-val">FR / DE / PT / UK</span></div>
-          <div class="info-row"><span class="info-label">Werke</span><span class="info-val">5 Standorte</span></div>
-        </div>
-        <div class="info-card highlight">
-          <h4>MSTM-Diagnose</h4>
-          <div class="info-row"><span class="info-label">Mechanisms</span><span class="info-val">Fehlend</span></div>
-          <div class="info-row"><span class="info-label">Structure</span><span class="info-val">Fragmentiert</span></div>
-          <div class="info-row"><span class="info-label">Trust</span><span class="info-val">Aufzubauen</span></div>
-          <div class="info-row"><span class="info-label">Mandate</span><span class="info-val">Klar</span></div>
-        </div>
-        <div class="info-card">
-          <h4>Wissenschaftliche Basis</h4>
-          <p class="sci-link">Reconfiguring (Teece et al. 1997 SMJ) · Org. Lernen (Argyris &amp; Schön 1978) · Socioemotional Wealth (Gómez-Mejía et al. 2007 ASQ)</p>
-          <div style="margin-top:.75rem;">
-            <a href="https://www.groupe-atlantic.com" target="_blank" style="color:var(--teal); font-size:.8rem; text-decoration:none;">→ Groupe Atlantic ↗</a>
-          </div>
-        </div>
+        <h4>Transformation</h4>
+        <p>Kniberg &amp; Ivarsson (2012) beschrieben das Squad-Modell: <strong>Squads</strong> (autonome Mini-Teams ~8 Personen), <strong>Tribes</strong> (Cluster von Squads), <strong>Chapters</strong> (Fachdisziplinen), <strong>Guilds</strong> (Community of Practice).</p>
+
+        <h4>Positive Aspekte</h4>
+        <ul>
+          <li>Weltweit meistzitiertes Agilitätsmodell</li>
+          <li>Hohe Mitarbeiterzufriedenheit</li>
+          <li>Schnelle Innovationszyklen und schnelle Feature-Releases</li>
+        </ul>
+
+        <h4>Kritische Stimmen</h4>
+        <ul>
+          <li>Spotify selbst revidierte das Modell 2019 (Koordinationschaos, fehlende strategische Kohärenz)</li>
+          <li>Birkinshaw (2018, HBR): „Agile ist kein Selbstzweck"</li>
+          <li>Modell wurde häufig missverstanden und kopiert ohne Kontext</li>
+        </ul>
+
+        <h4>Lernprinzip</h4>
+        <p><strong>Autonomie ohne strategische Kohärenz führt zu Koordinationschaos.</strong> Das Modell braucht mehr als eine Namensgebung — es braucht bewusste Kohärenzsteuerung auf Tribe- und Unternehmensebene.</p>
+      </div>
+    </div>
+
+    <!-- AMAZON TWO-PIZZA -->
+    <div class="deep-dive-card">
+      <div class="ddv-header" onclick="toggleDDV(this)">
+        <h3>Amazon — Two-Pizza-Teams (ab 2002) — Dezentralisierte P&amp;L</h3>
+        <span class="ddv-toggle">▼</span>
+      </div>
+      <div class="ddv-body">
+        <h4>Hintergrund</h4>
+        <p>Jeff Bezos' Regel (ab ~2002): Kein Team soll größer sein als man mit zwei Pizzen satt bekommt (≈ 6–8 Personen). Dies prägte Amazons Organisationsdesign fundamental.</p>
+
+        <h4>Transformation</h4>
+        <p>Konsequente Dezentralisierung — jedes Team hat eigene P&amp;L-Verantwortung, API-first Struktur, eigenständige Entscheidungsarchitektur (Service-oriented architecture). Grundlage für Amazon AWS, Prime, Alexa.</p>
+
+        <h4>Positive Aspekte</h4>
+        <ul>
+          <li>Verbindet Autonomie mit systemischer Interoperabilität (APIs als Integrationsmittel)</li>
+          <li>Empirisch nachgewiesene Innovationsgeschwindigkeit</li>
+          <li>Skalierbar auf tausende Teams ohne zentrale Engpässe</li>
+        </ul>
+
+        <h4>Kritische Stimmen</h4>
+        <ul>
+          <li>Hohe interne Komplexität und Reibungsverluste</li>
+          <li>Coordination Tax steigt exponentiell mit Anzahl der Teams</li>
+          <li>Nicht alle Funktionen profitieren von echter Autonomie (Compliance, Finanzen schlechter)</li>
+        </ul>
+
+        <h4>Lernprinzip</h4>
+        <p><strong>Komplexität durch Größe regulieren — nicht durch Hierarchie.</strong> Die Koordinationskosten sind real, aber werden durch klare Schnittstellen (APIs) und gemeinsame Metriken geleitet.</p>
+      </div>
+    </div>
+
+    <!-- HAIER GROUP -->
+    <div class="deep-dive-card">
+      <div class="ddv-header" onclick="toggleDDV(this)">
+        <h3>Haier Group — RenDanHeYi-Modell (seit 2005) — Holacracy</h3>
+        <span class="ddv-toggle">▼</span>
+      </div>
+      <div class="ddv-body">
+        <h4>Hintergrund</h4>
+        <p>Chinesischer Haushaltsgerätehersteller, seit 2020 auch Eigentümer von GEA/Mabe. Umsatz 2023: &gt;35 Mrd. USD; ~80.000 Mitarbeiter weltweit.</p>
+
+        <h4>Transformation</h4>
+        <p>CEO Zhang Ruimin ab 2005: Auflösung klassischer Hierarchie in ~4.000 <strong>Microenterprises (MEs)</strong>, jede mit eigener P&amp;L, Marktanbindung und Personalentscheidungen.
+        <strong>„RenDanHeYi"</strong> = Mitarbeiter (Ren) + Nutzer (Dan) + verschmelzen (HeYi) — Mitarbeiter sind direkt dem Kundennutzen verbunden.</p>
+
+        <h4>Positive Aspekte</h4>
+        <ul>
+          <li>Weltmarktführer im Haushaltsgerätebereich</li>
+          <li>Umsatz ×20 in 15 Jahren</li>
+          <li>Empirisch bemerkenswerteste Unternehmenstransformation des 21. Jahrhunderts</li>
+          <li>Laloux zählt Haier zu den führenden Teal-Organisationen weltweit</li>
+        </ul>
+
+        <h4>Kritische Stimmen</h4>
+        <ul>
+          <li>Schwer auf andere Kontexte übertragbar (starke chinesische Unternehmenskultur, staatliche Unterstützung)</li>
+          <li>Koordination zwischen 4.000 MEs strukturell unklar</li>
+          <li>Frage nach sozialer Absicherung für ME-Mitarbeiter in China kontrovers</li>
+        </ul>
+
+        <h4>Lernprinzip</h4>
+        <p><strong>Maximale Dezentralisierung funktioniert</strong> — aber nur mit expliziten Spielregeln für Marktanbindung und Verantwortlichkeit. Vertrauen ist notwendig, aber nicht ausreichend — Spielregeln sind essentiell.</p>
+      </div>
+    </div>
+
+    <!-- BUURTZORG -->
+    <div class="deep-dive-card">
+      <div class="ddv-header" onclick="toggleDDV(this)">
+        <h3>Buurtzorg Netherlands (seit 2006) — Selbstorganisierte Teal</h3>
+        <span class="ddv-toggle">▼</span>
+      </div>
+      <div class="ddv-body">
+        <h4>Hintergrund</h4>
+        <p>Niederländische ambulante Pflegeorganisation, gegründet von Jos de Blok. Heute &gt;15.000 Pflegekräfte in &gt;900 selbstorganisierten Teams.</p>
+
+        <h4>Transformation</h4>
+        <p><strong>Keine mittlere Führungsebene.</strong> Autonome Teams von 10–12 Pflegekräften entscheiden selbst über Klientenaufnahme, Arbeitsplanung, Personalentscheidungen.
+        Zentrales IT-Tool (Buurtzorgweb) als Koordinationsinfrastruktur.</p>
+
+        <h4>Positive Aspekte</h4>
+        <ul>
+          <li>Höchste Mitarbeiterzufriedenheit im niederländischen Pflegesektor</li>
+          <li>Kunden berichten deutlich höhere Qualität und Pflegebeziehungen</li>
+          <li>Ernst &amp; Young attestiert massive Kosteneinsparungen (ca. 40% vs. Wettbewerb)</li>
+          <li>Laloux-Vorzeigeprojekt für funktionsfähige Teal-Organisation</li>
+        </ul>
+
+        <h4>Kritische Stimmen</h4>
+        <ul>
+          <li>Skalierbarkeit auf andere Sektoren fraglich</li>
+          <li>Funktioniert nur mit hochprofessionellen, intrinsisch motivierten Mitarbeitern</li>
+          <li>Modell ist auf Pflegekontext und niederländische Wohlfahrtskultur angepasst</li>
+        </ul>
+
+        <h4>Lernprinzip</h4>
+        <p><strong>Selbstorganisation benötigt Vertrauen + IT-Infrastruktur + Professionalität.</strong> Ohne alle drei bricht sie zusammen. Das Modell funktioniert hervorragend im Kontext von hochqualifizierten Fachkräften mit starker intrinsischer Motivation.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- CASE 04: MITTELSTAND -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<section class="case-section" id="mittelstand">
-  <div class="case-inner">
-    <div class="case-header fade-in">
-      <div class="case-badges">
-        <span class="badge badge-year">2005 – 2016</span>
-        <span class="badge badge-sector">Konsumgüter · Textil · Industrie</span>
-        <span class="badge badge-mandate">Strukturtransformation · Internationalisierung</span>
-      </div>
-      <div class="case-title">Küchenquelle · V. Fraas · FATH Groupe</div>
-      <div class="case-subtitle">Drei mittelständische Mandate · Strukturelle Ambidexterität · Familienunternehmen</div>
-    </div>
+<!-- DREI-SÄULEN-MODELL TEASER -->
+<section>
+  <div class="container">
+    <div class="drei-saeulen-teaser fade-in">
+      <h3>Das Drei-Säulen-Modell der Erneuerungsfähigkeit</h3>
+      <p>Entwickelt aus 25 Jahren Transformationspraxis und 102 DBA-Interviews (Neusser, 2026):</p>
 
-    <div class="case-grid">
-      <div class="case-body fade-in">
-
-        <h3>Kontext</h3>
-        <p>Drei mittelständische Familienunternehmen aus unterschiedlichen Branchen – alle mit ähnlichen strategischen Grundproblemen: funktionale Strukturen, die das Wachstum bremsten; familiendynamische Entscheidungslogiken, die klassische Change-Methoden nicht greifen ließen; und die Frage, wie internationale Expansion gelingt, ohne die bewährte Kernorganisation zu destabilisieren.</p>
-
-        <h3>Küchenquelle – Divisionale Reorganisation</h3>
-        <p>Der Direktvertriebsanbieter war in einer klassischen funktionalen Struktur organisiert, die Agilität und Eigenverantwortung verhinderte. Die Lösung: Divisionale Reorganisation mit eigenständiger P&amp;L-Verantwortung je Geschäftsbereich. Das veränderte nicht nur die Struktur – es veränderte die Denkweise der Führungskräfte. Plötzlich waren sie nicht mehr Funktionsverantwortliche, sondern Unternehmer im Unternehmen.</p>
-
-        <h3>V. Fraas – Strategischer Fokus im Preiskampf</h3>
-        <p>Der Textilhersteller stand unter massivem Preisdruck durch asiatische Wettbewerber. Die Antwort war kein Kostensparprogramm, sondern strategische Fokussierung: klar definierte Zielgruppen, konsequente Positionierung im Qualitätssegment, Neuausrichtung der Vertriebsstruktur. Das erforderte klare Mandatsstrukturen auf Leitungsebene – und den Mut der Eigentümerfamilie, auf kurzfristige Ergebnismaximierung zu verzichten.</p>
-
-        <h3>FATH Groupe – Strukturelle Ambidexterität</h3>
-        <p>Das anspruchsvollste der drei Mandate: FATH wollte in 5 neue internationale Märkte expandieren, ohne die stabile und profitable Kernorganisation zu gefährden. Die Lösung war strukturelle Ambidexterität (Tushman &amp; O'Reilly 1996): Eine eigenständige Explorationseinheit wurde gegründet – eigenes Team, eigenes Budget, eigene KPIs, eigene Entscheidungslogik. Das Kerngeschäft blieb unberührt. Das Ergebnis: 5 neue Märkte in 3 Jahren, ohne eine einzige operative Krise im Stammgeschäft.</p>
-
-        <h3>Ergebnisse (zusammengefasst)</h3>
-        <ul>
-          <li>FATH: 5 neue Märkte in 3 Jahren erschlossen durch strukturelle Ambidexterität.</li>
-          <li>Küchenquelle: P&amp;L-Struktur erhöhte Eigenverantwortung und Entscheidungsgeschwindigkeit der Teams substanziell.</li>
-          <li>V. Fraas: Strategischer Fokus sicherte Marktposition gegenüber Niedrigpreisanbietern mittelfristig.</li>
-        </ul>
-
-        <div class="quote-box qb-teal fade-in">
-          <p>Im Mittelstand entscheidet nicht die Größe – es entscheidet die Klarheit. Klare Strukturen, klare Mandate, klare Lernschleifen.</p>
+      <div class="drei-saeulen-list">
+        <div class="dsl-item">
+          <h4>I. Strategische Klarheit</h4>
+          <p>Stabilitätselement — Richtung, Mandate, Verantwortlichkeit.</p>
         </div>
-
+        <div class="dsl-item">
+          <h4>II. Prozessuale Autonomie</h4>
+          <p>Agilitätselement — dezentrale Entscheidungen im vereinbarten Rahmen.</p>
+        </div>
+        <div class="dsl-item">
+          <h4>III. Systemische Lernschleifen</h4>
+          <p>Erneuerungselement — After-Action Reviews, institutionalisierte Reflexion.</p>
+        </div>
       </div>
 
-      <div class="case-sidebar fade-in">
-        <div class="info-card">
-          <h4>Eckdaten</h4>
-          <div class="info-row"><span class="info-label">Unternehmen</span><span class="info-val">3 Mandate</span></div>
-          <div class="info-row"><span class="info-label">Zeitraum</span><span class="info-val">2005 – 2016</span></div>
-          <div class="info-row"><span class="info-label">Sektoren</span><span class="info-val">KG / Textil / Industrie</span></div>
-          <div class="info-row"><span class="info-label">Land</span><span class="info-val">DE / International</span></div>
-          <div class="info-row"><span class="info-label">Typ</span><span class="info-val">Familienunternehmen</span></div>
-        </div>
-        <div class="info-card highlight">
-          <h4>MSTM-Muster (FATH)</h4>
-          <div class="info-row"><span class="info-label">Mechanisms</span><span class="info-val">Neu gestaltet</span></div>
-          <div class="info-row"><span class="info-label">Structure</span><span class="info-val">Dual (ambidext.)</span></div>
-          <div class="info-row"><span class="info-label">Trust</span><span class="info-val">Stark</span></div>
-          <div class="info-row"><span class="info-label">Mandate</span><span class="info-val">Explizit</span></div>
-        </div>
-        <div class="info-card">
-          <h4>Wissenschaftliche Basis</h4>
-          <p class="sci-link">Strukturelle Ambidexterität (Tushman &amp; O'Reilly 1996 CMR) · Socioemotional Wealth (Gómez-Mejía et al. 2007) · Legitimationstheorie (Suchman 1995 ASR)</p>
-        </div>
+      <div class="drei-saeulen-cta">
+        <a href="dba.html">Mehr zur Forschung →</a>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ÜBERGREIFENDE INSIGHTS -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<section class="insights-section" id="insights">
-  <div class="insights-inner">
-    <div style="text-align:left; margin-bottom:0;">
-      <div class="section-label fade-in" style="color:var(--gold);">Übergreifend</div>
-      <h2 class="section-title fade-in">Was alle vier Mandate gemeinsam haben</h2>
-    </div>
-    <div class="insights-grid">
-      <div class="insight-card fade-in">
-        <div class="insight-num">01</div>
-        <h3>Das Mandat entscheidet</h3>
-        <p>In allen vier Mandaten war Mandatsklarheit der kritischste Erfolgsfaktor. Nicht Strategie, nicht Ressourcen, nicht Führungspersönlichkeit. Wer das Recht und die Pflicht zum Handeln hat – und wer es nicht hat – entscheidet über Erfolg oder Stillstand.</p>
-      </div>
-      <div class="insight-card fade-in">
-        <div class="insight-num">02</div>
-        <h3>Wandel braucht Lernschleifen</h3>
-        <p>Organisationen, die nach jeder Veränderungsphase strukturiert reflektieren, lernen schneller und machen seltener denselben Fehler zweimal. After-Action Reviews sind keine Soft-Skill-Übung – sie sind institutionalisierte Wissensgenerierung.</p>
-      </div>
-      <div class="insight-card fade-in">
-        <div class="insight-num">03</div>
-        <h3>Theorie trifft Praxis</h3>
-        <p>Das MSTM-Framework (Neusser 2026) ist aus genau diesen vier Erfahrungen entstanden – induktiv, verankert, praxistauglich. Es ist kein weiteres Beratungsmodell, sondern ein empirisch gesättigtes Instrument, das erklärt, warum Wandel gelingt oder scheitert.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BACK BAR -->
-<div class="back-bar">
-  <a href="index.html">← Zur Website</a>
-  <a href="ueber-mich.html">Über mich</a>
-  <a href="index.html#wissensportal">Wissensportal</a>
-  <a href="index.html#blog">Blog</a>
-</div>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Dr. Christian Neusser, DBA ·
-    <a href="https://orcid.org/0000-0001-6484-1421" target="_blank">ORCID</a> ·
-    <a href="index.html">Zur Website</a> ·
-    <a href="changelog.html">Changelog</a>
-  </p>
+  <p>&copy; 2026 Dr. Christian Neusser. <a href="index.html">Zurück zur Startseite</a></p>
 </footer>
 
 <script>
-// Hamburger
-(function(){const t=document.getElementById('nav-toggle'),m=document.getElementById('nav-menu');if(!t||!m)return;t.addEventListener('click',function(){const o=m.classList.toggle('open');t.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){m.classList.remove('open');t.textContent='☰'}))})();
+// Toggle deep-dive cards
+function toggleDDV(headerEl) {
+  const body = headerEl.nextElementSibling;
+  headerEl.classList.toggle('open');
+  body.classList.toggle('open');
+}
 
-// Scroll animations
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+// Hamburger menu
+(function(){
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', function(){
+    const isOpen = menu.classList.toggle('open');
+    toggle.textContent = isOpen ? '✕' : '☰';
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', function(){
+      menu.classList.remove('open');
+      toggle.textContent = '☰';
+    });
+  });
+})();
+
+// Fade-in animation on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries){
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 </body>
