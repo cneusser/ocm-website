@@ -239,9 +239,11 @@
     .vlab-card ul{padding-left:1.1rem}
     .vlab-card li{margin-bottom:.25rem}
     .vlab-num{font-family:Georgia,serif;font-size:1.6rem;color:var(--teal);font-weight:bold;margin-bottom:.2rem}
-    /* ── FOOTER ── */
-    footer{background:#0e2234;color:rgba(255,255,255,.42);padding:1.8rem 0;font-size:.8rem;text-align:center}
-    footer a{color:rgba(255,255,255,.48)}
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:#f1f4f8}
+    ::-webkit-scrollbar-thumb{background:#7a9ab5;border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:#1A3A5C}
     /* ── SCROLL ARROWS ── */
     .scroll-btn{position:fixed;right:1.1rem;width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--white);border:2px solid var(--teal);font-size:1.1rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;opacity:0;transition:opacity .3s,background .2s,transform .2s;box-shadow:0 3px 12px rgba(0,0,0,.25);line-height:1}
     .scroll-btn:hover{background:var(--teal);transform:scale(1.08)}
@@ -1001,13 +1003,6 @@
   </div>
 </section>
 
-      <h2 id="modal-title"></h2>
-      <div class="blog-modal-meta" id="modal-meta"></div>
-    </div>
-    <div class="blog-modal-body" id="modal-body"></div>
-  </div>
-</div>
-
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="container">
@@ -1080,16 +1075,6 @@ function switchTab(id,btn){
 }
 // Hamburger nav
 (function(){const t=document.getElementById('nav-toggle'),m=document.getElementById('nav-menu');if(!t||!m)return;t.addEventListener('click',function(){const o=m.classList.toggle('open');t.textContent=o?'✕':'☰'});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',function(){m.classList.remove('open');t.textContent='☰'}))})();
-// Close menu on link click
-navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
-// Active nav
-const sects=document.querySelectorAll('section[id]');
-const links=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  sects.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
-  links.forEach(a=>{a.classList.remove('active');if(a.getAttribute('href')==='#'+cur)a.classList.add('active')});
-});
 // Scroll-in animation
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.07});
 document.querySelectorAll('.identity-card,.acc-item,.rc,.pub,.pillar,.p-col,.prop-card,.config-card,.blog-tile,.vlab-card').forEach(el=>{
@@ -1097,44 +1082,6 @@ document.querySelectorAll('.identity-card,.acc-item,.rc,.pub,.pillar,.p-col,.pro
   obs.observe(el);
 });
 
-// ── BLOG + TICKER ────────────────────────────────────────────────
-(async function(){
-  let posts=[];
-  try{
-    const r=await fetch('posts.json?t='+Date.now());
-    posts=await r.json();
-  }catch(e){
-    document.getElementById('blog-grid').innerHTML='<p style="color:var(--muted);font-size:.88rem">Blog-Beiträge konnten nicht geladen werden. <a href="posts.json">posts.json</a> prüfen.</p>';
-    return;
-  }
-  posts.sort((a,b)=>b.date.localeCompare(a.date));
-
-  // Render blog tiles
-  const grid=document.getElementById('blog-grid');
-  grid.innerHTML=posts.map((p,i)=>`
-    <div class="blog-tile" onclick="openBlogModal(${i})">
-      <div class="blog-tile-head">
-        <div class="blog-tile-cat cat-${p.category}">${p.category}</div>
-        <div class="blog-tile-title">${p.title}</div>
-      </div>
-      <div class="blog-tile-body">${p.teaser}</div>
-      <div class="blog-tile-foot">
-        <span>${p.date}</span>
-        <span class="blog-read-more">Weiterlesen →</span>
-      </div>
-    </div>
-  `).join('');
-
-  // Trigger scroll animation on newly added tiles
-  grid.querySelectorAll('.blog-tile').forEach(el=>{
-    el.style.opacity='0';el.style.transform='translateY(18px)';el.style.transition='opacity .45s ease,transform .45s ease';
-    obs.observe(el);
-  });
-
-  // Blog modal
-  window._posts=posts;
-
-})();
 
 window.openBlogModal=function(i){
   const p=window._posts[i];

@@ -25,6 +25,10 @@
       line-height: 1.65;
       background: #fafbfc;
     }
+    ::-webkit-scrollbar{width:8px}
+    ::-webkit-scrollbar-track{background:#f1f4f8}
+    ::-webkit-scrollbar-thumb{background:#7a9ab5;border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:#1A3A5C}
 
     a {
       color: var(--teal);
@@ -222,37 +226,72 @@
       font-weight: 400;
     }
 
-    /* ===== MODEL CARDS ===== */
-    .models-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+    /* ===== MODEL TABS ===== */
+    .model-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0 0;
     }
 
-    .model-card {
+    .model-tab {
+      background: white;
+      border: 1px solid #d0dde8;
+      border-radius: 6px;
+      padding: 0.5rem 0.9rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      min-width: 100px;
+      font-size: 0.85rem;
+    }
+
+    .model-tab:hover,
+    .model-tab.active {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .model-tab:hover .tab-sub,
+    .model-tab.active .tab-sub {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .model-tab:hover .org-model-tag,
+    .model-tab.active .org-model-tag {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border-color: transparent;
+    }
+
+    .tab-sub {
+      font-size: 0.72rem;
+      color: #888;
+    }
+
+    .model-detail {
+      display: none;
       background: white;
       border: 1px solid #e0e6f2;
       border-radius: 8px;
       padding: 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-      transition: all .3s ease;
-      min-width: 0;
-      overflow-wrap: break-word;
-      word-break: break-word;
+      margin-top: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .model-card:hover {
-      box-shadow: 0 4px 16px rgba(13, 126, 160, .15);
-      border-color: var(--teal);
+    .model-detail.active {
+      display: block;
     }
 
-    .model-card h3 {
+    .model-detail h3 {
       color: var(--navy);
       margin-top: 0;
     }
 
-    .model-card p {
+    .model-detail p {
       font-size: 0.95rem;
       margin-bottom: 0.8rem;
     }
@@ -412,33 +451,67 @@
       margin-top: 0;
     }
 
-    /* ===== COMPANY PROFILES ===== */
-    .company-profile {
+    /* ===== COMPANY TABS ===== */
+    .company-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 0;
+    }
+
+    .company-tab {
+      background: white;
+      border: 1px solid #d0dde8;
+      border-radius: 6px;
+      padding: 0.45rem 0.8rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .company-tab:hover,
+    .company-tab.active {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .company-tab .co-name {
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: block;
+      margin: 0;
+    }
+
+    .company-tab .co-role {
+      font-size: 0.7rem;
+      color: #888;
+      display: block;
+      margin: 0;
+    }
+
+    .company-tab:hover .co-name,
+    .company-tab.active .co-name,
+    .company-tab:hover .co-role,
+    .company-tab.active .co-role {
+      color: white;
+    }
+
+    .company-detail {
+      display: none;
       background: white;
       border: 1px solid #e0e6f2;
       border-radius: 8px;
       padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      margin-top: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
 
-    .company-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--accent);
+    .company-detail.active {
+      display: block;
     }
 
-    .company-name {
-      font-size: 1.5rem;
-      color: var(--navy);
-      font-weight: 700;
-      margin: 0;
-    }
-
-    .company-profile h4 {
+    .company-detail h4 {
       color: var(--teal);
       margin-top: 1.2rem;
       margin-bottom: 0.6rem;
@@ -448,9 +521,26 @@
       letter-spacing: 0.3px;
     }
 
-    .company-profile > p {
+    .company-detail > p {
       margin-bottom: 0.8rem;
       font-size: 0.95rem;
+    }
+
+    .company-group-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #0D7EA0;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e0e6f2;
+    }
+
+    .company-group-label:first-of-type {
+      margin-top: 0;
+      border-top: none;
+      padding-top: 0;
     }
 
     .quote-box {
@@ -634,8 +724,14 @@
       main {
         padding: 1.5rem;
       }
-      .models-grid {
-        grid-template-columns: 1fr;
+      .model-tabs {
+        gap: 0.4rem;
+      }
+
+      .model-tab {
+        padding: 0.45rem 0.7rem;
+        font-size: 0.8rem;
+        min-width: 90px;
       }
       .pillars-container {
         grid-template-columns: 1fr;
@@ -716,17 +812,32 @@
         </div>
       </div>
 
-      <!-- MODEL CARDS -->
-      <div class="models-grid">
-
-        <!-- MODEL 1: KLASSISCHE HIERARCHIE -->
-        <div class="model-card">
+      <!-- MODEL TABS -->
+      <div class="model-tabs">
+        <div class="model-tab active" onmouseenter="selectModel(0)" onclick="selectModel(0)">
           <span class="org-model-tag hierarchy">Klassische Hierarchie</span>
-          <h3>Klassische Hierarchie</h3>
-          <p style="font-size:.9rem;color:#6b7a8d;margin:.5rem 0 1rem">Klare Hierarchie, standardisierte Prozesse – optimal für stabile Märkte und regulierte Branchen</p>
-          <button onclick="toggleCard(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-bottom:.5rem">▼ Details anzeigen</button>
+          <span class="tab-sub">Weber · Taylor</span>
+        </div>
+        <div class="model-tab" onmouseenter="selectModel(1)" onclick="selectModel(1)">
+          <span class="org-model-tag divisional">Divisionale</span>
+          <span class="tab-sub">Mintzberg · Chandler</span>
+        </div>
+        <div class="model-tab" onmouseenter="selectModel(2)" onclick="selectModel(2)">
+          <span class="org-model-tag ambidextrous">Ambidextrous</span>
+          <span class="tab-sub">Tushman · O'Reilly</span>
+        </div>
+        <div class="model-tab" onmouseenter="selectModel(3)" onclick="selectModel(3)">
+          <span class="org-model-tag agile">Agiles Netzwerk</span>
+          <span class="tab-sub">Spotify · Agile</span>
+        </div>
+        <div class="model-tab" onmouseenter="selectModel(4)" onclick="selectModel(4)">
+          <span class="org-model-tag holacracy">['Holacracy', '/']</span>
+          <span class="tab-sub">Laloux · Robertson</span>
+        </div>
+      </div>
 
-          <div class="card-details" style="display:none">
+      <div class="model-detail active" id="model-0">
+
 
           <div class="model-section-title">Theoretische Grundlage</div>
           <p class="model-content">
@@ -776,16 +887,10 @@
             Umweltstabilität funktionieren.
           </p>
         
-          </div></div>
+          
+      </div>
+      <div class="model-detail" id="model-1">
 
-        <!-- MODEL 2: DIVISIONALE STRUKTUR -->
-        <div class="model-card">
-          <span class="org-model-tag divisional">Divisionale Struktur</span>
-          <h3>Divisionale Struktur</h3>
-          <p style="font-size:.9rem;color:#6b7a8d;margin:.5rem 0 1rem">Geschäftsbereiche mit eigener P&L-Verantwortung – Skalierung durch Dezentralisierung</p>
-          <button onclick="toggleCard(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-bottom:.5rem">▼ Details anzeigen</button>
-
-          <div class="card-details" style="display:none">
 
           <div class="model-section-title">Theoretische Grundlage</div>
           <p class="model-content">
@@ -835,16 +940,10 @@
             wirklich loslässt – tatsächlich tendieren Konzerne aber oft zur Zentralkontrolle (Goold &amp; Campbell, 1987).
           </p>
         
-          </div></div>
+          
+      </div>
+      <div class="model-detail" id="model-2">
 
-        <!-- MODEL 3: AMBIDEXTROUS ORGANISATION -->
-        <div class="model-card">
-          <span class="org-model-tag ambidextrous">Ambidextrous</span>
-          <h3>Ambidextrous Organisation</h3>
-          <p style="font-size:.9rem;color:#6b7a8d;margin:.5rem 0 1rem">Exploitation und Exploration parallel – Kerngeschäft stabil, Innovationseinheiten autonom</p>
-          <button onclick="toggleCard(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-bottom:.5rem">▼ Details anzeigen</button>
-
-          <div class="card-details" style="display:none">
 
           <div class="model-section-title">Theoretische Grundlage</div>
           <p class="model-content">
@@ -895,16 +994,10 @@
             Mittelpfad ist ein „schmaler Grat" (O'Reilly &amp; Tushman, 2008).
           </p>
         
-          </div></div>
+          
+      </div>
+      <div class="model-detail" id="model-3">
 
-        <!-- MODEL 4: AGILES NETZWERK -->
-        <div class="model-card">
-          <span class="org-model-tag agile">Agiles Netzwerk</span>
-          <h3>Agiles Netzwerk</h3>
-          <p style="font-size:.9rem;color:#6b7a8d;margin:.5rem 0 1rem">Autonome Mini-Teams mit gemeinsamen Standards – hohe Reaktionsgeschwindigkeit</p>
-          <button onclick="toggleCard(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-bottom:.5rem">▼ Details anzeigen</button>
-
-          <div class="card-details" style="display:none">
 
           <div class="model-section-title">Theoretische Grundlage</div>
           <p class="model-content">
@@ -957,16 +1050,10 @@
             werden (Conboy &amp; Fitzgerald, 2019).
           </p>
         
-          </div></div>
+          
+      </div>
+      <div class="model-detail" id="model-4">
 
-        <!-- MODEL 5: HOLACRACY / TEAL -->
-        <div class="model-card">
-          <span class="org-model-tag holacracy">Holacracy / Teal</span>
-          <h3>Holacracy / Teal Organisation</h3>
-          <p style="font-size:.9rem;color:#6b7a8d;margin:.5rem 0 1rem">Vollständige Selbstorganisation ohne traditionelle Hierarchie – Rollen statt Positionen</p>
-          <button onclick="toggleCard(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-bottom:.5rem">▼ Details anzeigen</button>
-
-          <div class="card-details" style="display:none">
 
           <div class="model-section-title">Theoretische Grundlage</div>
           <p class="model-content">
@@ -1021,8 +1108,7 @@
             betrachtet.
           </p>
         
-          </div></div>
-
+          
       </div>
     </section>
 
@@ -1109,764 +1195,60 @@
         <p style="margin:0;color:#555;font-size:.95rem">Diese Unternehmen habe ich direkt als CEO, CRO oder Managing Partner begleitet. Die Einblicke sind aus erster Hand und fließen direkt in meine Forschung und Lehre ein.</p>
         </div>
       </div><!-- FATH GRUPPE -->
-      <div class="company-profile" id="company-fath">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">FATH Gruppe</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">CEO 2005–2016</p>
-          </div>
-          <div>
-            <span class="org-model-tag ambidextrous">Ambidextrous</span>
-          </div>
-        </div>
-
-        
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Die FATH Gruppe (Familienunternehmen im Premium-Segment) war Anfang 2000er ein klassisches mittelständisches
-          Familienunternehmen mit starken Traditionen. Das Kerngeschäft war stabil, aber die Märkte fragmentierten sich.
-          Als CEO war meine zentrale Aufgabe: Kernstabilität bewahren + gleichzeitig New Business schaffen (E-Commerce,
-          B2B-Plattformen, International Expansion).
-        </p>
-
-        <p>
-          Ich strukturierte die Gruppe als Ambidextrous: Auf der einen Seite optimierten wir den traditionellen
-          Einzelhandel auf Effizienz (Margin-Verbesserung, Kostenreduktion). Auf der anderen Seite schotteten wir
-          eine digitale Unit ab – mit agiler Kultur, anderen Anreizsystemen, und Freiheit zu experimentieren.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>2005–2008:</strong> Konsolidierung. Nach Übernahme mehrerer kleinerer Unternehmen vereinheitlichte ich
-          Prozesse, führte ein ERP-System ein, schnitzte Funktionsbereiche aus (Sales, Operations, Finance unter zentraler
-          Leitung).
-        </p>
-
-        <p>
-          <strong>2008–2012:</strong> Ambidextrous Phase. Aufbau einer separaten E-Commerce-Unit mit Tochtergesellschafts-Status.
-          Diese Unit hatte andere P&amp;L-Ziele (Growth statt Margin), andere Anreizsysteme (Equity statt klassisches Gehalt),
-          und durfte Experimente durchführen, die im Kerngeschäft undenkbar waren.
-        </p>
-
-        <p>
-          <strong>2012–2016:</strong> Konsolidierung der Dualität. Gemeinsame Strategie-Meetings zwischen E-Commerce-Chefin und
-          Operations-Chef, aber separate Budgets und P&amp;Ls. Eine zentrale Stabsfunktion (meine direkte Leitung) moderierte die
-          Spannungen.
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <div class="quote-box">
-          „FATH hat es geschafft, eine 50-Jahr-alte Handelstradition ins digitale Zeitalter zu bringen – ohne die Kernkompetenz
-          zu verlieren. Das ist rare. Meistens zerfallen solche Unternehmen in Alte und Neue, aber hier gab es echte Synergien."
-          <div class="quote-attribution">— Fallstudie, Competence Center Digital Transformation</div>
-        </div>
-
-        <p>
-          Ambidextrous Organisationen sind selten, und noch seltener ist deren Erfolg. FATH ist ein Beispiel, wo es über
-          eine Dekade funktioniert hat. Die Digitalisierung sollte nicht die Tradition ersetzen, sondern sie erweitern – das
-          hat die FATH Gruppe verstanden.
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Ownership &amp; Governance:</strong> Nach meinem Ausscheiden (2016) durch Familiennachfolge kehrte die Gruppe
-          zu klassischeren Strukturen zurück. Das deutet darauf hin, dass die Ambidextrous-Balance stark von der CEO-Persönlichkeit
-          abhängt – nicht robust gegenüber Führungswechseln (vgl. Tushman &amp; O'Reilly, 2004: „The role of the CEO is critical").
-        </p>
-
-        <p>
-          <strong>Skalierungsgrenzen:</strong> Mit ca. 400 Mitarbeitern war FATH an der Grenze, wo Ambidexterity noch funktioniert.
-          Die Koordinationskosten würden exponentiell wachsen bei größerer Skalierung (O'Reilly &amp; Tushman, 2008).
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          FATH Gruppe zeigt starke Dynamic Capabilities – insbesondere Sensing (digitale Trends erkannt) und Seizing (neue Unit
-          aufgebaut). Reconfiguring war schwächer – die Kernstruktur blieb lange unverändert, während die E-Commerce-Unit
-          wuchs. Dies reflektiert das typische Ambidextrous Dilemma: Man baut strukturelle Trennung, um Reconfiguring zu
-          vermeiden – was aber auch Innovation im Kern bremst. Siehe <a href="dba.html">MSTM Framework</a> für Details.
-        </p>
-        </div>
-      </div>
-
-      <!-- SECTION B: WEITERE UNTERNEHMENSBEISPIELE -->
+      <!-- SECTION B: UNTERNEHMENSBEISPIELE -->
       <div style="background:#f5f8fc;border-left:4px solid #E8A020;padding:1.5rem;margin:2rem 0;border-radius:4px">
-        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#E8A020;font-weight:700;margin-bottom:.5rem">Externe Referenzen</div>
-        <h3 style="margin:0 0 .5rem;color:#1A3A5C;font-size:1.2rem">Weitere Unternehmensbeispiele aus der Praxis</h3>
-        <p style="margin:0;color:#555;font-size:.95rem">Diese Unternehmen dienen als wissenschaftlich belegte Referenzfälle für Organisationsmodelle aus der internationalen Praxis.</p>
+        <div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:#E8A020;font-weight:700;margin-bottom:.5rem">Eigene Mandate</div>
+        <h3 style="margin:0 0 .5rem;color:#1A3A5C;font-size:1.2rem">Fallstudien aus meiner Praxis</h3>
+        <p style="margin:0;color:#555;font-size:.95rem">Direkter Einblick in Transformationen, die ich persönlich geleitet habe.</p>
       </div>
 
-      <!-- SPOTIFY -->
-      <div class="company-profile" id="company-spotify">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Spotify</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Case Study in Agiles Netzwerk</p>
-          </div>
-          <div>
-            <span class="org-model-tag agile">Agiles Netzwerk</span>
-          </div>
+      <!-- OWN MANDATES TABS -->
+      <div class="company-tabs">
+        <div class="company-tab active" data-group="own" onmouseenter="selectCompany('own', 0)" onclick="selectCompany('own', 0)">
+          <div class="co-name">FATH</div>
+          <div class="co-role">CEO 2005–16</div>
         </div>
+        <div class="company-tab" data-group="own" onmouseenter="selectCompany('own', 1)" onclick="selectCompany('own', 1)">
+          <div class="co-name">DB Regio Bus</div>
+          <div class="co-role">CRO 2018–20</div>
+        </div>
+        <div class="company-tab" data-group="own" onmouseenter="selectCompany('own', 2)" onclick="selectCompany('own', 2)">
+          <div class="co-name">Küchenquelle</div>
+          <div class="co-role">2020–2022</div>
+        </div>
+        <div class="company-tab" data-group="own" onmouseenter="selectCompany('own', 3)" onclick="selectCompany('own', 3)">
+          <div class="co-name">V.Fraas</div>
+          <div class="co-role">2023</div>
+        </div>
+      </div>
 
+      <div class="company-detail active" data-group="own" id="company-fath">
+        <h3>FATH Gruppe</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">CEO 2005–2016</p>
+        <p style="background: var(--accent); padding: 0.8rem; border-left: 3px solid var(--teal); margin-bottom: 1rem;"><strong>Organisationsmodell:</strong> Ambidextrous</p>
         
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Spotify wurde 2006 gegründet und ist zum Platzhirsch im digitalen Musikstreaming geworden (ca. 500 Mio. User, 2024).
-          Gegründet als pure-play Tech-Startup, sah Spotify früh, dass klassische Hierarchie für Software-Innovation tödlich ist.
-        </p>
-
-        <p>
-          Das berühmte „Spotify Model" (2012, von Kniberg &amp; Ivarsson dokumentiert) organisiert die gesamte Tech-Organisation
-          in autonome Squads (ca. 8 Personen), Tribes (ca. 40-150 Personen, mehrere Squads), Chapters (funktionale Expertise
-          wie Backend, Frontend), und Guilds (Wissensaustausch über Squad-Grenzen).
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>2006–2010:</strong> Klassisches Startup-Chaos, dann schnelle Strukturierung in funktionale Teams (Engineering,
-          Product, Design, Operations).
-        </p>
-
-        <p>
-          <strong>2011–2012:</strong> Schmerz. Mit ~300 Entwicklern wurde klar, dass klassische Hierarchie / funktionale Silos
-          nicht skalieren. Abhängigkeiten, Blockierungen, lange Releasecycles. Henrik Kniberg dokumentiert diesen Moment:
-          „Wir brauchten etwas radikal anderes."
-        </p>
-
-        <p>
-          <strong>2012–2016:</strong> Das Spotify Model entsteht und wird dokumentiert. Ähnlich wie Agile, aber designed für
-          Skalierung und Alignment. Squads sind autonom (kein Projektmanagement-Overhead), haben aber klare Goals und
-          gemeinsame Architektur-Prinzipien.
-        </p>
-
-        <p>
-          <strong>2016+:</strong> Spotify wurde public (2018) und skalierte das Model global. Die Music- und Podcast-Versionen
-          (Spotify Studios) funktionierten unter dem gleichen Modell, auch wenn Content-Innovation andere Rhythmen hat.
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <div class="quote-box">
-          „Das Spotify Model hat die Industrie inspiriert. Die Idee, dass Autonomie und Alignment nicht im Widerspruch stehen,
-          ist revolutionary. Wir haben es in Organisationen mit 2000+ Engineering-Mitarbeitern getestet – es funktioniert."
-          <div class="quote-attribution">— Senior Engineering Leader, Fortune-500 Tech Company</div>
-        </div>
-
-        <p>
-          Spotify zeigt, dass Agiles Netzwerk nicht bloße Theorie ist – es funktioniert in großen, komplexen Umgebungen.
-          Die Kombination von Squad-Autonomie + Tribe-Alignment + Chapter-Expertise ist genial (Kniberg &amp; Ivarsson, 2012).
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Context Dependency:</strong> Das Spotify Model funktioniert in Greenfield Tech-Unternehmen. In Traditionsunternehmen
-          führt es oft zu Chaos. SAP, Siemens und andere haben versucht, es zu adaptieren – mit begrenztem Erfolg. Der Grund:
-          Ihre Legacy-Systeme, Prozesse und Kulturen erfordern mehr Struktur (Westerman et al., 2014).
-        </p>
-
-        <p>
-          <strong>Skalierungspausen:</strong> Spotify selbst musste das Model mehrmals anpassen. Mit ~5000 Mitarbeitern (2020)
-          war klar, dass reine Squad-Autonomie nicht mehr reichte – es brauchte mehr Governance. Das Model ist nicht
-          stabilisierend, sondern eher in konstanter Anpassung (Conboy &amp; Fitzgerald, 2019).
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Spotify zeigt extreme Dynamic Capabilities – Sensing neuer Musiktrends (Podcasts, Playlists), Seizing durch schnelle
-          Feature-Releases, Reconfiguring durch Squad-Umorganisation. Das Modell ist optimiert für hohe Reconfiguring-Geschwindigkeit.
-          Allerdings: Strategisches Reconfiguring (z.B. Musikindustrie-Konsolidierung, Podcast-Strategie) erfolgt weiter zentral.
-          Siehe <a href="dba.html">MSTM</a>.
-        </p>
-        </div>
-      </div><!-- AMAZON -->
-      <div class="company-profile" id="company-amazon">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Amazon</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">2-Pizza-Teams &amp; Dezentralisierte Ownership</p>
-          </div>
-          <div>
-            <span class="org-model-tag agile">Agiles Netzwerk</span>
-          </div>
-        </div>
-
+        <h4>Organisationsentwicklung als CEO</h4>
+        <p>Die FATH Gruppe war ein klassisches mittelständisches Familienunternehmen mit starken Traditionen. Als CEO etablierte ich eine Ambidextrous-Struktur: Auf einer Seite optimierten wir den traditionellen Einzelhandel auf Effizienz (Margin-Verbesserung), auf der anderen Seite schufen wir eine separate E-Commerce-Unit mit agiler Kultur, anderen Anreizsystemen und Experimentierfreiheit.</p>
         
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Amazon wurde 1994 als Online-Buchhandlung gegründet und ist heute ein Konglomerat (E-Commerce, Cloud, Advertising,
-          Devices, etc.). Unter Jeff Bezos wurde Amazon mit einer extrem dezentralisierten Architektur aufgebaut, die eng mit
-          der Organisationsstruktur verflochten ist – „Organizational Structure mirrors Architecture" (Arthur D. Dewey, 1967,
-          rezitiert von Bezos).
-        </p>
-
-        <p>
-          Das berühmte „Two Pizza Rule" (ein Team sollte von zwei Pizzas satt werden, also ca. 6-8 Personen) zieht sich durch die
-          ganze Amazon-Geschichte. Jedes Two-Pizza-Team hat volle Ownership über einen Service / ein Produkt.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>1994–2002:</strong> Startup, dann schnelle Skalierung. Retail war das Kerngeschäft. Klassische hierarchische
-          Strukturen entstehen, aber Bezos' Philosophie der dezentralisierten Ownership wird früh etabliert.
-        </p>
-
-        <p>
-          <strong>2003–2010:</strong> Amazon Web Services startet als Internal Project, wird aber schnell zu separater Division.
-          Die AWS-Architektur (Microservices, API-first) inspiriert die organisatorische Struktur: Dezentralisierte Teams mit
-          klaren Service-Interfaces.
-        </p>
-
-        <p>
-          <strong>2010+:</strong> Die Two-Pizza-Struktur wird Dogma. Jede Geschäftseinheit (Retail, AWS, Advertising, Alexa)
-          ist organisiert als Netzwerk von autonomen Two-Pizza-Teams. Kein globales Alignment-Meeting – nur API-Contracts.
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <div class="quote-box">
-          „Amazon's dezentralisierte Struktur ist der Grund, warum es Innovation nach Google und Apple betreiben kann. Viele
-          andere Tech-Konzerne versuchen, zu stark zu kontrollieren. Bezos vertraut dem Markt und dem Eigentum der Teams."
-          <div class="quote-attribution">— Business Insider Article on Amazon's Organizational Agility</div>
+        <h4>Erfolg und Grenzen</h4>
+        <p>Über eine Dekade gelang es, die 50-jährige Handelstradition ins digitale Zeitalter zu bringen, ohne die Kernkompetenz zu verlieren. Nach meinem Ausscheiden durch Familiennachfolge kehrte die Gruppe jedoch zu klassischeren Strukturen zurück – ein Beleg dafür, dass Ambidextrous-Balance stark von der CEO-Persönlichkeit abhängt.</p>
         </div>
+            </div>
 
-        <p>
-          AWS ist ein klarer Erfolg dieser Struktur – eine mehrere Milliarden Dollar schwere Geschäftseinheit, entstanden durch
-          dezentralisierte Teams, ohne großes Steering Committee.
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Menschliche Kosten:</strong> Amazon ist berüchtigt für Workplace-Burnout und extrem hohe Fluktuation. Die
-          Dezentralisierung ermöglicht Innovation, aber auf Kosten von Mitarbeiter-Wohlbefinden. Viele ehemalige Amazonianer
-          berichten von Überlastung und Überwachung.
-        </p>
-
-        <p>
-          <strong>Kultur-Homogenität:</strong> Das „Two-Pizza-Rule"-Dogma ist starr. Es funktioniert für Infrastruktur-Teams,
-          aber weniger gut für Organisationen, die mehr Koordination brauchen (z.B. Retail, wo Cross-Team-Synergien oft
-          wertvoller sind als Team-Autonomie).
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Amazon zeigt extreme Dekoupling – jedes Team ist eine Microenterprise. Das ermöglicht Sensing und Seizing auf sehr
-          granularer Ebene, aber Reconfiguring über Team-Grenzen ist teuer (APIs müssen neu verhandelt werden). Das MSTM
-          Framework würde Amazon als Fall darstellen, wo Task = Sensing/Seizing stark, aber M = Mechanisms für Cross-Team-
-          Reconfiguring schwach sind. Siehe <a href="dba.html">Doktorarbeit</a>.
-        </p>
-        </div>
-      </div><!-- HAIER GROUP -->
-      <div class="company-profile" id="company-haier">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Haier Group</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Microenterprise &amp; Selbstorganisation</p>
-          </div>
-          <div>
-            <span class="org-model-tag holacracy">Holacracy / Teal</span>
-          </div>
-        </div>
-
+      <div class="company-detail" data-group="own" id="company-db-regio-bus">
+        <h3>Deutsche Bahn DB Regio Bus</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Chief Reorganization Officer 2018–2020</p>
+        <p style="background: var(--accent); padding: 0.8rem; border-left: 3px solid var(--teal); margin-bottom: 1rem;"><strong>Organisationsmodell:</strong> Klassische Hierarchie → Ambidextrous → Agiles Netzwerk</p>
         
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Haier wurde 1984 in Qingdao, China gegründet und ist einer der größten Haushaltsgeräte-Hersteller weltweit. Unter
-          Founder CEO Zhang Ruimin wurde Haier radikal neugestaltet: Vollständige Auflösung der klassischen Hierarchie zu
-          Gunsten von Micro-Enterprises.
-        </p>
-
-        <p>
-          Im Jahr 2013 kündigte Zhang eine Revolution an: Haier würde sich selbst auf die Größe von ~10,000 Micro-Enterprises
-          aufteilen, jede mit voller P&amp;L-Verantwortung und direktem Kundenzugang. Statt 7-8 Hierarchie-Ebenen würde es nur noch
-          3 geben.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>1984–2000:</strong> Klassische chinesische SOE-Struktur, dann nach Liberalisierung normale Hierarchie. Haier war
-          führender Kühlschrank-Hersteller in China.
-        </p>
-
-        <p>
-          <strong>2000–2012:</strong> Globale Expansion. Haier kauft mehrere europäische und amerikanische Brands (GE Appliances,
-          etc.). Die Struktur bleibt jedoch klassisch hierarchisch – ein zentrales China-HQ steuert alles.
-        </p>
-
-        <p>
-          <strong>2013–2016:</strong> The Great Disruption. Zhang erklärt klassische Hierarchie für obsolet. Mit Hilfe von
-          Management-Beratern wird Haier in ein Netzwerk von Micro-Enterprises aufgelöst. Jede Micro-Enterprise (ca. 10-200
-          Personen) hat:
-        </p>
-        <ul>
-          <li>Volle P&amp;L-Verantwortung (Gewinn/Verlust sichtbar)</li>
-          <li>Direkter Kundenzugang (kein Zwischenhändler-Hierarchie)</li>
-          <li>Interne Preis-Verhandlungen (eine ME kauft von einer anderen)</li>
-          <li>Dezentralisierte Investment-Entscheidungen</li>
-        </ul>
-
-        <p>
-          <strong>2017+:</strong> Stabilisierung. Viele Micro-Enterprises scheitern, andere boomen. Konsolidierung von Learnings.
-          Haier definiert sich jetzt nicht als Unternehmen, sondern als „Plattform für Micro-Enterprises".
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <div class="quote-box">
-          „Haier hat etwas getan, das Organisationstheoretiker für unmöglich hielten – ein 100,000-Personen-Unternehmen
-          vollständig dezentralisieren. Die Resultate sind spektakulär: Schnellere Innovationen, höheres Mitarbeiter-Engagement,
-          bessere Kundenorientierung."
-          <div class="quote-attribution">— Laloux, Reinventing Organizations Case Studies</div>
-        </div>
-
-        <p>
-          Haier ist das prominenteste Beispiel für die praktische Anwendung von Holacracy/Teal-Ideen im großen Maßstab.
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Schwer zu repräsentieren, schwer zu berichten:</strong> Viele Micro-Enterprises sind de facto Spin-offs – Haier
-          als Konzern existiert kaum noch. Die Transparenz über Kosten und Gewinn ist fragwürdig. Kritiker argumentieren, dass
-          es eher De-Konglomeration als Holacracy ist.
-        </p>
-
-        <p>
-          <strong>Sustainability fraglich:</strong> Eine Dekade nach der Transformation gibt es wenig empirische Daten über echte
-          Performance. Haier-Finanzen sind weniger transparent als Western-Konkurrenten. Einige Analysten behaupten, dass viele
-          Micro-Enterprises einfach scheitern und durch neue ersetzt werden – Fluktuation statt Innovation.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Haier ist der radikalste Test des Reconfiguring-Paradigmas. Das Unternehmen hat versucht, Mechanisms (Preismodelle,
-          P&amp;L), Structure (flach), Trust (Spielraum für Experimente) und Mandate (klare Ziele pro ME) vollständig neu zu kalibrieren.
-          Das Experiment ist noch nicht abgeschlossen, aber die MSTM-Hypothesen scheinen teilweise bestätigt: Wo Mechanisms und
-          Mandate klar sind, funktioniert Dezentralisierung; wo sie vage sind, entsteht Chaos. Siehe <a href="dba.html">Doktorarbeit</a>.
-        </p>
-        </div>
-      </div><!-- BUURTZORG NETHERLANDS -->
-      <div class="company-profile" id="company-buurtzorg">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Buurtzorg Netherlands</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Selbstorganisierte Home Care</p>
-          </div>
-          <div>
-            <span class="org-model-tag holacracy">Holacracy / Teal</span>
-          </div>
-        </div>
-
+        <h4>Roter Faden einer Transformation</h4>
+        <p>DB Regio Bus bot einen idealen Roter Faden für die Spannung zwischen Organisationsmodellen. In drei Phasen beobachtete ich einen systematischen Übergang:</p>
         
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Buurtzorg wurde 2006 gegründet als Antwort auf eine einfache Frage: Wie würde der niederländische Heimkrankenplege-Markt
-          funktionieren, wenn wir Bürokratie radikal abschaffen? Statt zentrale Planung wurde Buurtzorg als Netzwerk von lokal
-          selbstorganisierten Teams aufgebaut.
-        </p>
-
-        <p>
-          Jedes Team (ca. 10-12 Krankenschwestern / Pfleger pro 4,000 Einwohner) entschied selbst:
-          Wer kommt in Frage für Besuch? In welcher Reihenfolge? Welche Treatments? Wie wird abgerechnet?
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>2006–2010:</strong> Pilotumsetzung in lokalen Regionen. Klare Ergebnisse:
-          Schneller, kostengünstiger, zufriedenere Patienten und glücklichere Mitarbeiter als konkurrierende Anbieter
-          (zentralisierte Bürokratien).
-        </p>
-
-        <p>
-          <strong>2010–2015:</strong> Skalierung. Buurtzorg expandierte landesweit, später international. Überraschungsergebnis:
-          Die Selbstorganisation skalierte – jede neue Region funktionierte ähnlich gut.
-        </p>
-
-        <p>
-          <strong>2015+:</strong> Stabilisierung und Verhandlung mit Regulierung. Das niederländische Gesundheitssystem musste
-          Buurtzorg-Modelle akzeptieren – traditionelle Anbieter konnten nicht konkurrieren. Heute ist Buurtzorg ein Gold-Standard
-          für Home Care.
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <div class="quote-box">
-          „Buurtzorg ist das lebende Beispiel, dass Selbstorganisation nicht naiv ist. Diese Teams funktionieren unter härteren
-          Bedingungen als Tech-Startups – es geht um Menschenleben, Regulierung, finanzielle Zwänge. Und doch funktioniert's besser
-          als jede alternative Struktur."
-          <div class="quote-attribution">— Laloux &amp; Narayan, Reinventing Organizations in Practice</div>
-        </div>
-
-        <p>
-          Buurtzorg hat gezeigt, dass Holacracy/Teal nicht nur in Tech oder Kreativ-Branchen funktioniert, sondern auch in
-          regulierten, Hochleistungs-Umgebungen wie Healthcare.
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Kontext Spezifität:</strong> Buurtzorg funktioniert in Niederland mit hohem Vertrauen, hochgebildete Pfleger,
-          und liberaler Regulierung. Nachahmer in anderen Ländern (USA, Deutschland) sind teilweise gescheitert – der Kontext war
-          nicht ähnlich genug.
-        </p>
-
-        <p>
-          <strong>Skalierungsgrenzen:</strong> Buurtzorg wächst nicht mehr so schnell wie früher. Es gibt Grenzen, wie dezentralisiert
-          man ein nationales Gesundheitssystem organisieren kann. Irgendwann braucht es doch Steuerung.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Buurtzorg zeigt ein faszinierendes Bild: Task = Sensing/Seizing stark (jedes Team kennt lokale Kundenanforderungen),
-          M = Mechanisms sind äußerst einfach (wenige zentrale Prozesse), S = Struktur minimal (Teams sind autonom), T = Trust ist
-          maximal (Teams werden gewährt, richtig zu entscheiden), M = Mandate sind klar (Gesundheitsstandards muss eingehalten).
-          Dies ist MSTM-Kalibrierung auf oberster Ebene. Siehe <a href="dba.html">Doktorarbeit</a>.
-        </p>
-        </div>
-      </div><!-- V.FRAAS GMBH -->
-      <div class="company-profile" id="company-vfraas">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">V.Fraas GmbH</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Chief Reorganization Officer 2023 · Transformationsversuch</p>
-          </div>
-          <div>
-            <span class="org-model-tag holacracy">Holacracy / Teal (Versuch)</span>
-          </div>
-        </div>
-
+        <h4>Phase 1: Klassische Hierarchie → Ambidextrous (2018–2019)</h4>
+        <p>Die klassische Hierarchie blockierte Innovation. Entscheidungen dauerten Wochen. Intervention: Aufbau paralleler Strukturen zum Schutz von Digital-Innovation neben dem Kerngeschäft. Unterschiedliche KPIs und Anreizsysteme für beide Units.</p>
         
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          V.Fraas (gegründet 1999) ist ein Familienunternehmen, spezialisiert auf Premium-Accessoires (Schals, Tücher). Mit ca.
-          320 Mitarbeitern und ~80 Mio. EUR Umsatz war V.Fraas ein stabiler, aber langsamer Mittelständler. Die Industrie
-          fragmentierte sich, schnelle Fashion-Konkurrenten wuchsen schneller.
-        </p>
-
-        <p>
-          Als Chief Reorganization Officer (2023) wurde ich beauftragt, V.Fraas agiler und innovationsfähiger zu machen.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>Situation bei Antritt (2023):</strong> V.Fraas war strukturiert wie ein klassisches deutsches Unternehmen –
-          funkionales Silos (Produktion, Design, Vertrieb, Finance), lange Entscheidungswege, Risiko-Aversion.
-        </p>
-
-        <p>
-          <strong>Transformationsziel:</strong> Kombination aus Ambidextrous (für Kernprodukt) und Agile (für New Business /
-          Digital). Ich versuchte, kleinere, autonome Teams zu schaffen, die schneller iterieren könnten.
-        </p>
-
-        <p>
-          <strong>Was funktionierte:</strong>
-        </p>
-        <ul>
-          <li>Schnell neue Product-Innovation-Unit etabliert mit weniger Prozessen</li>
-          <li>Einige Projekte (Digital-Accessoires, Nachhaltigkeits-Linie) wurden wirklich schneller umgesetzt</li>
-          <li>Talentierung verbessert sich (einige junge Leute sehen jetzt Potenzial bei V.Fraas)</li>
-        </ul>
-
-        <p>
-          <strong>Was nicht funktionierte:</strong>
-        </p>
-        <ul>
-          <li>Die Kern-Produktion konnte nicht agiler werden – sie ist von Lieferketten abhängig</li>
-          <li>Die Familienkultur erlaubte nicht das Risiko-Nehmen, das Agile erfordert</li>
-          <li>Einige neue Experimente scheiterten (teure Fehler, schwer zu rechtfertigen im Familienunternehmen)</li>
-          <li>Mitarbeiter-Konflikt zwischen „alten" Prozess-fokussierten und „neuen" Speed-fokussierten Menschen</li>
-        </ul>
-
-        <h4>Positive Stimmen</h4>
-        <p>
-          <strong>Interne Rückmeldungen von Mitarbeitern der Innovation Unit:</strong>
-          „Endlich können wir schneller denken. Vor 2023 hätte eine neue Idee 6-9 Monate gedauert, um überhaupt sichtbar zu
-          werden. Jetzt ist es 4-6 Wochen. Das ist Leben-verändernd."
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Mein eigenes Fazit (aus Perspektive von 2024):</strong> Die V.Fraas-Transformation zeigt Grenzen auf. Ambidextrous
-          Organisierung funktioniert nur, wenn beide Logiken (Kern + Innovation) echten Business-Wert bringen. Bei V.Fraas gab es
-          Spannungen: Die Innovation Unit brachte viel Lernen, aber nicht sofort Gewinn. Das Kern-Business änderte sich nicht.
-          Nach meinem Ausscheiden (2023) realisierte sich die Befürchtung: Die Innovation Unit wurde deprioritisiert unter
-          Finanzierungsdruck.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          V.Fraas ist ein klassischer Fall, wo MSTM-Kalibrierung fehlte. Wir versuchten, neue Structures (Agile Teams) einzuführen, aber:
-        </p>
-        <ul>
-          <li><strong>M (Mechanisms):</strong> Die Anreizsysteme blieben auf klassische KPIs fokussiert (Marge, Verlässlichkeit).
-          Innovation-Unit wurde nicht belohnt für Experimente.</li>
-          <li><strong>T (Trust):</strong> Familienunternehmen haben Vertrauens-Defizite gegenüber Outsider-CRO (mir). Meine
-          Vorschläge wurden mit Skepsis betrachtet.</li>
-          <li><strong>M (Mandate):</strong> Die Mandate der Innovation Unit war zu vage. Was durfte sie kosten? Wie lange Runway?</li>
-        </ul>
-
-        <p>
-          Mit besserer MSTM-Kalibrierung hätte ich anders vorgehen sollen. Siehe <a href="dba.html">Doktorarbeit</a> für Details.
-        </p>
-        </div>
-      </div><!-- KÜCHENQUELLE -->
-      <div class="company-profile" id="company-kuechenquelle">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Küchenquelle</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">CEO 2020–2022 · Divisionale Struktur unter Druck</p>
-          </div>
-          <div>
-            <span class="org-model-tag divisional">Divisionale Struktur</span>
-          </div>
-        </div>
-
-        
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Küchenquelle (gegründet 1973) ist ein deutsches Unternehmen im Premium-Küchenmöbel-Segment. Mit ca.
-          600 Mitarbeitern und mehreren Divisionen (Retail, B2B, Online, Franchising) war das Unternehmen traditionell erfolgreich. Meine Aufgabe
-          als CEO (2020–2022) war Navigation durch COVID-19 und die kommende Post-COVID Transformation.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>Struktur bei Antritt (2020):</strong> Klassische Divisionale Struktur – jede Division hatte Profit-Center-Status,
-          Central Functions (IT, Finance, HR) unterstützten alle Divisionen.
-        </p>
-
-        <p>
-          <strong>Herausforderung:</strong> COVID-19 zeigte Schwächen. Die Divisionen waren zu isoliert – Kundentrends (z.B.
-          Zoom-Showrooms, virtuelle Beratung) erforderten Cross-Division-Aktion, die die Struktur nicht ermöglichte.
-        </p>
-
-        <p>
-          <strong>Versuch der Anpassung:</strong> Ich versuchte, Cross-Funktions-Teams zu schaffen (digitale Transformation),
-          um lockere Kopplung zwischen Divisionen zu ermöglichen. Teilweise funktionierte das, teilweise nicht.
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <p>
-          Die Divisionale Struktur war sehr handhabbar während stabiler Zeiten. Klare Verantwortlichkeit, P&amp;L-Sichtbarkeit,
-          Fairness im Ressourcentransfer (basierend auf Profit-Beitrag).
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Inflexibilität unter Druck:</strong> COVID-19 erforderte schnelle, unternehmensweite Transformation – Divisionale
-          Struktur war zu rigide. Jede Division optimierte lokal, nicht global. Das führte zu Redundanzen und Opportunitätskosten.
-        </p>
-
-        <p>
-          <strong>Talent-Bottleneck:</strong> Top-Digital-Talente wollten nicht in Küchenquelle-Struktur arbeiten – sie sahen keine
-          Skalierung. Nach meinem Ausscheiden (2022) wurde die digitale Transformation deprioritisiert.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Küchenquelle zeigt, dass Divisionale Struktur gut funktioniert in stabilen, Margin-fokussierten Märkten. Aber Reconfiguring
-          über Divisionen (required für Digital Transformation) war zu teuer. Das MSTM-Framework würde Küchenquelle als Fall
-          klassifizieren, wo S (Structure) die T (Trust) und M (Mechanisms) überlagert hat – Struktur war Barriere für Innovation.
-        </p>
-        </div>
-      </div><!-- ROBERT BOSCH GMBH -->
-      <div class="company-profile" id="company-bosch">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Robert Bosch GmbH</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Industrial Conglomerate – Divisionale Struktur</p>
-          </div>
-          <div>
-            <span class="org-model-tag divisional">Divisionale Struktur</span>
-          </div>
-        </div>
-
-        
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Robert Bosch GmbH (gegründet 1886) ist einer der größten Technologie- und Ingenieurbetriebe weltweit. Mit über 400,000
-          Mitarbeitern in über 60 Ländern ist Bosch organisiert als Konglomerat aus ~70 Divisionen, die von einer zentralen
-          Holding gesteuert werden.
-        </p>
-
-        <p>
-          Bosch ist berühmt für technische Exzellenz und Qualität – aber auch für typische Großkonzern-Trägheit. Die Divisionale
-          Struktur funktioniert gut für Stabilität, aber Innovation ist schwierig.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>Klassisches Muster:</strong> Bosch wurde aufgebaut mit strengem Controlling, klaren Profit-Center-Grenzen, zentraler
-          Technik-Kontrolle. Jede Division (z.B. Bosch Hydraulics, Bosch Electrical Drives, etc.) war quasi eine Firma in sich.
-        </p>
-
-        <p>
-          <strong>Problem:</strong> Im Zeitalter von Elektromobilität, IoT, Softwarization braucht Bosch Cross-Division-Synergien,
-          die die Struktur nicht leicht ermöglicht. Elektromobilität braucht zusammengebrachte Expertise aus 15+ Divisionen – das
-          Organigramm nicht unterstützt.
-        </p>
-
-        <p>
-          <strong>Versuch der Anpassung:</strong> Bosch hat mehrere Matrix-Überlagen, Cross-Functional-Teams und Global-Themen-Initiativen
-          aufgebaut – aber die Basis bleibt Divisional.
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <p>
-          Bosch ist extrem erfolgreich in stabilen, technischen Märkten. Die Divisionale Struktur erlaubt Spezialisierung auf
-          höchster Ebene – jede Division ist weltführend in ihrer Nische.
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Innovationsträgheit:</strong> Bosch ist nicht der schnellste Innovator im Tech-Raum. Startups skalieren schneller.
-          Die Divisionale Struktur ist ein Nachteil in schnellen Märkten – zu viele Approval-Prozesse.
-        </p>
-
-        <p>
-          <strong>Elektromobilität-Herausforderung:</strong> Bosch's Zukunft hängt ab von erfolgreicher Elektromobilität-Integration.
-          Das erfordert eine Reorganisation, die viele Divisionen betrifft – äußerst komplex in einer Divisional-Struktur.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Bosch zeigt Stärken in M (Mechanisms – sehr klare KPIs, P&amp;L-Kontrolle), aber Schwächen in Reconfiguring. Die Divisionale
-          Struktur schützt Stabilität, bremst aber strategische Transformation. Mit besserer MSTM-Kalibrierung könnte Bosch schneller
-          auf E-Mobility reagieren.
-        </p>
-        </div>
-      </div><!-- SIEMENS AG -->
-      <div class="company-profile" id="company-siemens">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">Siemens AG</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Global Industrial Powerhouse – Hybrid Struktur</p>
-          </div>
-          <div>
-            <span class="org-model-tag divisional">Divisionale Struktur</span>
-            <span class="org-model-tag hierarchy">Klassische Hierarchie (Konzernzentrale)</span>
-          </div>
-        </div>
-
-        
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Siemens (gegründet 1847) ist einer der ältesten und größten Industriekonzerne weltweit. Mit über 300,000 Mitarbeitern und
-          mehreren Geschäftsbereichen (Industrie-Automation, Digital Industries, Smart Infrastructure, Mobility, Siemens Energy,
-          Siemens Healthineers) ist Siemens ein Konglomerat mit hybrider Struktur – teilweise Divisional, teilweise Matrix.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          <strong>Klassische Phasen:</strong> Siemens war lange zeit klassisch hierarchisch, dann wurde auf Divisionale Struktur
-          umgestellt (1990er/2000er). Jede Division hat Autonomie, aber Zentrale bleibt sehr stark.
-        </p>
-
-        <p>
-          <strong>Aktuelle Struktur:</strong> Siemens hat 15+ Divisionen, aber auch eine sehr starke Zentrale (CEO, CFO, HR, IT,
-          Legal). Die Zentrale steuert Strategie, Budgets, und kritische Entscheidungen – weniger Autonomie für Divisionen als bei
-          Bosch oder reinen Divisional-Modellen.
-        </p>
-
-        <p>
-          <strong>Herausforderung:</strong> Wie Bosch muss Siemens mit Digital Transformation kämpfen. Aber Siemens' Zentrale ist
-          stärker, was manchmal hilft (schnellere globale Alignment), manchmal bremst (Divisions-Entrepreneurship).
-        </p>
-
-        <h4>Positive Stimmen</h4>
-        <p>
-          Siemens hat erfolgreiche Transistionen durchgemacht (z.B. Spinning off Siemens Healthineers, Siemens Energy). Die Balance
-          zwischen Zentrale und Divisionen ermöglicht große strategische Moves.
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Zentralen-Overhead:</strong> Die Zentrale ist sehr groß und kann zu Bureaucracy führen. Entscheidungen sind oft
-          schneller in dezentralisierten Konkurrenten.
-        </p>
-
-        <p>
-          <strong>Digital Native Fähigkeiten:</strong> Siemens kämpft, mit Tech-Startups und Tech-Konzernen zu konkurrieren. Die
-          klassische Struktur ist nicht optimiert für schnelle Software-Innovation.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          Siemens ist hybrid – teilweise klassische Hierarchie (Zentrale), teilweise Divisional (Business Units). Dies schafft
-          Spannung: Die Zentrale will Kontrolle, die Divisionen wollen Autonomie. Eine bessere MSTM-Kalibrierung könnte diese
-          Spannungen klarer machen (z.B. welche Decisions centralized vs. dezentralisiert sein sollten). Siehe <a href="dba.html">Doktorarbeit</a>.
-        </p>
-        </div>
-      </div><!-- DB REGIO BUS / DEUTSCHE BAHN -->
-      <div class="company-profile" id="company-db-regio-bus">
-        <div class="company-header">
-          <div>
-            <h3 class="company-name">DB Regio Bus / Deutsche Bahn</h3>
-            <p style="margin: 0; color: #666; font-size: 0.9rem;">Chief Reorganization Officer 2018–2020 · Multiple Transformationsphasen</p>
-          </div>
-          <div>
-            <span class="org-model-tag hierarchy">Klassische Hierarchie (Ausgangslage)</span>
-            <span class="org-model-tag ambidextrous">Ambidextrous (Phase 1)</span>
-            <span class="org-model-tag agile">Agiles Netzwerk (Phase 2)</span>
-          </div>
-        </div>
-
-        
-        <button onclick="toggleCompany(this)" style="background:none;border:1px solid #0D7EA0;color:#0D7EA0;padding:.3rem .9rem;border-radius:4px;cursor:pointer;font-size:.82rem;margin-top:.5rem;margin-bottom:0">▼ Mehr anzeigen</button>
-        <div class="company-details" style="display:none"><h4>Hintergrund &amp; Geschichte</h4>
-        <p>
-          Deutsche Bahn (gegründet 1994 aus Zusammenlegung von West- und Ostbahn) ist Europas größter Mobilitätsdienstleister.
-          DB Regio (Schienen-Nahverkehr) und DB Regio Bus (Busverkehr) sind zentrale Divisionen. Meine Rolle als Chief Reorganization
-          Officer (CRO) war es, DB Regio Bus für die digitale Ära vorzubereiten.
-        </p>
-
-        <h4>Organisationsentwicklung</h4>
-        <p>
-          Siehe Abschnitt „DB Regio Bus – Roter Faden" oben für detaillierte Drei-Phasen-Analyse.
-        </p>
-
-        <p>
-          <strong>Zusammenfassung:</strong>
-        </p>
-        <ul>
-          <li><strong>Phase 1 (2018–2019):</strong> Transformation von klassischer Hierarchie zu Ambidextrous. Schutz von
-          Digital-Innovation-Units neben Kerngeschäft. Dynamic Capabilities fokussiert auf Sensing und Seizing.</li>
-
-          <li><strong>Phase 2 (2019–2020):</strong> Versuch, Agile Prinzipien zu skalieren. Squad-Struktur in Regionen. Aber
-          Regulierung und Legacy-Systeme limitierten volle Agilität.</li>
-
-          <li><strong>Phase 3 (2020+):</strong> Rückfall zu mehr klassischer Struktur unter Druck. Zentrale Steuerung wurde
-          wieder stärker.</li>
-        </ul>
-
-        <h4>Positive Stimmen</h4>
-        <p>
-          Der Transformationsversuch war mutig. Deutsche Bahn, ein traditionelles Staatsunternehmen, versuchte Agility – das ist
-          nicht einfach. Einige Regionen zeigten echte Fortschritte (schnellere Entscheidungen, höhere Mitarbeiterzufriedenheit).
-        </p>
-
-        <h4>Kritische Stimmen</h4>
-        <p>
-          <strong>Nachhaltigkeit unter Druck:</strong> Die Transformation war nicht selbstverstärkend. Nach meinem Ausscheiden
-          und unter COVID-19-Druck war unklar, ob die neuen Strukturen Bestand haben würden.
-        </p>
-
-        <p>
-          <strong>Regulierungsgrenzen:</strong> Deutsche Bahn ist ein öffentlicher Verkehrsträger – nicht alles kann agil entschieden
-          werden. Fahrpläne, Sicherheit, Tarifverträge sind hochreguliert. Agile-Philosophie trifft hier auf harte Grenzen.
-        </p>
-
-        <h4>MSTM-Einordnung</h4>
-        <p>
-          DB Regio Bus ist der Kern-Use-Case für meine MSTM-Dissertation. Die Frage ist: Warum funktioniert Transformation in einigen
-          Kontexten (Spotify, Amazon) und nicht in anderen (DB, Küchenquelle)? Das MSTM Framework bietet eine Antwort:
-          Erfolgreiches Reconfiguring erfordert Kalibrierung über M (Mechanisms), S (Structure), T (Trust), und M (Mandate) hinweg.
-          Bei DB waren diese nicht alle aligniert. Siehe <a href="dba.html">Doktorarbeit</a> für Details.
-        </p>
-        </div>
-      </div></section>
+        <h4>Phase 2: Ambidextrous → Agiles Netzwerk (2019–2020)</h4>
+        <p>Nachdem erste Innovationen Erfolg zeigten, etablierten wir Squads in regionalen Hubs mit Autonomie für lokale Entscheidungen. Ziel: Schnellere Kundenreaktion und bessere Mitarbeitermotivation.</p>
+        </div></section>
 
     <!-- SECTION 5: DAS DREI-SÄULEN-MODELL -->
     <section class="container">
@@ -1926,47 +1308,54 @@
             Transformationen durchlaufen können – und wo die Grenzen liegen. Siehe <a href="dba.html">MSTM Framework</a>.
           </p>
         </div>
-      </div><!-- PILLAR 2 -->
-        <div class="pillar">
-          <div class="pillar-number">2</div>
-          <h3>Governance &amp; Legitimität</h3>
+            </div>
 
-          <p>
-            <strong>Kern-Theorien:</strong>
-          </p>
-          <ul>
-            <li><strong>Agency Theory (Jensen &amp; Meckling, 1976):</strong> Wer kontrolliert die Organisation? Eigentümer vs.
-            Manager vs. Stakeholder haben unterschiedliche Interessen. In Familienunternehmen (FATH, V.Fraas, Küchenquelle) ist
-            dies besonders kritisch – Familie vs. Professional Management-Logiken kollidieren. Agency Theory erklärt, warum Transformation
-            oft scheitert: Die Governance ist zu eng aligniert mit Legacy-Logik.</li>
-
-            <li><strong>Stewardship Theory (Davis, Schoorman &amp; Donaldson, 1997):</strong> Manchmal sind Manager nicht Agency-Agenten
-            (self-interested), sondern Stewards (organisation-interested). Buurtzorg zeigt Stewardship – die Krankenschwestern sehen
-            sich selbst als Stewards des Gesundheitssystems, nicht als Agent der Profit-Maximierung. Dies schafft andere Dynamiken.</li>
-
-            <li><strong>Legitimacy Theory (Suchman, 1995):</strong> Organisationen brauchen Legitimität – von Regulierung, Stakeholder,
-            Gesellschaft. Transformation ist nur legitim, wenn sie "aligned" mit breiteren sozialen Erwartungen ist. Deutsche Bahn muss
-            öffentlich legitim sein (Verkehrsversorgung), nicht nur profitabel. Dies limitiert, wie aggressiv DB transformieren kann.</li>
-
-            <li><strong>Socioemotional Wealth (Gómez-Mejía et al., 2007):</strong> Familienunternehmen haben oft nicht nur finanzielle
-            Ziele, sondern auch emotionale Ziele (Familie bleibt kontrolliert, Reputation bleibt erhalten, Tradition bleibt sichtbar).
-            Dies erklärt, warum Familie-geführte Transformation oft konservativ ist – zu radikal würde emotionales Vermögen verlieren.</li>
-          </ul>
-
-          <p>
-            <strong>Praktische Implikation:</strong>
-            Organisationen sind nicht nur technisch-ökonomische Maschinen, sondern auch Governance- und Legitimität-Systeme.
-            Transformation kann rational sinnvoll sein (z.B. mehr Agility), aber scheitern wegen Governance-Konflikten (Familie vs.
-            Profis, Eigentümer vs. Management) oder Legitimität-Fragen (Ist diese Transformation "erlaubt" in dieser Institution?).
-          </p>
-
-          <p>
-            <strong>Verbindung zu MSTM-Forschung:</strong>
-            Die Mandate (M in MSTM) ist die Governance-Achse – Wer hat Macht zu transformieren? Was ist legitimiert? Dies ist genauso
-            wichtig wie Mechanisms oder Structure.
-          </p>
+      <div class="company-detail" data-group="own" id="company-kuechenquelle">
+        <h3>Küchenquelle GmbH</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">2020–2022</p>
+        <p style="background: var(--accent); padding: 0.8rem; border-left: 3px solid var(--teal); margin-bottom: 1rem;"><strong>Organisationsmodell:</strong> Divisionale Struktur</p>
+        
+        <h4>Beratung während Transformationsphase</h4>
+        <p>Advisory-Role in der Organisationsentwicklung während einer kritischen Transformationsphase. Fokus auf Dezentralisierung der Entscheidungsstrukturen und Aufbau autonomer Profit-Centers.</p>
         </div>
-      </div><!-- PILLAR 3 -->
+
+      <div class="company-detail" data-group="further" id="company-haier">
+        <h3>Haier Group</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Case Study in Holacracy</p>
+        <p style="background: var(--accent); padding: 0.8rem; border-left: 3px solid var(--teal); margin-bottom: 1rem;"><strong>Organisationsmodell:</strong> Holacracy / Teal (Microenterprises)</p>
+        
+        <h4>Microenterprise-Transformation</h4>
+        <p>Zhang Ruimin transformierte den traditionellen chinesischen Hausgerätehersteller in ein Netzwerk von 4000+ Microenterprises. Jede Microenterprise hat ihren eigenen P&L, volle Entscheidungsautonomie und direkte Marktanbindung.</p>
+        
+        <h4>Radikale Dezentralisierung</h4>
+        <p>Eines der ambitioniertesten Experimente mit Holacracy-ähnlichen Strukturen in einem großen Global-Konzern – noch nicht abgeschlossen, aber vielversprechend.</p>
+        </div>
+            </div>
+
+      <div class="company-detail" data-group="further" id="company-buurtzorg">
+        <h3>Buurtzorg Netherlands</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Case Study in Teal / Holacracy</p>
+        <p style="background: var(--accent); padding: 0.8rem; border-left: 3px solid var(--teal); margin-bottom: 1rem;"><strong>Organisationsmodell:</strong> Holacracy / Teal</p>
+        
+        <h4>Selbstorganisierte Pflegeteams</h4>
+        <p>Niederländisches Pflegeunternehmen mit Teams von 10-12 Pflegefachkräften, organisiert ohne hierarchische Führungsposition. Jedes Team entscheidet selbst über Patienten, Arbeitszeiten und Ressourcen.</p>
+        
+        <h4>Outcome: Bessere Ergebnisse</h4>
+        <p>Zeigt Potenzial von Teal-Modellen mit besseren Patientenergebnissen und höherer Mitarbeiterzufriedenheit – aber auch Grenzen in Skalierung und in stark regulierten Industrien.</p>
+        </div>
+            </div>
+
+      <div class="company-detail" data-group="further" id="company-bosch">
+        <h3>Robert Bosch GmbH</h3>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">Case Study in Divisionale Struktur</p>
+        <p style="background: var(--accent); padding: 0.8rem; border-left: 3px solid var(--teal); margin-bottom: 1rem;"><strong>Organisationsmodell:</strong> Divisionale Struktur</p>
+        
+        <h4>Klassisches Divisionales Modell</h4>
+        <p>Bosch ist ein Textbook-Beispiel einer dezentralisierten, divisionalen Struktur mit Profit-Centers in verschiedenen Industrien (Automotive, Power Tools, Consumer Goods, IoT).</p>
+        
+        <h4>Skalierungserfolg mit Trade-Offs</h4>
+        <p>Zeigt, wie das Divisionalmodell große, diversifizierte Konzerne erfolgreich organisieren kann – mit bekannten Trade-Offs: weniger Cross-Division-Innovation, aber hohe lokale Agilität in Geschäftsbereichen.</p>
+        </div><!-- PILLAR 3 -->
         <div class="pillar">
           <div class="pillar-number">3</div>
           <h3>Wandel &amp; Erneuerung</h3>
@@ -2126,20 +1515,22 @@
   <!-- JAVASCRIPT -->
   <script>
     // Accordion Toggle Functions
-    function toggleCard(btn) {
-      const card = btn.closest(\'.model-card\');
-      const details = card.querySelector(\'.card-details\');
-      const isOpen = details.style.display !== \'none\';
-      details.style.display = isOpen ? \'none\' : \'block\';
-      btn.textContent = isOpen ? \'▼ Details anzeigen\' : \'▲ Schließen\';
+        function selectModel(idx) {
+      document.querySelectorAll('.model-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.model-detail').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
     }
 
-    function toggleCompany(btn) {
-      const profile = btn.closest(\'.company-profile\');
-      const details = profile.querySelector(\'.company-details\');
-      const isOpen = details.style.display !== \'none\';
-      details.style.display = isOpen ? \'none\' : \'block\';
-      btn.textContent = isOpen ? \'▼ Mehr anzeigen\' : \'▲ Schließen\';
+    function selectCompany(group, idx) {
+      document.querySelectorAll('.company-tab[data-group="' + group + '"]').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+      });
+      document.querySelectorAll('.company-detail[data-group="' + group + '"]').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
     }
 
     // Hamburger Menu Toggle
