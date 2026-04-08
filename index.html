@@ -280,7 +280,13 @@
       .section-title{font-size:1.5rem}
       h1{font-size:1.6rem!important}
     }
-  </style>
+  
+@media(min-width:700px){
+  .nav-toggle{display:none}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem}
+  .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
+}
+</style>
 </head>
 <body>
 <!-- SCROLL BUTTONS -->
@@ -294,11 +300,10 @@
     <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
   </div>
     <div class="nav-menu" id="nav-menu">
-        <a href="ueber-mich.html">Ich</a>
     <a href="lehrformate.html">Lehre</a>
     <a href="dba.html">Forschung</a>
     <a href="praxisbeispiele.html">Wissen</a>
-    <a href="#blog">Blog</a>
+    <a href="ueber-mich.html">Über mich</a>
   </div>
 </nav>
 

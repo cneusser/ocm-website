@@ -233,6 +233,12 @@ footer a { color: var(--teal); text-decoration: none; }
 /* ── SCROLL ANIMATION ── */
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media(min-width:700px){
+  .nav-toggle{display:none}
+  .nav-menu{display:flex!important;flex-direction:row;align-items:center;background:transparent;border-top:none;padding:0;gap:.1rem}
+  .nav-menu a{padding:.35rem .9rem;border-bottom:none;font-size:.9rem;font-weight:500}
+}
 </style>
 </head>
 <body>
@@ -244,11 +250,10 @@ footer a { color: var(--teal); text-decoration: none; }
     <button id="nav-toggle" class="nav-toggle" aria-label="Menü">☰</button>
   </div>
   <div class="nav-menu" id="nav-menu">
-    <a href="ueber-mich.html">Ich</a>
     <a href="lehrformate.html">Lehre</a>
     <a href="dba.html">Forschung</a>
     <a href="praxisbeispiele.html" class="active">Wissen</a>
-    <a href="index.html#blog">Blog</a>
+    <a href="ueber-mich.html">Über mich</a>
   </div>
 </nav>
 
